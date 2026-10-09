@@ -1,0 +1,585 @@
+/* ------------------------------------------------------------------
+   De fotomuur
+   ------------------------------------------------------------------ */
+
+/* --u = één ontwerp-eenheid van het canvas, in pixels. Geregistreerd
+   zodat de waarde één keer op het canvas wordt uitgerekend. */
+@property --u {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 1px;
+}
+
+.wall {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  container-type: size;
+  background-color: var(--color-wall);
+  background-image:
+    var(--grain-strong),
+    radial-gradient(ellipse 80% 60% at 35% 20%, rgb(255 255 255 / 0.07), transparent 70%),
+    radial-gradient(ellipse 70% 50% at 80% 90%, rgb(0 0 0 / 0.18), transparent 70%),
+    linear-gradient(180deg, rgb(255 255 255 / 0.03), rgb(0 0 0 / 0.12));
+  background-size: 180px 180px, auto, auto, auto;
+}
+
+.wall__canvas {
+  --u: max(calc(100cqw / var(--cw)), calc(100cqh / var(--ch)));
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: calc(var(--cw) * var(--u));
+  height: calc(var(--ch) * var(--u));
+  translate: -50% -50%;
+}
+
+/* Vage etalage-reflectie + vignet. */
+.wall__light {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(112deg, transparent 22%, rgb(255 255 255 / 0.045) 30%, transparent 38%),
+    linear-gradient(112deg, transparent 58%, rgb(255 255 255 / 0.03) 63%, transparent 67%),
+    radial-gradient(ellipse 75% 70% at 50% 50%, transparent 55%, rgb(0 0 0 / 0.38));
+}
+
+/* ---------- Object ------------------------------------------------- */
+.wall-item {
+  position: absolute;
+}
+
+.wall-item__body {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  container-type: inline-size;
+  --shadow:
+    0 calc(1 * var(--u)) calc(1.5 * var(--u)) rgb(0 0 0 / 0.32),
+    calc(2 * var(--u)) calc(7 * var(--u)) calc(14 * var(--u)) rgb(0 0 0 / 0.3);
+  --shadow-hover:
+    0 calc(2 * var(--u)) calc(3 * var(--u)) rgb(0 0 0 / 0.28),
+    calc(4 * var(--u)) calc(16 * var(--u)) calc(28 * var(--u)) rgb(0 0 0 / 0.38);
+  transition:
+    translate 0.35s cubic-bezier(0.2, 0.7, 0.2, 1),
+    scale 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.wall-item__body > :first-child {
+  box-shadow: var(--shadow);
+  transition: box-shadow 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.wall-item--hoverable:hover {
+  z-index: 20 !important;
+}
+
+.wall-item--hoverable:hover .wall-item__body {
+  translate: 0 calc(-5 * var(--u));
+  scale: 1.018;
+}
+
+.wall-item--hoverable:hover .wall-item__body > :first-child {
+  box-shadow: var(--shadow-hover);
+}
+
+.wall-item__caption {
+  position: absolute;
+  left: 50%;
+  top: calc(100% + 10 * var(--u));
+  translate: -50% -4px;
+  z-index: 5;
+  padding: 0.35em 0.7em;
+  white-space: nowrap;
+  font-family: var(--font-body);
+  font-size: max(11px, calc(12 * var(--u)));
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+  background: var(--color-cream);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.3);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.25s,
+    translate 0.25s;
+}
+
+.wall-item--hoverable:hover .wall-item__caption,
+.wall-cover:hover .wall-item__caption,
+.wall-cover:focus-visible .wall-item__caption {
+  opacity: 1;
+  translate: -50% 0;
+}
+
+/* ---------- Bevestiging -------------------------------------------- */
+.tape {
+  position: absolute;
+  z-index: 3;
+  width: calc(74 * var(--u));
+  height: calc(22 * var(--u));
+  background:
+    linear-gradient(rgb(255 255 255 / 0.18), rgb(255 255 255 / 0.05)),
+    rgb(232 222 192 / 0.62);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.15);
+  clip-path: polygon(
+    2% 8%, 6% 0, 11% 6%, 16% 1%, 22% 5%, 100% 3%, 97% 14%, 100% 27%, 96% 41%, 100% 56%, 97% 72%,
+    100% 88%, 95% 100%, 89% 95%, 84% 100%, 0 97%, 3% 83%, 0 69%, 4% 52%, 0 38%, 3% 22%
+  );
+}
+
+.tape--top {
+  top: calc(-10 * var(--u));
+  left: 50%;
+  translate: -50% 0;
+  rotate: -3deg;
+}
+
+.tape--tl {
+  top: calc(-6 * var(--u));
+  left: calc(-22 * var(--u));
+  rotate: -38deg;
+}
+
+.tape--tr {
+  top: calc(-6 * var(--u));
+  right: calc(-22 * var(--u));
+  rotate: 36deg;
+}
+
+.pin {
+  position: absolute;
+  z-index: 3;
+  top: calc(9 * var(--u));
+  left: 50%;
+  width: calc(15 * var(--u));
+  height: calc(15 * var(--u));
+  translate: -50% 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #ff8a7a, var(--color-red) 45%, #7a120b 100%);
+  box-shadow:
+    calc(3 * var(--u)) calc(4 * var(--u)) calc(4 * var(--u)) rgb(0 0 0 / 0.45),
+    inset 0 -1px 2px rgb(0 0 0 / 0.3);
+}
+
+/* ---------- Soorten ----------------------------------------------- */
+.print {
+  padding: 4.2cqw 4.2cqw 4.2cqw;
+  background: #f7f4ec var(--grain);
+  background-size: 180px;
+}
+
+.print img {
+  width: 100%;
+  height: auto;
+  filter: contrast(1.03) saturate(0.92);
+}
+
+.frame {
+  padding: 5cqw;
+  background: #141210;
+  box-shadow:
+    var(--shadow),
+    inset 0 0 0 1px rgb(255 255 255 / 0.06);
+}
+
+.frame--black {
+  background: linear-gradient(135deg, #2a2725, #0f0e0d 60%);
+}
+
+.frame--wood {
+  background:
+    repeating-linear-gradient(90deg, rgb(0 0 0 / 0.07) 0 2px, transparent 2px 7px),
+    linear-gradient(135deg, #9a6a3f, #6b4423 70%);
+}
+
+.frame__mat {
+  padding: 7cqw;
+  background: #f4f0e6;
+  box-shadow: inset 1px 1px 3px rgb(0 0 0 / 0.35);
+}
+
+.frame__mat img {
+  width: 100%;
+  height: auto;
+  box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.1);
+}
+
+.page {
+  position: relative;
+  background: #fff;
+}
+
+.page img {
+  width: 100%;
+  height: auto;
+}
+
+.page::after {
+  /* Lichte bolling van het papier. */
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(100deg, rgb(255 255 255 / 0.12), transparent 30%, rgb(0 0 0 / 0.08) 100%),
+    linear-gradient(225deg, rgb(0 0 0 / 0.12), transparent 12%);
+}
+
+/* Poster */
+.poster {
+  --poster-size: 19;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 9cqw 9cqw 8cqw;
+  background-color: var(--color-paper);
+  background-image: var(--grain);
+  background-size: 180px;
+  color: var(--color-ink);
+  overflow: hidden;
+}
+
+.poster__lines {
+  display: grid;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: calc(var(--poster-size) * 1cqw);
+  line-height: 0.88;
+  text-transform: uppercase;
+}
+
+.poster__script {
+  font-family: var(--font-script);
+  font-size: 13cqw;
+  line-height: 1;
+}
+
+.poster__asterisk {
+  position: absolute;
+  width: 14cqw;
+  right: 7cqw;
+  top: 7cqw;
+}
+
+.poster--olive {
+  background-color: var(--color-olive);
+  color: var(--color-cream);
+}
+
+.poster--ochre {
+  background-color: var(--color-ochre);
+  color: var(--color-bordeaux);
+}
+
+.poster--black {
+  background-color: #181513;
+  color: var(--color-cream);
+}
+
+.poster--red {
+  background-color: var(--color-red);
+  color: var(--color-cream);
+}
+
+.poster--blue {
+  background-color: var(--color-blue);
+  color: var(--color-bordeaux);
+}
+
+.poster--black .poster__script {
+  color: var(--color-ochre);
+}
+
+/* Briefje van een ringbandblok */
+.note {
+  position: relative;
+  height: 100%;
+  padding: 18cqw 9cqw 8cqw 16cqw;
+  background-color: #fbfaf5;
+  background-image:
+    radial-gradient(circle at 50% 50%, var(--color-wall) 2.2cqw, transparent 2.5cqw),
+    linear-gradient(90deg, transparent 11.5cqw, rgb(207 43 31 / 0.45) 11.5cqw 12cqw, transparent 12cqw),
+    repeating-linear-gradient(180deg, transparent 0 9.4cqw, rgb(80 130 170 / 0.28) 9.4cqw 9.8cqw),
+    var(--grain);
+  background-size: 10cqw 10cqw, auto, auto, 180px;
+  background-repeat: repeat-x, no-repeat, repeat, repeat;
+  background-position: 0 3cqw, 0 0, 0 9.6cqw, 0 0;
+  color: #23335c;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.note__text {
+  font-family: var(--font-script);
+  font-size: 13.5cqw;
+  line-height: 0.73;
+  rotate: -2deg;
+}
+
+.note__sign {
+  margin-top: 6cqw;
+  font-family: var(--font-script);
+  font-size: 10cqw;
+  text-align: right;
+}
+
+/* Krantenknipsel */
+.clipping {
+  height: 100%;
+  padding: 8cqw 8cqw 9cqw;
+  background-color: #ebe5d4;
+  background-image: var(--grain);
+  background-size: 180px;
+  color: #2a2522;
+  clip-path: polygon(
+    0 1%, 8% 0, 17% 1.5%, 29% 0.3%, 41% 1.6%, 55% 0, 68% 1.2%, 80% 0.2%, 92% 1.4%, 100% 0.4%,
+    99% 18%, 100% 37%, 98.8% 58%, 100% 79%, 99% 100%, 86% 98.6%, 71% 100%, 57% 98.8%, 44% 100%,
+    30% 98.7%, 15% 100%, 0 99%, 1% 78%, 0 55%, 1.2% 33%, 0 15%
+  );
+}
+
+.clipping__kicker {
+  padding-bottom: 2.5cqw;
+  border-bottom: 0.6cqw solid currentColor;
+  font-size: 5.2cqw;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.clipping__headline {
+  margin: 4cqw 0 4cqw;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 14.5cqw;
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+.clipping__body {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 6.1cqw;
+  line-height: 1.32;
+  hyphens: auto;
+  text-align: justify;
+}
+
+/* Kaartje */
+.ticket {
+  display: flex;
+  height: 100%;
+  background-color: #d7e9ee;
+  background-image: var(--grain);
+  background-size: 180px;
+  color: var(--color-bordeaux);
+  -webkit-mask: radial-gradient(circle at 76% 0, transparent 3.2cqw, #000 3.4cqw) top / 100% 51% no-repeat,
+    radial-gradient(circle at 76% 100%, transparent 3.2cqw, #000 3.4cqw) bottom / 100% 51% no-repeat;
+  mask: radial-gradient(circle at 76% 0, transparent 3.2cqw, #000 3.4cqw) top / 100% 51% no-repeat,
+    radial-gradient(circle at 76% 100%, transparent 3.2cqw, #000 3.4cqw) bottom / 100% 51% no-repeat;
+}
+
+.ticket__main {
+  flex: 0 0 76%;
+  padding: 6cqw 7cqw;
+  border-right: 0.6cqw dashed rgb(111 26 18 / 0.5);
+}
+
+.ticket__top,
+.ticket__bottom {
+  font-size: 5.2cqw;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.ticket__title {
+  margin: 1cqw 0;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 15cqw;
+  line-height: 1;
+  color: var(--color-red);
+  text-transform: uppercase;
+}
+
+.ticket__stub {
+  flex: 1;
+  display: grid;
+  place-items: center;
+}
+
+.ticket__stub span {
+  writing-mode: vertical-rl;
+  font-size: 5cqw;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+/* Prikbordbriefje met afscheurstrookjes */
+.ad {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 9cqw 8cqw 0;
+  background-color: #fffef9;
+  background-image: var(--grain);
+  background-size: 180px;
+  color: var(--color-ink);
+}
+
+.ad__heading {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 16cqw;
+  line-height: 0.9;
+  text-transform: uppercase;
+  color: var(--color-red);
+}
+
+.ad__text {
+  margin-top: 4cqw;
+  font-size: 7cqw;
+  line-height: 1.3;
+}
+
+.ad__tabs {
+  display: flex;
+  margin: auto -8cqw 0;
+  height: 30%;
+  border-top: 0.6cqw dashed rgb(0 0 0 / 0.25);
+}
+
+.ad__tabs span {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  writing-mode: vertical-rl;
+  font-family: var(--font-script);
+  font-size: 9cqw;
+  line-height: 1;
+  border-left: 0.5cqw dashed rgb(0 0 0 / 0.18);
+}
+
+.ad__tabs span.is-torn {
+  visibility: hidden;
+}
+
+/* Sticker */
+.wall-item--sticker .wall-item__body > :first-child {
+  box-shadow: 0 calc(2 * var(--u)) calc(4 * var(--u)) rgb(0 0 0 / 0.4);
+}
+
+.sticker {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  padding: 14cqw;
+  border: 5cqw solid #fffdf6;
+  background: radial-gradient(circle at 30% 25%, rgb(255 255 255 / 0.3), transparent 45%), var(--color-red);
+  color: var(--color-cream);
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 15cqw;
+  line-height: 0.88;
+  text-transform: uppercase;
+}
+
+/* Lege lijsten (vroeger / nu) */
+.placeholder-board {
+  display: flex;
+  gap: 5cqw;
+  height: 100%;
+  padding: 5cqw;
+  background-color: #b49a76;
+  background-image: var(--grain);
+  background-size: 180px;
+}
+
+.placeholder-board__slot {
+  flex: 1;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 1cqw;
+  border: 0.5cqw dashed rgb(28 23 21 / 0.45);
+  background: rgb(253 251 245 / 0.65);
+  color: var(--color-ink);
+}
+
+.placeholder-board__year {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 10cqw;
+  line-height: 1;
+}
+
+.placeholder-board__label {
+  font-family: var(--font-script);
+  font-size: 6cqw;
+  line-height: 1;
+  color: var(--color-bordeaux);
+}
+
+/* ---------- De cover op de muur ----------------------------------- */
+.cover-slot {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Lichtere plek waar de cover hing (zichtbaar zodra hij loskomt). */
+.cover-slot__ghost {
+  position: absolute;
+  inset: 0;
+  background: rgb(255 255 255 / 0.06);
+  box-shadow: inset 0 0 calc(18 * var(--u)) rgb(0 0 0 / 0.12);
+}
+
+.cover-slot__nail {
+  position: absolute;
+  top: calc(10 * var(--u));
+  left: 50%;
+  width: calc(7 * var(--u));
+  height: calc(7 * var(--u));
+  translate: -50% 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #c9c4bb, #55504a);
+  box-shadow: calc(2 * var(--u)) calc(3 * var(--u)) calc(3 * var(--u)) rgb(0 0 0 / 0.5);
+}
+
+.wall-cover {
+  display: block;
+  position: absolute;
+  inset: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.wall-cover:hover,
+.wall-cover:focus-visible {
+  translate: 0 calc(-5 * var(--u));
+  scale: 1.02;
+}
+
+.wall-cover:hover .magazine,
+.wall-cover:focus-visible .magazine {
+  --lift: 0.18;
+}
+
+.wall-cover:focus-visible {
+  outline-offset: 6px;
+}
+
+.wall-cover .wall-item__caption {
+  font-size: max(11px, calc(12 * var(--u)));
+}

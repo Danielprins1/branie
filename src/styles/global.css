@@ -1,44 +1,105 @@
+/* ------------------------------------------------------------------
+   Basis. Kleuren en fonts komen uit src/config/site.js en worden als
+   --color-* en --font-* op <html> gezet (zie main.jsx). De waarden
+   hieronder zijn alleen terugvaloptie.
+   ------------------------------------------------------------------ */
+:root {
+  --color-red: #cf2b1f;
+  --color-bordeaux: #6f1a12;
+  --color-cream: #fdfbf5;
+  --color-paper: #f2ede2;
+  --color-blue: #acd7e8;
+  --color-ochre: #ddb03a;
+  --color-olive: #8a952f;
+  --color-ink: #1c1715;
+  --color-wall: #474643;
+
+  --font-display: 'Londrina Solid', 'Arial Black', Impact, sans-serif;
+  --font-script: 'Sacramento', cursive;
+  --font-body: 'Inter Variable', system-ui, sans-serif;
+
+  /* Fijne papierkorrel (SVG-ruis), herbruikbaar als achtergrondlaag. */
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.16 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --grain-strong: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+
+  color-scheme: light;
+}
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
-html,
-body {
-  margin: 0;
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  overflow-x: clip;
 }
 
 body {
-  background: #f4efe4;
-  color: #1a1414;
-  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-}
-
-.placeholder {
-  min-height: 100svh;
-  display: grid;
-  place-content: center;
-  text-align: center;
-  padding: 2rem;
-}
-
-.placeholder__logo {
   margin: 0;
-  font-size: clamp(4rem, 18vw, 12rem);
-  font-weight: 900;
-  letter-spacing: -0.02em;
-  line-height: 0.9;
+  overflow-x: clip;
+  background: var(--color-wall);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
 }
 
-.placeholder__payoff {
-  margin: 0.75rem 0 0;
-  font-size: clamp(1.1rem, 3vw, 1.75rem);
-  font-style: italic;
+img {
+  display: block;
+  max-width: 100%;
 }
 
-.placeholder__note {
-  margin-top: 2.5rem;
-  font-size: 0.875rem;
-  opacity: 0.7;
+button {
+  font: inherit;
+  color: inherit;
+}
+
+p,
+h1,
+h2,
+ul {
+  margin: 0;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-ochre);
+  outline-offset: 4px;
+}
+
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 100;
+  padding: 0.6rem 1rem;
+  background: var(--color-cream);
+  color: var(--color-ink);
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 4px;
+  transform: translateY(-160%);
+  transition: transform 0.2s;
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+.asterisk {
+  display: inline-block;
+  aspect-ratio: 1;
+  user-select: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }

@@ -1,0 +1,388 @@
+/* ------------------------------------------------------------------
+   De cover als fysiek tijdschrift (overal gelijk: muur, vlucht, sectie)
+   Alle maten in cqw = procent van de coverbreedte.
+   ------------------------------------------------------------------ */
+.cover-frame {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  container-type: inline-size;
+}
+
+.magazine {
+  --lift: 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  background: var(--color-red);
+  border-radius: 0.4cqw 1cqw 1cqw 0.4cqw;
+  color: var(--color-cream);
+  text-align: left;
+  box-shadow:
+    /* papierdikte (rechts/onder) */
+    0.5cqw 0.6cqw 0 -0.1cqw #efe9dc,
+    1cqw 1.2cqw 0 -0.2cqw #ddd5c4,
+    /* contactschaduw */
+    0 calc(0.6cqw + var(--lift) * 4cqw) calc(1.2cqw + var(--lift) * 7cqw) rgb(0 0 0 / calc(0.32 - var(--lift) * 0.12)),
+    /* zachte slagschaduw */
+    calc(2cqw + var(--lift) * 5cqw) calc(4cqw + var(--lift) * 16cqw) calc(8cqw + var(--lift) * 22cqw)
+      rgb(0 0 0 / calc(0.24 + var(--lift) * 0.12));
+}
+
+.magazine__full {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+}
+
+.magazine__photo {
+  flex: 0 0 58%;
+  overflow: hidden;
+  border-radius: 0.4cqw 1cqw 0 0;
+}
+
+.magazine__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.magazine__band {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 4.5cqw 6cqw 5cqw;
+  background-image: var(--grain);
+  background-size: 180px;
+}
+
+.magazine__meta {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-body);
+  font-size: 3.4cqw;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.magazine__headline {
+  margin-top: 2.5cqw;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 11.4cqw;
+  line-height: 0.88;
+  text-transform: uppercase;
+}
+
+.magazine__headline span {
+  display: block;
+  color: #ffd9b8;
+}
+
+.magazine__lines {
+  margin-top: auto;
+  padding: 0;
+  list-style: none;
+  font-family: var(--font-body);
+  font-size: 3.3cqw;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.magazine__lines li::before {
+  content: '* ';
+  color: #ffd9b8;
+}
+
+/* Glans + rug (lichte vouw aan de linkerkant). */
+.magazine__gloss {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgb(0 0 0 / 0.22) 0, rgb(255 255 255 / 0.18) 1.2cqw, transparent 3.5cqw),
+    linear-gradient(125deg, rgb(255 255 255 / 0.16) 0%, transparent 28%, transparent 62%, rgb(255 255 255 / 0.07) 74%, transparent 86%);
+}
+
+/* De vliegende cover */
+.cover-flyer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  visibility: hidden;
+  pointer-events: none;
+  transform-origin: 50% 50%;
+  will-change: transform;
+}
+
+.cover-flyer .magazine {
+  --lift: inherit;
+}
+
+/* Wie is zichtbaar? (status op <html data-cover>) */
+[data-cover='flying'] .cover-flyer {
+  visibility: visible;
+}
+
+[data-cover='flying'] .wall-cover,
+[data-cover='landed'] .wall-cover,
+[data-cover='wall'] .cover-resting,
+[data-cover='flying'] .cover-resting {
+  visibility: hidden;
+}
+
+/* ------------------------------------------------------------------
+   Magazinesectie
+   ------------------------------------------------------------------ */
+.magazine-section {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  align-items: center;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: clamp(3rem, 8vh, 6rem) clamp(1.25rem, 5vw, 5rem);
+  background-color: var(--color-cream);
+  background-image: var(--grain);
+  background-size: 180px;
+  outline: none;
+}
+
+/* Gescheurde papierrand aan de bovenkant. */
+.magazine-section::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 100%;
+  height: 18px;
+  background: var(--color-cream);
+  clip-path: polygon(
+    0 100%, 0 55%, 3% 70%, 6% 35%, 10% 60%, 14% 30%, 18% 65%, 23% 40%, 27% 70%, 31% 45%, 36% 62%,
+    40% 30%, 45% 58%, 49% 38%, 54% 66%, 58% 35%, 63% 60%, 67% 42%, 72% 68%, 76% 36%, 81% 62%,
+    85% 40%, 89% 66%, 93% 38%, 97% 60%, 100% 45%, 100% 100%
+  );
+}
+
+.magazine-section__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(2rem, 6vw, 6rem);
+  width: 100%;
+  max-width: 1240px;
+  margin-inline: auto;
+}
+
+.magazine-section__visual {
+  display: grid;
+  justify-items: center;
+}
+
+.cover-target {
+  width: min(100%, 440px, 52svh);
+}
+
+.cover-resting {
+  width: 100%;
+}
+
+.magazine-section__text {
+  max-width: 34rem;
+  color: var(--color-ink);
+}
+
+.magazine-section__eyebrow {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-red);
+}
+
+.magazine-section__title {
+  position: relative;
+  display: inline-block;
+  margin-top: 0.4rem;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(4.5rem, 10vw, 8.5rem);
+  line-height: 0.85;
+  color: var(--color-bordeaux);
+}
+
+.magazine-section__asterisk {
+  position: absolute;
+  width: 0.34em;
+  right: -0.3em;
+  bottom: -0.1em;
+}
+
+.magazine-section__slogan {
+  margin-top: 0.3rem;
+  font-family: var(--font-script);
+  font-size: clamp(2.1rem, 3.6vw, 3rem);
+  line-height: 1.1;
+  color: var(--color-red);
+}
+
+.brush-line {
+  display: block;
+  width: 9rem;
+  height: 0.55rem;
+  margin: 1.4rem 0 1.5rem;
+  background: var(--color-red);
+  clip-path: polygon(0 40%, 4% 10%, 30% 20%, 60% 0, 88% 15%, 100% 35%, 98% 80%, 70% 100%, 40% 85%, 10% 100%, 1% 80%);
+}
+
+.magazine-section__intro {
+  font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+  line-height: 1.6;
+}
+
+.magazine-section__closing {
+  margin-top: 1rem;
+  font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+  font-weight: 700;
+  color: var(--color-bordeaux);
+}
+
+.magazine-section__cta {
+  margin-top: 2rem;
+}
+
+/* Pre-orderknop */
+.preorder {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 1rem 1.6rem 0.95rem;
+  border: 0;
+  border-radius: 999px;
+  background: var(--color-red);
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 1.45rem;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 3px 0 var(--color-bordeaux);
+  transition:
+    translate 0.2s,
+    box-shadow 0.2s,
+    background-color 0.2s;
+}
+
+.preorder:hover {
+  translate: 0 -2px;
+  box-shadow: 0 5px 0 var(--color-bordeaux);
+}
+
+.preorder__arrow {
+  font-family: var(--font-body);
+  font-weight: 700;
+}
+
+.preorder--soon {
+  background: #9a3a32;
+  cursor: not-allowed;
+}
+
+.preorder--soon:hover {
+  translate: none;
+  box-shadow: 0 3px 0 var(--color-bordeaux);
+}
+
+.preorder__badge {
+  padding: 0.35rem 0.6rem 0.3rem;
+  border-radius: 999px;
+  background: var(--color-cream);
+  color: var(--color-bordeaux);
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.preorder-note {
+  margin-top: 0.9rem;
+  font-size: 0.92rem;
+  color: #5b4f49;
+}
+
+.preorder-note.is-nudged {
+  animation: nudge 0.4s;
+  color: var(--color-bordeaux);
+  font-weight: 600;
+}
+
+@keyframes nudge {
+  25% {
+    translate: -4px 0;
+  }
+  75% {
+    translate: 4px 0;
+  }
+}
+
+/* Footer */
+.footer {
+  display: grid;
+  justify-items: center;
+  gap: 0.6rem;
+  padding: 3.5rem 1.25rem 2.5rem;
+  background: var(--color-bordeaux);
+  color: var(--color-cream);
+  text-align: center;
+}
+
+.footer__quote {
+  position: relative;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(1.6rem, 4vw, 2.6rem);
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.footer__asterisk {
+  width: 0.7em;
+  margin-left: 0.2em;
+  vertical-align: -0.05em;
+}
+
+.footer__meta {
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+/* ---------- Tablet/mobiel: onder elkaar ---------------------------- */
+@media (max-width: 860px), (max-aspect-ratio: 4/5) {
+  .magazine-section {
+    align-items: start;
+    padding-top: clamp(2.5rem, 7svh, 4rem);
+  }
+
+  .magazine-section__inner {
+    grid-template-columns: 1fr;
+    gap: 2.75rem;
+  }
+
+  .cover-target {
+    width: min(68vw, 340px, 46svh);
+  }
+
+  .magazine-section__text {
+    margin-inline: auto;
+  }
+}
