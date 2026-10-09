@@ -1,0 +1,44 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+}
+
+body {
+  background: #f4efe4;
+  color: #1a1414;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+
+.placeholder {
+  min-height: 100svh;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+.placeholder__logo {
+  margin: 0;
+  font-size: clamp(4rem, 18vw, 12rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 0.9;
+}
+
+.placeholder__payoff {
+  margin: 0.75rem 0 0;
+  font-size: clamp(1.1rem, 3vw, 1.75rem);
+  font-style: italic;
+}
+
+.placeholder__note {
+  margin-top: 2.5rem;
+  font-size: 0.875rem;
+  opacity: 0.7;
+}
