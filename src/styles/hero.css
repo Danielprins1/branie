@@ -59,28 +59,40 @@
   --logo-size: min(15.5vw, 25dvh);
 }
 
+/* Het logo (generiek; ook gebruikt in de magazinesectie). */
 .brand-logo {
   position: relative;
+  display: inline-block;
   font-family: var(--font-display);
   font-weight: 900;
-  font-size: var(--logo-size);
   line-height: 0.82;
   letter-spacing: 0.01em;
-  text-shadow:
-    0 0.02em 0.04em rgb(0 0 0 / 0.35),
-    0 0.04em 0.25em rgb(0 0 0 / 0.35);
 }
 
 .brand-logo__word {
   display: block;
 }
 
+/* Het SVG-logo als masker: de kleur komt van `color`. */
+.brand-logo__mark {
+  display: block;
+  width: 3.1em;
+  background-color: currentColor;
+  -webkit-mask: var(--logo-url) center / contain no-repeat;
+  mask: var(--logo-url) center / contain no-repeat;
+}
+
 .brand-logo__asterisk {
   position: absolute;
-  width: 0.36em;
-  right: -0.28em;
-  bottom: -0.14em;
-  filter: drop-shadow(0 0.02em 0.04em rgb(0 0 0 / 0.35));
+  width: 0.4em;
+  right: -0.3em;
+  bottom: -0.12em;
+}
+
+.hero__brand .brand-logo {
+  font-size: var(--logo-size);
+  /* Schaduw op het geheel (werkt ook voor het gemaskeerde logo). */
+  filter: drop-shadow(0 0.015em 0.03em rgb(0 0 0 / 0.4)) drop-shadow(0 0.04em 0.18em rgb(0 0 0 / 0.35));
 }
 
 .payoff {

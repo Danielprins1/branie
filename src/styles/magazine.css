@@ -208,21 +208,9 @@
 }
 
 .magazine-section__title {
-  position: relative;
-  display: inline-block;
-  margin-top: 0.4rem;
-  font-family: var(--font-display);
-  font-weight: 900;
-  font-size: clamp(4.5rem, 10vw, 8.5rem);
-  line-height: 0.85;
+  margin-top: 0.9rem;
+  font-size: clamp(3.4rem, 8vw, 7rem);
   color: var(--color-bordeaux);
-}
-
-.magazine-section__asterisk {
-  position: absolute;
-  width: 0.34em;
-  right: -0.3em;
-  bottom: -0.1em;
 }
 
 .magazine-section__slogan {

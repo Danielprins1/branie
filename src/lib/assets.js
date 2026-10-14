@@ -23,4 +23,8 @@ function byName(map, folder) {
 export const wallImage = byName(wall, 'wall');
 export const coverImage = byName(coverImages, 'cover');
 
-export { default as asteriskRed } from '../assets/brand/asterisk-rood.webp';
+const brandFiles = import.meta.glob('../assets/brand/*.{svg,webp,png}', {
+  eager: true,
+  import: 'default',
+});
+export const brandAsset = byName(brandFiles, 'brand');

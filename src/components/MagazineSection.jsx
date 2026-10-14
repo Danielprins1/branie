@@ -2,7 +2,7 @@ import { forwardRef } from 'react';
 import { cover, magazine } from '../config/site.js';
 import MagazineCover from './MagazineCover.jsx';
 import PreOrderButton from './PreOrderButton.jsx';
-import Asterisk from './Asterisk.jsx';
+import BrandLogo from './BrandLogo.jsx';
 
 /**
  * De magazinepresentatie. `targetRef` is de plek waar de vallende cover
@@ -26,10 +26,9 @@ const MagazineSection = forwardRef(function MagazineSection({ targetRef }, ref) 
           <p className="magazine-section__eyebrow" data-reveal>
             {magazine.eyebrow}
           </p>
-          <h2 id="magazine-title" className="magazine-section__title" data-reveal>
-            {magazine.heading}
-            <Asterisk className="magazine-section__asterisk" />
-          </h2>
+          <div data-reveal>
+            <BrandLogo as="h2" id="magazine-title" className="magazine-section__title" />
+          </div>
           <p className="magazine-section__slogan" data-reveal>
             {magazine.slogan}
           </p>

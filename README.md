@@ -40,12 +40,12 @@ branie/
 │  ├─ config/site.js         ★ Hier pas je bijna alles aan
 │  ├─ assets/wall/           Afbeeldingen voor de fotomuur (WebP)
 │  ├─ assets/cover/          Afbeelding(en) voor de magazinecover
-│  ├─ assets/brand/          Het rode sterretje
+│  ├─ assets/brand/          Logo en rode sterretje (SVG)
 │  ├─ components/
 │  │  ├─ PhotoWall.jsx       De muur (schaalt een vast canvas schermvullend)
 │  │  ├─ WallItem.jsx        Eén object op de muur (foto, lijst, poster, knipsel…)
 │  │  ├─ IntroAnimation.jsx  De intro (muur → logo → pay-off)
-│  │  ├─ BrandLogo.jsx       Het logo (nu HTML-tekst)
+│  │  ├─ BrandLogo.jsx       Het logo (SVG uit de config)
 │  │  ├─ Payoff.jsx          De pay-off (nu tekst in handschriftletter)
 │  │  ├─ MagazineCover.jsx   De cover als fysiek tijdschrift
 │  │  ├─ MagazineTransition.jsx  De cover die van de muur valt
@@ -117,13 +117,19 @@ In `src/config/site.js` → `cover`:
 
 ### Het logo en de pay-off vervangen
 
-- **Tekst aanpassen:** `brand.name` en `brand.payoff` in `site.js`.
-- **Officieel logo (afbeelding of SVG):** zet het bestand in `src/assets/brand/` en volg de aanwijzing bovenin
-  `src/components/BrandLogo.jsx`: vervang de `<span>` door een `<img>`. Zet `brand.showAsterisk` op `false` als het
-  sterretje al in het logo zit.
+- **Logo:** staat als SVG in `src/assets/brand/branie-logo.svg` (origineel in `originals/`). Nieuwe versie? Vervang het
+  bestand (zelfde naam), of zet een nieuw bestand in die map en pas `brand.logo` en `brand.logoAspect`
+  (breedte ÷ hoogte uit de `viewBox`) aan in `site.js`. Het logo wordt als masker gebruikt, dus de kleur in het bestand
+  maakt niet uit: die komt uit de CSS (crème op de muur, bordeaux in de magazinesectie).
+  Laat `brand.logo` leeg om terug te vallen op gewone tekst.
+- **Sterretje:** `src/assets/brand/asterisk.svg` (instelling `brand.asterisk`). Wordt overal gebruikt: naast het logo,
+  op posters en in de footer. `brand.showAsterisk: false` verbergt het naast het logo.
+- **Pay-off-tekst:** `brand.payoff` in `site.js`.
 - **Handgeschreven pay-off als SVG-schrijfanimatie:** vervang in `src/components/Payoff.jsx` de tekst door je inline
   `<svg>` met paden, en animeer in `src/components/IntroAnimation.jsx` (regel met `.payoff`) de `stroke-dashoffset`
   in plaats van `--reveal`. Laat de className `payoff` staan; dan blijft de timing van de intro kloppen.
+- **Tip:** SVG's kun je verkleinen met [SVGOMG](https://jakearchibald.github.io/svgomg/). Zet daarbij
+  "Remove viewBox" **uit**, anders schaalt het logo niet meer mee.
 
 ### Kleuren en lettertypes aanpassen
 

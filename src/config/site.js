@@ -15,13 +15,22 @@ export const brand = {
   name: 'BRANIE',
   payoff: 'oude streken, nieuwe straten',
   slogan: 'Geen blad voor de mond.',
+  /**
+   * Het logo als SVG in src/assets/brand/. De kleur wordt per plek door
+   * de CSS bepaald (crème op de muur, bordeaux in de magazinesectie).
+   * Laat leeg ('') om het logo als gewone tekst te tonen.
+   */
+  logo: 'branie-logo.svg',
+  /** Breedte ÷ hoogte van het logo (uit de viewBox van de SVG). */
+  logoAspect: 466 / 116,
+  /** Het rode sterretje (src/assets/brand/). */
+  asterisk: 'asterisk.svg',
   /** Toont het rode sterretje naast het logo. */
   showAsterisk: true,
 };
 
 export const magazine = {
   eyebrow: 'Nº 01 · Amsterdam 1950 – nu',
-  heading: 'BRANIE',
   slogan: 'Geen blad voor de mond.',
   intro:
     'Amsterdam verandert. De mensen, de straten, de verhalen. BRANIE brengt het Amsterdam van vroeger en nu samen, verteld door de mensen die de stad maken.',
@@ -53,8 +62,8 @@ export const preorder = {
  * (bijv. `red` → `var(--color-red)`).
  */
 export const colors = {
-  red: '#cf2b1f', // BRANIE-rood (sterretje, accenten, knop)
-  bordeaux: '#6f1a12', // koppen
+  red: '#e10000', // BRANIE-rood (sterretje, accenten, knop)
+  bordeaux: '#7b0b00', // logo en koppen
   cream: '#fdfbf5', // achtergrond magazinesectie
   paper: '#f2ede2', // papier op de muur
   blue: '#acd7e8', // lichtblauw vlak
