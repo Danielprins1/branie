@@ -13,7 +13,7 @@
 /* ------------------------------------------------------------------ */
 export const brand = {
   name: 'BRANIE',
-  payoff: 'oude streken, nieuwe straten',
+  payoff: 'oude straten, nieuwe streken',
   slogan: 'Geen blad voor de mond.',
   /**
    * Het logo als SVG in src/assets/brand/. De kleur wordt per plek door
