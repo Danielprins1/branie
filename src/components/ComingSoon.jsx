@@ -21,18 +21,16 @@ export default function ComingSoon() {
         <PhotoWall items={items} />
       </div>
 
-      <article className="soon-poster" aria-labelledby="soon-title">
+      <article className="soon-poster">
         <span className="tape soon-poster__tape soon-poster__tape--l" aria-hidden="true" />
         <span className="tape soon-poster__tape soon-poster__tape--r" aria-hidden="true" />
 
-        <p className="soon-poster__eyebrow">{comingSoon.eyebrow}</p>
+        {comingSoon.eyebrow && <p className="soon-poster__eyebrow">{comingSoon.eyebrow}</p>}
         <BrandLogo as="h1" className="soon-poster__logo" />
         <p className="soon-poster__payoff">{brand.payoff}</p>
         <span className="brush-line soon-poster__line" aria-hidden="true" />
-        <h2 id="soon-title" className="soon-poster__heading">
-          {comingSoon.heading}
-        </h2>
-        <p className="soon-poster__text">{comingSoon.text}</p>
+        {comingSoon.heading && <h2 className="soon-poster__heading">{comingSoon.heading}</h2>}
+        {comingSoon.text && <p className="soon-poster__text">{comingSoon.text}</p>}
 
         <p className="soon-poster__stamp">
           <span className="soon-poster__stamp-small">{comingSoon.stampSmall}</span>

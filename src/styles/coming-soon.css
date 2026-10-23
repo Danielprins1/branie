@@ -62,6 +62,10 @@
   rotate: 30deg;
 }
 
+.soon-poster__eyebrow + .soon-poster__logo {
+  margin-top: 0.9rem;
+}
+
 .soon-poster__eyebrow {
   font-size: 0.78rem;
   font-weight: 700;
@@ -71,7 +75,6 @@
 }
 
 .soon-poster__logo {
-  margin-top: 0.9rem;
   font-size: 25cqw;
   color: var(--color-bordeaux);
 }

@@ -53,8 +53,9 @@ export const launch = {
 };
 
 export const comingSoon = {
-  eyebrow: 'Nº 01 · Amsterdam 1950 – nu',
-  heading: 'Hier wordt nog geplakt.',
+  /** Optionele regels; laat leeg ('') om ze niet te tonen. */
+  eyebrow: '',
+  heading: '',
   text: 'BRANIE is het magazine over het Amsterdam van vroeger en nu, verteld door de mensen die de stad maken. Het eerste nummer ligt bijna op de drukpers.',
   stamp: 'Binnenkort',
   stampSmall: 'Nº 01',
