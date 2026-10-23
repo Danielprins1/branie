@@ -38,6 +38,46 @@ export const magazine = {
 };
 
 /* ------------------------------------------------------------------ */
+/* Lancering & 'in opbouw'-pagina                                      */
+/* ------------------------------------------------------------------ */
+export const launch = {
+  /**
+   * true  → de live website (main-branch op Vercel) toont de
+   *          'in opbouw'-pagina. Previews tonen gewoon de volledige site.
+   * false → de volledige site gaat live. Dit is de lanceringsknop.
+   *
+   * Tip: zet ?binnenkort achter een URL om de 'in opbouw'-pagina altijd
+   * te bekijken, bijvoorbeeld op een preview of lokaal.
+   */
+  comingSoonOnProduction: true,
+};
+
+export const comingSoon = {
+  eyebrow: 'Nº 01 · Amsterdam 1950 – nu',
+  heading: 'Hier wordt nog geplakt.',
+  text: 'BRANIE is het magazine over het Amsterdam van vroeger en nu, verteld door de mensen die de stad maken. Het eerste nummer ligt bijna op de drukpers.',
+  stamp: 'Binnenkort',
+  stampSmall: 'Nº 01',
+  /**
+   * Objecten rond de poster. `id` verwijst naar een object uit
+   * `wallItems` hieronder (zelfde beeld/inhoud), met hier een eigen
+   * positie. Zelfde canvas en regels als de fotomuur.
+   */
+  wall: [
+    { id: 'posterwand', desktop: { x: -40, y: -36, w: 262, r: 0.8, z: 2 }, mobile: { x: -70, y: -50, w: 240, r: 1, z: 2 } },
+    { id: 'verandert', desktop: { x: 262, y: 36, w: 230, h: 304, r: -1.6, z: 2 } },
+    { id: 'fiat', desktop: { x: 1110, y: 40, w: 300, r: 1.4, z: 3 }, mobile: { x: 220, y: -90, w: 360, r: -2, z: 2 } },
+    { id: 'dorpsbranie', desktop: { x: 1430, y: -40, w: 210, r: 2.4, z: 2 }, mobile: { x: 590, y: -60, w: 220, r: 3, z: 1 } },
+    { id: 'amsterdammertje', desktop: { x: 120, y: 410, w: 170, r: 2, z: 3 } },
+    { id: 'sinds-1950', desktop: { x: 250, y: 650, w: 240, h: 320, r: -1.2, z: 2 }, mobile: { x: 310, y: 1120, w: 240, h: 310, r: 1.5, z: 2 } },
+    { id: 'mandje', desktop: { x: 1150, y: 420, w: 210, r: -1, z: 3 }, mobile: { x: 40, y: 1130, w: 230, r: -1.5, z: 3 } },
+    { id: 'matcha', desktop: { x: 1390, y: 650, w: 240, h: 312, r: 1.6, z: 2 }, mobile: { x: 590, y: 1150, w: 230, h: 300, r: -2, z: 2 } },
+    { id: 'melk', desktop: { x: -30, y: 690, w: 220, r: -2.5, z: 2 } },
+    { id: 'sticker', desktop: { x: 1090, y: 300, w: 124, r: 12, z: 8 }, mobile: { x: 600, y: 196, w: 130, r: 12, z: 8 } },
+  ],
+};
+
+/* ------------------------------------------------------------------ */
 /* Pre-order                                                           */
 /* ------------------------------------------------------------------ */
 export const preorder = {

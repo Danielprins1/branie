@@ -50,7 +50,8 @@ branie/
 │  │  ├─ MagazineCover.jsx   De cover als fysiek tijdschrift
 │  │  ├─ MagazineTransition.jsx  De cover die van de muur valt
 │  │  ├─ MagazineSection.jsx De magazinepresentatie
-│  │  └─ PreOrderButton.jsx  De pre-orderknop
+│  │  ├─ PreOrderButton.jsx  De pre-orderknop
+│  │  └─ ComingSoon.jsx      De 'in opbouw'-pagina
 │  ├─ styles/                CSS (global, wall, hero, magazine) + fonts.js
 │  └─ lib/assets.js          Laadt afbeeldingen automatisch op bestandsnaam
 └─ index.html
@@ -150,6 +151,24 @@ openInNewTab: true,   // optioneel
 ```
 
 Zolang `url` leeg is, is de knop gemarkeerd als **Binnenkort** en staat eronder dat bestellen nog niet kan.
+
+## 'In opbouw'-pagina en lanceren
+
+Zolang BRANIE nog niet af is, toont de **live website** een 'in opbouw'-pagina: een grote, opgeplakte poster op de
+fotomuur. **Previews** (andere branches) en `npm run dev` tonen gewoon de volledige site, zodat je ongestoord kunt
+doorwerken.
+
+- **Bekijken zonder live te zetten:** zet `?binnenkort` achter een URL, bijvoorbeeld
+  `http://localhost:5173/?binnenkort` of `<preview-link>/?binnenkort`.
+- **Volledige site op de live URL bekijken (bijvoorbeeld voor een presentatie):** zet `?volledig` erachter. Let op:
+  dit is geen beveiliging; iedereen die dit weet, kan het ook.
+- **Teksten en posities aanpassen:** `comingSoon` in `src/config/site.js`. De objecten rond de poster verwijzen met
+  `id` naar de objecten van de fotomuur en krijgen daar een eigen positie.
+- **Lanceren:** zet in `src/config/site.js` `launch.comingSoonOnProduction` op `false`, commit en push naar `main`.
+  Binnen een minuut staat de volledige site live.
+
+Hoe weet de site of hij live staat? Vercel geeft bij het bouwen `VERCEL_ENV` mee (`production` voor `main`,
+`preview` voor andere branches). `vite.config.js` maakt die waarde beschikbaar voor `src/main.jsx`.
 
 ## Publiceren
 

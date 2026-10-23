@@ -1,0 +1,183 @@
+/* ------------------------------------------------------------------
+   'In opbouw'-pagina
+   ------------------------------------------------------------------ */
+.soon {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: clamp(3.5rem, 9vh, 6rem) 16px clamp(4rem, 10vh, 6rem);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.soon__wall {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  animation: soon-fade 0.9s ease-out both;
+}
+
+/* Iets donkerder in het midden, zodat de poster eruit springt. */
+.soon__wall::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  background: radial-gradient(ellipse 45% 55% at 50% 50%, rgb(18 14 12 / 0.55), transparent 80%);
+}
+
+/* De poster */
+.soon-poster {
+  position: relative;
+  width: min(100%, 540px);
+  padding: clamp(2rem, 6cqw, 3rem) clamp(1.5rem, 7%, 3rem) clamp(2.25rem, 7%, 3.25rem);
+  container-type: inline-size;
+  background-color: var(--color-cream);
+  background-image: var(--grain);
+  background-size: 180px;
+  color: var(--color-ink);
+  rotate: -1.4deg;
+  box-shadow:
+    0 2px 3px rgb(0 0 0 / 0.3),
+    6px 22px 40px rgb(0 0 0 / 0.45);
+  animation: soon-drop 0.9s 0.25s cubic-bezier(0.2, 0.8, 0.25, 1) both;
+}
+
+.soon-poster__tape {
+  width: 96px;
+  height: 28px;
+  top: -12px;
+}
+
+.soon-poster__tape--l {
+  left: -20px;
+  rotate: -32deg;
+}
+
+.soon-poster__tape--r {
+  right: -20px;
+  rotate: 30deg;
+}
+
+.soon-poster__eyebrow {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-red);
+}
+
+.soon-poster__logo {
+  margin-top: 0.9rem;
+  font-size: 25cqw;
+  color: var(--color-bordeaux);
+}
+
+.soon-poster__payoff {
+  margin-top: 0.6rem;
+  font-family: var(--font-script);
+  font-size: clamp(1.9rem, 9.5cqw, 3rem);
+  line-height: 1.1;
+  color: var(--color-red);
+}
+
+.soon-poster__line {
+  margin: 1.1rem 0 1.3rem;
+}
+
+.soon-poster__heading {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(1.9rem, 9cqw, 2.9rem);
+  line-height: 0.95;
+  text-transform: uppercase;
+  color: var(--color-bordeaux);
+}
+
+.soon-poster__text {
+  max-width: 30em;
+  margin-top: 0.8rem;
+  font-size: clamp(1rem, 3.6cqw, 1.1rem);
+  line-height: 1.6;
+}
+
+/* Stempel */
+.soon-poster__stamp {
+  position: absolute;
+  right: clamp(0.75rem, 5cqw, 2rem);
+  bottom: -1.3rem;
+  display: grid;
+  justify-items: center;
+  padding: 0.55rem 0.9rem 0.45rem;
+  border: 3px solid currentColor;
+  border-radius: 6px;
+  box-shadow: inset 0 0 0 2px var(--color-cream), inset 0 0 0 4px currentColor;
+  color: var(--color-red);
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(1.3rem, 6cqw, 1.9rem);
+  line-height: 1;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  rotate: 14deg;
+  opacity: 0.92;
+  mix-blend-mode: multiply;
+  -webkit-mask-image: var(--grain), linear-gradient(#000, #000);
+  -webkit-mask-composite: source-out;
+  mask-image: var(--grain), linear-gradient(#000, #000);
+  mask-composite: exclude;
+  animation: soon-stamp 0.45s 1.05s cubic-bezier(0.3, 1.4, 0.5, 1) both;
+}
+
+.soon-poster__stamp-small {
+  font-family: var(--font-body);
+  font-size: 0.42em;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+}
+
+.soon__footer {
+  position: absolute;
+  left: 50%;
+  bottom: max(14px, 2.5vh);
+  translate: -50% 0;
+  width: max-content;
+  max-width: calc(100% - 32px);
+  padding: 0.35em 0.8em;
+  background: rgb(28 23 21 / 0.75);
+  color: var(--color-cream);
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-align: center;
+  animation: soon-fade 0.6s 1.4s both;
+}
+
+@keyframes soon-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes soon-drop {
+  from {
+    opacity: 0;
+    translate: 0 -28px;
+    rotate: -5deg;
+  }
+}
+
+@keyframes soon-stamp {
+  from {
+    opacity: 0;
+    scale: 1.8;
+  }
+}
+
+@media (max-aspect-ratio: 4/5) {
+  .soon__wall::after {
+    background: radial-gradient(ellipse 80% 40% at 50% 50%, rgb(18 14 12 / 0.55), transparent 85%);
+  }
+}
