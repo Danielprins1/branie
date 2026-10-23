@@ -210,7 +210,7 @@
 .magazine-section__title {
   margin-top: 0.9rem;
   font-size: clamp(3.4rem, 8vw, 7rem);
-  color: var(--color-bordeaux);
+  color: var(--logo-color-magazine, var(--color-red));
 }
 
 .magazine-section__slogan {

@@ -91,6 +91,7 @@
 
 .hero__brand .brand-logo {
   font-size: var(--logo-size);
+  color: var(--logo-color-wall, var(--color-cream));
   /* Schaduw op het geheel (werkt ook voor het gemaskeerde logo). */
   filter: drop-shadow(0 0.015em 0.03em rgb(0 0 0 / 0.4)) drop-shadow(0 0.04em 0.18em rgb(0 0 0 / 0.35));
 }

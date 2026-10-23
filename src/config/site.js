@@ -16,13 +16,22 @@ export const brand = {
   payoff: 'oude straten, nieuwe streken',
   slogan: 'Geen blad voor de mond.',
   /**
-   * Het logo als SVG in src/assets/brand/. De kleur wordt per plek door
-   * de CSS bepaald (crème op de muur, bordeaux in de magazinesectie).
+   * Het logo als SVG in src/assets/brand/. De kleur in het bestand doet
+   * er niet toe: die kies je per plek met `logoColors` hieronder.
    * Laat leeg ('') om het logo als gewone tekst te tonen.
    */
   logo: 'branie-logo.svg',
   /** Breedte ÷ hoogte van het logo (uit de viewBox van de SVG). */
-  logoAspect: 466 / 116,
+  logoAspect: 2543 / 718,
+  /**
+   * Kleur van het logo per plek: de naam van een kleur uit `colors`
+   * (bijv. 'red', 'cream', 'bordeaux').
+   */
+  logoColors: {
+    wall: 'cream', // over de fotomuur (intro)
+    magazine: 'red', // in de magazinesectie
+    poster: 'red', // op de 'in opbouw'-poster
+  },
   /** Het rode sterretje (src/assets/brand/). */
   asterisk: 'asterisk.svg',
   /** Toont het rode sterretje naast het logo. */

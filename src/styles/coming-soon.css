@@ -76,7 +76,7 @@
 
 .soon-poster__logo {
   font-size: 25cqw;
-  color: var(--color-bordeaux);
+  color: var(--logo-color-poster, var(--color-red));
 }
 
 .soon-poster__payoff {

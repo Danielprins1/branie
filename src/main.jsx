@@ -2,7 +2,7 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App.jsx';
 import ComingSoon from './components/ComingSoon.jsx';
-import { colors, fonts, launch } from './config/site.js';
+import { brand, colors, fonts, launch } from './config/site.js';
 import './styles/fonts.js';
 import './styles/global.css';
 import './styles/wall.css';
@@ -14,6 +14,8 @@ import './styles/coming-soon.css';
 const rootStyle = document.documentElement.style;
 for (const [name, value] of Object.entries(colors)) rootStyle.setProperty(`--color-${name}`, value);
 for (const [name, value] of Object.entries(fonts)) rootStyle.setProperty(`--font-${name}`, value);
+for (const [place, color] of Object.entries(brand.logoColors ?? {}))
+  rootStyle.setProperty(`--logo-color-${place}`, `var(--color-${color})`);
 
 // Welke pagina? Zie `launch` in src/config/site.js.
 const params = new URLSearchParams(window.location.search);

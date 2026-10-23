@@ -118,7 +118,7 @@ In `src/config/site.js` → `cover`:
 
 ### Het logo en de pay-off vervangen
 
-- **Logo:** staat als SVG in `src/assets/brand/branie-logo.svg` (origineel in `originals/`). Nieuwe versie? Vervang het
+- **Logo:** staat als SVG in `src/assets/brand/branie-logo.svg` (origineel in `originals/`; de vorige versie heet `-v1`). De kleur kies je per plek met `brand.logoColors` (muur, magazinesectie, poster). Nieuwe versie? Vervang het
   bestand (zelfde naam), of zet een nieuw bestand in die map en pas `brand.logo` en `brand.logoAspect`
   (breedte ÷ hoogte uit de `viewBox`) aan in `site.js`. Het logo wordt als masker gebruikt, dus de kleur in het bestand
   maakt niet uit: die komt uit de CSS (crème op de muur, bordeaux in de magazinesectie).
