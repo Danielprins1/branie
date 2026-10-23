@@ -82,10 +82,13 @@
   mask: var(--logo-url) center / contain no-repeat;
 }
 
+/* Het sterretje rechtsonder naast het logo. --asterisk-gap = ruimte
+   tussen de E en het sterretje (negatief = overlap). */
 .brand-logo__asterisk {
+  --asterisk-gap: 0.05em;
   position: absolute;
   width: 0.4em;
-  right: -0.3em;
+  right: calc(-0.4em - var(--asterisk-gap));
   bottom: -0.12em;
 }
 
