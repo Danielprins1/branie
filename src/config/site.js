@@ -83,7 +83,6 @@ export const comingSoon = {
     { id: 'mandje', desktop: { x: 1150, y: 420, w: 210, r: -1, z: 3 }, mobile: { x: 40, y: 1130, w: 230, r: -1.5, z: 3 } },
     { id: 'matcha', desktop: { x: 1390, y: 650, w: 240, h: 312, r: 1.6, z: 2 }, mobile: { x: 590, y: 1150, w: 230, h: 300, r: -2, z: 2 } },
     { id: 'melk', desktop: { x: -30, y: 690, w: 220, r: -2.5, z: 2 } },
-    { id: 'sticker', desktop: { x: 1090, y: 300, w: 124, r: 12, z: 8 }, mobile: { x: 600, y: 196, w: 130, r: 12, z: 8 } },
   ],
 };
 
