@@ -67,7 +67,7 @@ export const comingSoon = {
   heading: '',
   text: 'BRANIE is het magazine over het Amsterdam van vroeger en nu, verteld door de mensen die de stad maken. Het eerste nummer ligt bijna op de drukpers.',
   stamp: 'Binnenkort',
-  stampSmall: 'Nº 01',
+  stampSmall: '', // kleine regel boven 'Binnenkort' (leeg = niet tonen)
   /**
    * Objecten rond de poster. `id` verwijst naar een object uit
    * `wallItems` hieronder (zelfde beeld/inhoud), met hier een eigen

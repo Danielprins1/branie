@@ -33,13 +33,13 @@ export default function ComingSoon() {
         {comingSoon.text && <p className="soon-poster__text">{comingSoon.text}</p>}
 
         <p className="soon-poster__stamp">
-          <span className="soon-poster__stamp-small">{comingSoon.stampSmall}</span>
+          {comingSoon.stampSmall && <span className="soon-poster__stamp-small">{comingSoon.stampSmall}</span>}
           {comingSoon.stamp}
         </p>
       </article>
 
       <p className="soon__footer">
-        {brand.name} · {brand.slogan}
+        {brand.name}: {brand.slogan}
       </p>
     </main>
   );

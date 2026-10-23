@@ -102,6 +102,7 @@
 
 .soon-poster__text {
   max-width: 30em;
+  margin-bottom: clamp(2.6rem, 11cqw, 3.4rem);
   margin-top: 0.8rem;
   font-size: clamp(1rem, 3.6cqw, 1.1rem);
   line-height: 1.6;
@@ -111,7 +112,7 @@
 .soon-poster__stamp {
   position: absolute;
   right: clamp(0.75rem, 5cqw, 2rem);
-  bottom: -1.3rem;
+  bottom: clamp(0.75rem, 4cqw, 1.4rem);
   display: grid;
   justify-items: center;
   padding: 0.55rem 0.9rem 0.45rem;
