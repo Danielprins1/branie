@@ -181,3 +181,12 @@
     animation: none;
   }
 }
+
+/* Telefoon: pay-off op één regel. */
+@media (max-width: 600px) {
+  .payoff {
+    max-width: none;
+    white-space: nowrap;
+    font-size: 5.4vw;
+  }
+}

@@ -186,3 +186,11 @@
     background: radial-gradient(ellipse 80% 40% at 50% 50%, rgb(18 14 12 / 0.55), transparent 85%);
   }
 }
+
+/* Telefoon: pay-off op één regel (maat relatief aan de posterbreedte). */
+@media (max-width: 600px) {
+  .soon-poster__payoff {
+    white-space: nowrap;
+    font-size: 6cqw;
+  }
+}
