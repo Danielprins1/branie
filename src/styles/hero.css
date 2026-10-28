@@ -105,6 +105,10 @@
   font-family: var(--font-script);
   font-size: calc(var(--logo-size) * 0.3);
   line-height: 1.1;
+  /* Lange pay-off: maximaal ongeveer de breedte van het logo, netjes verdeeld. */
+  max-width: calc(var(--logo-size) * 3.4);
+  margin-inline: auto;
+  text-wrap: balance;
   padding-inline: 0.3em;
   text-shadow: 0 0.04em 0.18em rgb(0 0 0 / 0.65);
   -webkit-mask-image: linear-gradient(90deg, #000 calc(var(--reveal) - 12%), transparent var(--reveal));

@@ -13,7 +13,7 @@
 /* ------------------------------------------------------------------ */
 export const brand = {
   name: 'BRANIE',
-  payoff: 'oude straten, nieuwe streken',
+  payoff: 'Geen blad voor de mond, Amsterdam doet wat ie wil',
   slogan: 'Geen blad voor de mond.',
   /**
    * Het logo als SVG in src/assets/brand/. De kleur in het bestand doet
@@ -64,8 +64,8 @@ export const launch = {
 export const comingSoon = {
   /** Optionele regels; laat leeg ('') om ze niet te tonen. */
   eyebrow: '',
-  heading: '',
-  text: 'BRANIE is het magazine over het Amsterdam van vroeger en nu, verteld door de mensen die de stad maken. Het eerste nummer ligt bijna op de drukpers.',
+  heading: 'Het magazine over Amsterdam',
+  text: 'Over het Amsterdam van vroeger en nu, verteld door de mensen die de stad maken. Het eerste nummer ligt bijna op de drukpers.',
   stamp: 'Binnenkort',
   stampSmall: '', // kleine regel boven 'Binnenkort' (leeg = niet tonen)
   /**
