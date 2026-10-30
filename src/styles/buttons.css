@@ -1,0 +1,99 @@
+/* ------------------------------------------------------------------
+   Knoppen van gescheurd rood papier (.paper-btn)
+
+   Drie standen, naar het ontwerp in originals/knop-staten.webp:
+   - normaal    plat geplakt papier
+   - hover      rode gloed eronder
+   - ingedrukt  papier wordt in de ondergrond gedrukt (donkere rand)
+
+   Het papier is een border-image: de gescheurde randen en de witte
+   hoek houden hun vorm, alleen het midden rekt mee met de knop.
+   ------------------------------------------------------------------ */
+.paper-btn {
+  --paper-k: 0.3; /* schaal van de randen t.o.v. het bronbeeld */
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  color: #fff;
+  text-decoration: none;
+  text-shadow: 0 1px 1px rgb(90 0 0 / 0.35);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    filter 0.2s,
+    translate 0.12s;
+}
+
+.paper-btn::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  border-style: solid;
+  border-width: calc(40px * var(--paper-k)) calc(70px * var(--paper-k));
+  border-image: url('../assets/brand/knop-normaal.webp') 40 70 fill stretch;
+}
+
+/* Hover: rode gloed onder het papier */
+.paper-btn:hover,
+.paper-btn:focus-visible {
+  filter: drop-shadow(0 6px 9px rgb(225 0 0 / 0.55)) drop-shadow(0 1px 2px rgb(225 0 0 / 0.35));
+}
+
+/* Ingedrukt: het ingedrukte papier, iets groter getekend zodat de rode
+   vlakken precies op elkaar vallen (gemeten in het bronbeeld). */
+.paper-btn:active::before {
+  inset: calc(-12px * var(--paper-k)) calc(-16px * var(--paper-k)) calc(-25px * var(--paper-k)) calc(-20px * var(--paper-k));
+  border-width: calc(52px * var(--paper-k)) calc(86px * var(--paper-k)) calc(62px * var(--paper-k)) calc(90px * var(--paper-k));
+  border-image: url('../assets/brand/knop-ingedrukt.webp') 52 86 62 90 fill stretch;
+}
+
+.paper-btn:active {
+  filter: none;
+  translate: 0 1px;
+}
+
+.paper-btn:focus-visible {
+  outline: 3px solid var(--color-ochre);
+  outline-offset: 5px;
+}
+
+/* Uitgeschakeld (bijv. bladerpijl aan het einde) */
+.paper-btn:disabled {
+  cursor: default;
+  opacity: 0.35;
+  filter: grayscale(0.6);
+}
+
+.paper-btn:disabled:active::before {
+  inset: 0;
+  border-width: calc(40px * var(--paper-k)) calc(70px * var(--paper-k));
+  border-image: url('../assets/brand/knop-normaal.webp') 40 70 fill stretch;
+}
+
+.paper-btn:disabled:active {
+  translate: none;
+}
+
+/* Alleen het papier, zonder eigen standen (label in een klikbaar vlak) */
+.paper-btn--static {
+  cursor: inherit;
+}
+
+/* Kleinere knoppen: dunnere randen */
+.pillar__back,
+.rail__arrow,
+.strip__hint {
+  --paper-k: 0.22;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .paper-btn:active {
+    translate: none;
+  }
+}

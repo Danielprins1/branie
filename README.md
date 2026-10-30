@@ -142,6 +142,13 @@ In `src/config/site.js` → `cover`:
   de naam in `fonts` in `site.js`. Een `.otf`/`.ttf` zet je om naar WOFF2 met bijvoorbeeld
   [Transfonter](https://transfonter.org).
 
+### Knoppen
+
+Alle knoppen zijn van gescheurd rood papier (class `paper-btn`, stijl in `src/styles/buttons.css`), met drie standen
+naar het ontwerp in `originals/knop-staten.webp`: normaal, hover (rode gloed) en ingedrukt (in de ondergrond gedrukt).
+Het papier komt uit `src/assets/brand/knop-normaal.webp` en `knop-ingedrukt.webp`. Een nieuwe knop maak je door
+`className="paper-btn"` toe te voegen.
+
 ### De pre-orderlink wijzigen
 
 In `site.js` → `preorder`:

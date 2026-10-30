@@ -92,10 +92,10 @@ export default function ArticleRail({ pillar, heading, onOpenArticle }) {
           {heading}
         </h2>
         <div className="rail__arrows">
-          <button type="button" className="rail__arrow" onClick={() => page(-1)} disabled={edges.start} aria-label="Vorige verhalen">
+          <button type="button" className="paper-btn rail__arrow" onClick={() => page(-1)} disabled={edges.start} aria-label="Vorige verhalen">
             ←
           </button>
-          <button type="button" className="rail__arrow" onClick={() => page(1)} disabled={edges.end} aria-label="Volgende verhalen">
+          <button type="button" className="paper-btn rail__arrow" onClick={() => page(1)} disabled={edges.end} aria-label="Volgende verhalen">
             →
           </button>
         </div>

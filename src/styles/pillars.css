@@ -164,16 +164,13 @@ html.is-pillars body {
 
 .strip__hint {
   justify-self: end;
-  padding: 0.45em 0.75em 0.4em;
-  background: var(--color-red);
-  color: #fff;
+  padding: 0.6em 0.95em 0.55em;
   font-size: 0.74rem;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   white-space: nowrap;
   rotate: -2deg;
-  box-shadow: 0 3px 8px rgb(0 0 0 / 0.35);
   opacity: 0;
   translate: 10px 0;
   transition:
@@ -305,24 +302,11 @@ html.is-pillars body {
   display: inline-flex;
   align-items: center;
   gap: 0.55em;
-  padding: 0.75em 1.1em 0.7em;
-  border: 0;
-  background: var(--color-ink);
-  color: var(--color-cream);
+  padding: 0.85em 1.3em 0.8em;
   font-size: 0.82rem;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  cursor: pointer;
-  box-shadow: 3px 3px 0 var(--color-red);
-  transition:
-    translate 0.2s,
-    box-shadow 0.2s;
-}
-
-.pillar__back:hover {
-  translate: -2px -2px;
-  box-shadow: 5px 5px 0 var(--color-red);
 }
 
 .pillar__count {
@@ -436,23 +420,9 @@ html.is-pillars body {
 }
 
 .rail__arrow {
-  width: 48px;
+  width: 56px;
   height: 48px;
-  border: 0;
-  background: var(--color-ink);
-  color: var(--color-cream);
   font-size: 1.3rem;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.rail__arrow:hover:not(:disabled) {
-  background: var(--color-red);
-}
-
-.rail__arrow:disabled {
-  opacity: 0.25;
-  cursor: default;
 }
 
 .rail__scroller {

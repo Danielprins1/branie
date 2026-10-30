@@ -14,7 +14,7 @@ export default function PreOrderButton() {
     const external = preorder.openInNewTab;
     return (
       <a
-        className="preorder"
+        className="paper-btn preorder"
         href={preorder.url}
         target={external ? '_blank' : undefined}
         rel={external ? 'noopener noreferrer' : undefined}
@@ -29,7 +29,7 @@ export default function PreOrderButton() {
     <div className="preorder-wrap">
       <button
         type="button"
-        className="preorder preorder--soon"
+        className="paper-btn preorder preorder--soon"
         aria-disabled="true"
         aria-describedby={noteId}
         onClick={() => setNudge((n) => n + 1)}

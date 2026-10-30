@@ -51,7 +51,7 @@ function StripFace({ pillar, index, hidden = false }) {
       <span className="strip__band">
         <span className="strip__num">{String(index + 1).padStart(2, '0')}</span>
         <span className="strip__title">{pillar.title}</span>
-        <span className="strip__hint">
+        <span className="paper-btn paper-btn--static strip__hint">
           {pillarsPage.hint} <span aria-hidden="true">→</span>
         </span>
       </span>

@@ -249,52 +249,18 @@
 
 /* Pre-orderknop: hoekig, met een harde schaduw, zoals een stempel */
 .preorder {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
   gap: 0.85rem;
-  padding: 1rem 1.5rem 0.95rem;
-  border: 0;
-  border-radius: 0;
-  background: var(--color-red);
-  color: #fff;
+  padding: 1.05rem 1.7rem 1rem;
   font-family: var(--font-display);
   font-weight: 900;
   font-size: 1.45rem;
   letter-spacing: 0.04em;
   line-height: 1;
-  text-decoration: none;
-  cursor: pointer;
-  box-shadow: 5px 5px 0 var(--color-ink);
-  transition:
-    translate 0.15s,
-    box-shadow 0.15s;
-}
-
-.preorder:hover {
-  translate: -2px -2px;
-  box-shadow: 7px 7px 0 var(--color-ink);
-}
-
-.preorder:active {
-  translate: 3px 3px;
-  box-shadow: 2px 2px 0 var(--color-ink);
 }
 
 .preorder__arrow {
   font-family: var(--font-body);
   font-weight: 700;
-}
-
-.preorder--soon {
-  background: #9a3a32;
-  cursor: not-allowed;
-}
-
-.preorder--soon:hover,
-.preorder--soon:active {
-  translate: none;
-  box-shadow: 5px 5px 0 var(--color-ink);
 }
 
 /* Etiket 'Binnenkort', schuin over de knop geplakt */

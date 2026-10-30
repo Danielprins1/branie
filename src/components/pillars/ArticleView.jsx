@@ -34,7 +34,7 @@ export default function ArticleView({ article, pillar, onClose }) {
       <div className="article-view__backdrop" onClick={onClose} />
       <div className="article-view__sheet" ref={sheetRef} style={{ clipPath: topEdge }}>
         <div className="article-view__inner">
-          <button type="button" className="pillar__back article-view__back" onClick={onClose}>
+          <button type="button" className="paper-btn pillar__back article-view__back" onClick={onClose}>
             <span aria-hidden="true">←</span> {pillar.title}
           </button>
           <p className="article-view__category">{article.category}</p>

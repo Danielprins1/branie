@@ -6,6 +6,7 @@ import PillarsPage from './pages/PillarsPage.jsx';
 import { brand, colors, fonts, launch } from './config/site.js';
 import './styles/fonts.css';
 import './styles/global.css';
+import './styles/buttons.css';
 import './styles/wall.css';
 import './styles/hero.css';
 import './styles/magazine.css';

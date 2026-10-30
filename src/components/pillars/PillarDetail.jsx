@@ -10,7 +10,7 @@ const PillarDetail = forwardRef(function PillarDetail({ pillar, index, onBack, o
   return (
     <div className="pillar" ref={ref} inert={inert || undefined}>
       <div className="pillar__bar">
-        <button type="button" className="pillar__back" onClick={onBack} aria-label="Terug naar de vijf pijlers">
+        <button type="button" className="paper-btn pillar__back" onClick={onBack} aria-label="Terug naar de vijf pijlers">
           <span aria-hidden="true">←</span> {pillarsPage.backLabel}
         </button>
         <span className="pillar__count" aria-hidden="true">
