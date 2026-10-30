@@ -179,6 +179,21 @@ open; daarachter staan de introductie en de verhalen van die pijler.
 - **Bediening:** muis, touch en toetsenbord (Tab, Enter, Esc). Bij "minder beweging" opent een pijler zonder
   animatie.
 
+## De salespagina (`/sales`)
+
+Alle informatie uit de saleskit als webpagina: introductie en kerngegevens, missie en visie, de pijlers, een kijkje in
+het blad, de huisstijlkleuren (klik om de kleurcode te kopiëren), verkoopkanalen, advertentie- en advertorialtarieven,
+de pakketten, de prijs, de aanleverspecificaties (met de dagen tot de deadline) en contact.
+
+- **Inhoud aanpassen:** `src/config/sales.js` (prijzen, data, teksten, contactgegevens, foto's).
+- **Foto's:** `src/assets/sales/` (uit de saleskit-pdf; origineel in `originals/saleskit/`).
+- **Pdf-download:** `public/downloads/BRANIE-saleskit.pdf` (lichte versie van de saleskit). Nieuwe saleskit? Vervang
+  dit bestand (houd het onder ±5 MB).
+- **Live zetten vóór de lancering:** zet in `src/config/site.js` `launch.salesPageOnProduction` op `true`. Dan is
+  `/sales` op de live website te zien, terwijl de rest nog 'in opbouw' blijft.
+- **Website-link:** zet `contact.websiteUrl` in `sales.js` zodra braniemagazine.nl online is.
+- De link naar de pagina staat in de footer van de homepage ("Adverteren in BRANIE? Bekijk de saleskit").
+
 ## 'In opbouw'-pagina en lanceren
 
 Zolang BRANIE nog niet af is, toont de **live website** een 'in opbouw'-pagina: een grote, opgeplakte poster op de

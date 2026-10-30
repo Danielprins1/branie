@@ -60,6 +60,11 @@ export const launch = {
    * te bekijken, bijvoorbeeld op een preview of lokaal.
    */
   comingSoonOnProduction: true,
+  /**
+   * true → de salespagina (/sales) is op de live website al te zien,
+   * ook als de rest nog 'in opbouw' is (handig voor adverteerders).
+   */
+  salesPageOnProduction: false,
 };
 
 export const comingSoon = {
@@ -114,11 +119,11 @@ export const preorder = {
 export const colors = {
   red: '#e10000', // BRANIE-rood (sterretje, accenten, knop)
   bordeaux: '#7b0b00', // logo en koppen
-  cream: '#fdfbf5', // achtergrond magazinesectie
+  cream: '#fffdf9', // achtergrond magazinesectie
   paper: '#f2ede2', // papier op de muur
-  blue: '#acd7e8', // lichtblauw vlak
-  ochre: '#ddb03a', // oker vlak
-  olive: '#8a952f', // olijfgroen vlak
+  blue: '#a2dcec', // lichtblauw vlak
+  ochre: '#e6ad00', // oker vlak
+  olive: '#8b9600', // olijfgroen vlak
   ink: '#1c1715', // zwarte inkt / tekst
   wall: '#474643', // de muur
 };

@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 import App from './App.jsx';
 import ComingSoon from './components/ComingSoon.jsx';
 import PillarsPage from './pages/PillarsPage.jsx';
+import SalesPage from './pages/SalesPage.jsx';
 import { brand, colors, cover, fonts, launch } from './config/site.js';
 import './styles/fonts.css';
 import './styles/global.css';
@@ -12,6 +13,7 @@ import './styles/hero.css';
 import './styles/magazine.css';
 import './styles/coming-soon.css';
 import './styles/pillars.css';
+import './styles/sales.css';
 
 // Huisstijl uit de config als CSS-variabelen beschikbaar maken.
 const rootStyle = document.documentElement.style;
@@ -28,6 +30,7 @@ const showComingSoon =
   (launch.comingSoonOnProduction && __VERCEL_ENV__ === 'production' && !params.has('volledig'));
 
 const isPillarsPath = (path) => /^\/pijlers(\/|$)/.test(path);
+const isSalesPath = (path) => /^\/sales\/?$/.test(path);
 
 /** Kiest de pagina op basis van het pad, en wisselt zonder herladen. */
 function Root() {
@@ -41,6 +44,9 @@ function Root() {
       window.removeEventListener('branie:navigate', sync);
     };
   }, []);
+  if (isSalesPath(path) && (!showComingSoon || (launch.salesPageOnProduction && !params.has('binnenkort')))) {
+    return <SalesPage />;
+  }
   if (showComingSoon) return <ComingSoon />;
   return isPillarsPath(path) ? <PillarsPage /> : <App />;
 }

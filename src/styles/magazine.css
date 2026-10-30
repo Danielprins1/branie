@@ -369,3 +369,16 @@
 .magazine-section__pillars:hover {
   color: var(--color-red);
 }
+
+.footer__sales {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--color-ochre);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 5px;
+}
+
+.footer__sales:hover {
+  color: var(--color-cream);
+}

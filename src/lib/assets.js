@@ -39,3 +39,10 @@ export function anyImage(name) {
   if (!name) return undefined;
   return pillarFiles[`../assets/pillars/${name}`] ?? wall[`../assets/wall/${name}`] ?? wallImage(name);
 }
+
+// Foto's voor de salespagina (src/assets/sales/).
+const salesFiles = import.meta.glob('../assets/sales/*.{webp,avif,jpg,jpeg,png}', {
+  eager: true,
+  import: 'default',
+});
+export const salesImage = (name) => salesFiles[`../assets/sales/${name}`] ?? anyImage(name);

@@ -1,3 +1,6 @@
 {
-  "rewrites": [{ "source": "/pijlers/:path*", "destination": "/index.html" }]
+  "rewrites": [
+    { "source": "/pijlers/:path*", "destination": "/index.html" },
+    { "source": "/sales", "destination": "/index.html" }
+  ]
 }
