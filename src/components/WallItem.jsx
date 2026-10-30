@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 import { brand, cover } from '../config/site.js';
-import { wallImage } from '../lib/assets.js';
+import { anyImage } from '../lib/assets.js';
 import MagazineCover from './MagazineCover.jsx';
 import Asterisk from './Asterisk.jsx';
 
@@ -67,7 +67,7 @@ export default WallItem;
 function Img({ item }) {
   return (
     <img
-      src={wallImage(item.image)}
+      src={anyImage(item.image)}
       alt={item.alt ?? ''}
       loading="eager"
       decoding="async"

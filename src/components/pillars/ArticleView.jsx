@@ -62,6 +62,15 @@ export default function ArticleView({ article, pillar, onClose }) {
               ),
             )}
           </div>
+          {article.gallery?.length > 0 && (
+            <div className="article-view__gallery">
+              {article.gallery.map((name, i) => (
+                <figure key={name} className="article-view__print" style={{ '--r': `${[-1.4, 1.1, -0.6, 1.6, -1][i % 5]}deg` }}>
+                  <img src={anyImage(name)} alt="" loading="lazy" decoding="async" />
+                </figure>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </div>

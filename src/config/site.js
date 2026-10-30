@@ -201,7 +201,7 @@ export const cover = {
  * `title`  verschijnt bij hover als klein bijschrift (optioneel).
  * `pillar` is de redactionele pijler (alleen ter documentatie).
  *
- * Afbeeldingen staan in `src/assets/wall/`; vul alleen de bestandsnaam in.
+ * Afbeeldingen staan in `src/assets/wall/` of `src/assets/pillars/`; vul alleen de bestandsnaam in.
  */
 export const wallCanvas = {
   desktop: { width: 1600, height: 1000 },
@@ -350,9 +350,9 @@ export const wallItems = [
     id: 'mandje',
     type: 'framed',
     frame: 'black',
-    image: 't-mandje.webp',
-    alt: "Man zit op een bankje voor café 't Mandje op de Zeedijk.",
-    title: "Zeedijk, 't Mandje",
+    image: 'snoepsigaret-stippenjurk.webp',
+    alt: 'Oudere dame in een stippenjurk met een snoepsigaret en een rode zonnebril.',
+    title: 'Snoepen zoals vroeger',
     pillar: 'De (on)bekende Amsterdammer',
     desktop: { x: 256, y: 700, w: 216, r: 0, z: 3 },
     mobile: { x: 292, y: 920, w: 220, r: -1, z: 3 },
@@ -380,9 +380,9 @@ export const wallItems = [
   {
     id: 'terras',
     type: 'photo',
-    image: 'terras.webp',
-    alt: 'Zonnig terras met fietsen aan de gracht.',
-    title: 'Eerste terrasdag',
+    image: 'terras-twee-jongens.webp',
+    alt: 'Twee jongens met een biertje en een jonge jenever op een bankje voor het raam.',
+    title: 'Eentje dan',
     attach: 'pin',
     pillar: 'Eten & drinken',
     desktop: { x: 1180, y: 718, w: 200, r: 2.4, z: 3 },
