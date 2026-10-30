@@ -246,14 +246,15 @@
   margin-top: 2rem;
 }
 
-/* Pre-orderknop */
+/* Pre-orderknop: hoekig, met een harde schaduw, zoals een stempel */
 .preorder {
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 0.85rem;
-  padding: 1rem 1.6rem 0.95rem;
+  padding: 1rem 1.5rem 0.95rem;
   border: 0;
-  border-radius: 999px;
+  border-radius: 0;
   background: var(--color-red);
   color: #fff;
   font-family: var(--font-display);
@@ -263,16 +264,20 @@
   line-height: 1;
   text-decoration: none;
   cursor: pointer;
-  box-shadow: 0 3px 0 var(--color-bordeaux);
+  box-shadow: 5px 5px 0 var(--color-ink);
   transition:
-    translate 0.2s,
-    box-shadow 0.2s,
-    background-color 0.2s;
+    translate 0.15s,
+    box-shadow 0.15s;
 }
 
 .preorder:hover {
-  translate: 0 -2px;
-  box-shadow: 0 5px 0 var(--color-bordeaux);
+  translate: -2px -2px;
+  box-shadow: 7px 7px 0 var(--color-ink);
+}
+
+.preorder:active {
+  translate: 3px 3px;
+  box-shadow: 2px 2px 0 var(--color-ink);
 }
 
 .preorder__arrow {
@@ -285,21 +290,27 @@
   cursor: not-allowed;
 }
 
-.preorder--soon:hover {
+.preorder--soon:hover,
+.preorder--soon:active {
   translate: none;
-  box-shadow: 0 3px 0 var(--color-bordeaux);
+  box-shadow: 5px 5px 0 var(--color-ink);
 }
 
+/* Etiket 'Binnenkort', schuin over de knop geplakt */
 .preorder__badge {
-  padding: 0.35rem 0.6rem 0.3rem;
-  border-radius: 999px;
-  background: var(--color-cream);
-  color: var(--color-bordeaux);
+  position: absolute;
+  top: -0.85rem;
+  right: -1rem;
+  padding: 0.3rem 0.55rem 0.25rem;
+  background: var(--color-ochre);
+  color: var(--color-ink);
   font-family: var(--font-body);
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
+  rotate: 6deg;
+  box-shadow: 1px 2px 3px rgb(0 0 0 / 0.3);
 }
 
 .preorder-note {

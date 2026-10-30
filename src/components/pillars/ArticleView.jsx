@@ -4,12 +4,7 @@ import { pillarsPage } from '../../config/pillars.js';
 import { anyImage } from '../../lib/assets.js';
 import { between, straight, tearLine } from '../../lib/tornEdge.js';
 
-const PLACEHOLDER_BODY = [
-  'Hier komt de echte tekst van het artikel. Deze alinea’s zijn een tijdelijke vulling, zodat je kunt zien hoe een verhaal op de site leest: met ruimte voor een sterke opening, citaten en foto’s.',
-  'BRANIE vertelt het verhaal van Amsterdam via de mensen die de stad maken. Kort waar het kan, lang waar het moet. Met humor, zonder blad voor de mond.',
-  '“Een quote van de geïnterviewde komt hier, groot en vet, zodat je hem onthoudt.”',
-  'Het artikel eindigt met een kader “Zelf ontdekken”: het adres, de openingstijden en een tip die niet op TikTok staat.',
-];
+const PLACEHOLDER_BODY = ['De tekst van dit artikel volgt.'];
 
 /** Het volledige artikel, als een vel papier dat over de pijler schuift. */
 export default function ArticleView({ article, pillar, onClose }) {

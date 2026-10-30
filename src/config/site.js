@@ -39,7 +39,7 @@ export const brand = {
 };
 
 export const magazine = {
-  eyebrow: 'Nº 01 · Amsterdam 1950 – nu',
+  eyebrow: 'Nº 01 · Amsterdam 1950 tot nu',
   slogan: 'Geen blad voor de mond.',
   intro:
     'Amsterdam verandert. De mensen, de straten, de verhalen. BRANIE brengt het Amsterdam van vroeger en nu samen, verteld door de mensen die de stad maken.',
@@ -151,7 +151,7 @@ export const cover = {
   photoPosition: '50% 30%',
   alt: 'Cover van BRANIE nummer 1: iemand staat op een beplakte stroomkast.',
   issue: 'Nº 01',
-  price: '1950 – nu',
+  price: '1950 tot nu',
   headline: 'Amsterdam verandert.',
   headlineAccent: 'De branie blijft.',
   lines: ['De kroegbaas van de Zeedijk', 'Van omafiets naar fatbike', 'Wat was dit gebouw vroeger?'],
@@ -265,7 +265,7 @@ export const wallItems = [
     type: 'clipping',
     kicker: 'Vervoer',
     headline: 'Van omafiets naar fatbike',
-    body: 'Op de Wibautstraat zoeven in een uur meer accu’s voorbij dan bellen. ‘Vroeger trapte je gewoon. Tegenwind was karaktervorming.’',
+    body: '‘Vroeger trapte je gewoon. Tegenwind was karaktervorming.’ Een Amsterdammer over de opkomst van de fatbike.',
     attach: 'tape',
     pillar: 'Vervoer & openbare ruimte',
     desktop: { x: 1408, y: 22, w: 236, h: 262, r: -1.4, z: 2 },
@@ -284,7 +284,7 @@ export const wallItems = [
     id: 'buurt',
     type: 'note',
     text: 'Mijn buurt verandert, maar het blijft mijn stad.',
-    sign: '— Amsterdammer, 54',
+    sign: 'Amsterdammer, 54',
     attach: 'pin',
     pillar: 'Wonen, plekken & buurten',
     desktop: { x: -30, y: 320, w: 226, h: 250, r: -2.2, z: 3 },
@@ -340,7 +340,7 @@ export const wallItems = [
     id: 'sinds-1950',
     type: 'poster',
     tone: 'ochre',
-    lines: ['1950', '—', 'nu'],
+    lines: ['1950', '&', 'nu'],
     fontSize: 30,
     script: 'vroeger naast nu',
     pillar: 'Algemeen',
