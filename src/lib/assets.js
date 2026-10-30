@@ -28,3 +28,14 @@ const brandFiles = import.meta.glob('../assets/brand/*.{svg,webp,png}', {
   import: 'default',
 });
 export const brandAsset = byName(brandFiles, 'brand');
+
+// Foto's voor de pijlers (src/assets/pillars/). `anyImage` zoekt ook op de muur.
+const pillarFiles = import.meta.glob('../assets/pillars/*.{webp,avif,jpg,jpeg,png}', {
+  eager: true,
+  import: 'default',
+});
+export const pillarImage = byName(pillarFiles, 'pillars');
+export function anyImage(name) {
+  if (!name) return undefined;
+  return pillarFiles[`../assets/pillars/${name}`] ?? wall[`../assets/wall/${name}`] ?? wallImage(name);
+}

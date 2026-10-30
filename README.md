@@ -152,6 +152,25 @@ openInNewTab: true,   // optioneel
 
 Zolang `url` leeg is, is de knop gemarkeerd als **Binnenkort** en staat eronder dat bestellen nog niet kan.
 
+## De pijlerpagina (`/pijlers`)
+
+Vijf horizontale, gescheurde papierstroken: één per redactionele pijler. Klik op een strook en de collage scheurt
+open; daarachter staan de introductie en de verhalen van die pijler.
+
+- **Inhoud aanpassen:** `src/config/pillars.js`. Per pijler: titel, omschrijving, foto, `focus` (welk deel van de
+  foto in de smalle strook valt), introductie en artikelen. Uitleg staat bovenin dat bestand.
+- **Foto's:** zet ze in `src/assets/pillars/` (breed, liggend, bij voorkeur WebP van ±2000 px breed) en vul de
+  bestandsnaam in. Foto's van de fotomuur (`src/assets/wall/`) kun je ook gebruiken.
+- **Artikelen:** zolang `placeholder: true` staat, ziet de lezer duidelijk dat het een voorbeeldartikel is. Vul
+  `body` met de alinea's van het echte artikel en haal `placeholder` weg.
+- **Adressen:** `/pijlers`, `/pijlers/<pijler>` en `/pijlers/<pijler>/<artikel>`. Je kunt ze direct delen en de
+  terugknop van de browser werkt. `vercel.json` zorgt dat Vercel deze adressen naar de site stuurt.
+- **De scheuranimatie** staat in `src/pages/PillarsPage.jsx` (`buildTimeline`). De gescheurde randen worden
+  gegenereerd in `src/lib/tornEdge.js`. Zet `?debug` achter de URL om de animatie in de browserconsole te
+  inspecteren via `window.__pillarsTimeline`.
+- **Bediening:** muis, touch en toetsenbord (Tab, Enter, Esc). Bij "minder beweging" opent een pijler zonder
+  animatie.
+
 ## 'In opbouw'-pagina en lanceren
 
 Zolang BRANIE nog niet af is, toont de **live website** een 'in opbouw'-pagina: een grote, opgeplakte poster op de

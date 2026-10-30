@@ -2,6 +2,7 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App.jsx';
 import ComingSoon from './components/ComingSoon.jsx';
+import PillarsPage from './pages/PillarsPage.jsx';
 import { brand, colors, fonts, launch } from './config/site.js';
 import './styles/fonts.js';
 import './styles/global.css';
@@ -9,6 +10,7 @@ import './styles/wall.css';
 import './styles/hero.css';
 import './styles/magazine.css';
 import './styles/coming-soon.css';
+import './styles/pillars.css';
 
 // Huisstijl uit de config als CSS-variabelen beschikbaar maken.
 const rootStyle = document.documentElement.style;
@@ -23,6 +25,8 @@ const showComingSoon =
   params.has('binnenkort') ||
   (launch.comingSoonOnProduction && __VERCEL_ENV__ === 'production' && !params.has('volledig'));
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>{showComingSoon ? <ComingSoon /> : <App />}</StrictMode>,
-);
+// Eenvoudige routing op pad: /pijlers/... is de pijlerpagina.
+const isPillars = /^\/pijlers(\/|$)/.test(window.location.pathname);
+const page = showComingSoon ? <ComingSoon /> : isPillars ? <PillarsPage /> : <App />;
+
+createRoot(document.getElementById('root')).render(<StrictMode>{page}</StrictMode>);

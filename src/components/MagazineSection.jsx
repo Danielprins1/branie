@@ -42,6 +42,9 @@ const MagazineSection = forwardRef(function MagazineSection({ targetRef }, ref) 
           <div className="magazine-section__cta" data-reveal>
             <PreOrderButton />
           </div>
+          <a className="magazine-section__pillars" href="/pijlers" data-reveal>
+            Scheur de stad open: ontdek de pijlers <span aria-hidden="true">→</span>
+          </a>
         </div>
       </div>
     </section>

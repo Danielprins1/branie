@@ -374,3 +374,19 @@
     margin-inline: auto;
   }
 }
+
+/* Link naar de pijlerpagina */
+.magazine-section__pillars {
+  display: inline-block;
+  margin-top: 1.6rem;
+  font-weight: 700;
+  color: var(--color-bordeaux);
+  text-decoration: underline;
+  text-decoration-color: var(--color-red);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+.magazine-section__pillars:hover {
+  color: var(--color-red);
+}
