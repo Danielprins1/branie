@@ -331,13 +331,6 @@ export const wallItems = [
     desktop: { x: 1450, y: 318, w: 210, r: 1.2, z: 3 },
   },
   {
-    id: 'sticker',
-    type: 'sticker',
-    text: 'Geen blad voor de mond',
-    desktop: { x: 1128, y: 640, w: 116, r: -12, z: 7 },
-    mobile: { x: 610, y: 820, w: 120, r: -12, z: 7 },
-  },
-  {
     id: 'sinds-1950',
     type: 'poster',
     tone: 'ochre',
