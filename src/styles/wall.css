@@ -231,7 +231,7 @@
 
 /* Poster */
 .poster {
-  --poster-size: 19;
+  --poster-size: 15.5;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -256,8 +256,8 @@
 
 .poster__script {
   font-family: var(--font-script);
-  font-size: 13cqw;
-  line-height: 1;
+  font-size: 7cqw;
+  line-height: 1.3;
 }
 
 .poster__asterisk {
@@ -316,15 +316,15 @@
 
 .note__text {
   font-family: var(--font-script);
-  font-size: 13.5cqw;
-  line-height: 0.73;
+  font-size: 7.6cqw;
+  line-height: 1.3;
   rotate: -2deg;
 }
 
 .note__sign {
   margin-top: 6cqw;
   font-family: var(--font-script);
-  font-size: 10cqw;
+  font-size: 5.6cqw;
   text-align: right;
 }
 
@@ -460,7 +460,7 @@
   place-items: center;
   writing-mode: vertical-rl;
   font-family: var(--font-script);
-  font-size: 9cqw;
+  font-size: 5cqw;
   line-height: 1;
   border-left: 0.5cqw dashed rgb(0 0 0 / 0.18);
 }
@@ -522,7 +522,7 @@
 
 .placeholder-board__label {
   font-family: var(--font-script);
-  font-size: 6cqw;
+  font-size: 3.6cqw;
   line-height: 1;
   color: var(--color-bordeaux);
 }

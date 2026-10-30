@@ -103,10 +103,10 @@
   --reveal: 115%;
   margin-top: calc(var(--logo-size) * 0.12);
   font-family: var(--font-script);
-  font-size: calc(var(--logo-size) * 0.3);
-  line-height: 1.1;
+  font-size: calc(var(--logo-size) * 0.17);
+  line-height: 1.35;
   /* Lange pay-off: maximaal ongeveer de breedte van het logo, netjes verdeeld. */
-  max-width: calc(var(--logo-size) * 3.4);
+  max-width: calc(var(--logo-size) * 3);
   margin-inline: auto;
   text-wrap: balance;
   padding-inline: 0.3em;
@@ -134,7 +134,7 @@
 
 .scroll-hint__label {
   font-family: var(--font-script);
-  font-size: 1.9rem;
+  font-size: 1rem;
   line-height: 1;
 }
 
@@ -182,11 +182,11 @@
   }
 }
 
-/* Telefoon: pay-off op één regel. */
+/* Telefoon: Rock Salt is breed; op één regel wordt hij te klein om te
+   lezen, dus twee gebalanceerde regels. */
 @media (max-width: 600px) {
   .payoff {
-    max-width: none;
-    white-space: nowrap;
-    font-size: 5.4vw;
+    max-width: 92vw;
+    font-size: 4.6vw;
   }
 }

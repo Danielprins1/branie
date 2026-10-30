@@ -1,0 +1,42 @@
+/* ------------------------------------------------------------------
+   De BRANIE-lettertypes (lokaal, in src/assets/fonts/).
+   Originelen staan in originals/fonts/.
+
+   - BRANIE    huisletter voor logo-achtige koppen (één gewicht; de
+               ruime font-weight voorkomt dat de browser hem nep-vet maakt)
+   - Rock Salt handgeschreven accenten
+   - Switzer   lopende tekst (variabel, 100–900, met cursief)
+   ------------------------------------------------------------------ */
+@font-face {
+  font-family: 'BRANIE';
+  src: url('../assets/fonts/BRANIECOMPLEET.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Rock Salt';
+  src: url('../assets/fonts/RockSalt-Regular.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Switzer';
+  src: url('../assets/fonts/Switzer-Variable.woff2') format('woff2-variations'),
+    url('../assets/fonts/Switzer-Variable.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Switzer';
+  src: url('../assets/fonts/Switzer-VariableItalic.woff2') format('woff2-variations'),
+    url('../assets/fonts/Switzer-VariableItalic.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}

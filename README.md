@@ -11,7 +11,7 @@ een pre-orderknop.
 
 - [React](https://react.dev) + [Vite](https://vite.dev), gewone CSS
 - [GSAP](https://gsap.com) + ScrollTrigger voor de intro en de scrollovergang
-- Lettertypes lokaal via Fontsource (Londrina Solid, Sacramento, Inter)
+- Eigen lettertypes, lokaal meegeleverd (BRANIE, Rock Salt, Switzer)
 - Hosting via [Vercel](https://vercel.com), gekoppeld aan deze GitHub-repository
 
 ## Lokaal draaien
@@ -136,10 +136,11 @@ In `src/config/site.js` → `cover`:
 
 - **Kleuren:** `colors` in `site.js`. Ze worden als CSS-variabelen gebruikt (`red` → `var(--color-red)`), dus één
   wijziging werkt overal door.
-- **Lettertypes:** installeer een Fontsource-pakket, bijvoorbeeld `npm install @fontsource/bebas-neue`, importeer het
-  in `src/styles/fonts.js` (`import '@fontsource/bebas-neue';`) en zet de naam in `fonts` in `site.js`
-  (`display: "'Bebas Neue', sans-serif"`). Eigen fontbestanden kunnen ook: zet ze in `src/assets/fonts/` en voeg een
-  `@font-face` toe aan `src/styles/global.css`.
+- **Lettertypes:** de huisletters staan in `src/assets/fonts/` (WOFF2; originelen in `originals/fonts/`) en worden
+  geladen in `src/styles/fonts.css`: **BRANIE** (koppen), **Rock Salt** (handschrift) en **Switzer** (lopende tekst).
+  Ander lettertype? Zet het `.woff2`-bestand in `src/assets/fonts/`, voeg een `@font-face` toe in `fonts.css` en zet
+  de naam in `fonts` in `site.js`. Een `.otf`/`.ttf` zet je om naar WOFF2 met bijvoorbeeld
+  [Transfonter](https://transfonter.org).
 
 ### De pre-orderlink wijzigen
 

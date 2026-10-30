@@ -14,9 +14,9 @@
   --color-ink: #1c1715;
   --color-wall: #474643;
 
-  --font-display: 'Londrina Solid', 'Arial Black', Impact, sans-serif;
-  --font-script: 'Sacramento', cursive;
-  --font-body: 'Inter Variable', system-ui, sans-serif;
+  --font-display: 'BRANIE', 'Arial Black', Impact, sans-serif;
+  --font-script: 'Rock Salt', cursive;
+  --font-body: 'Switzer', system-ui, sans-serif;
 
   /* Fijne papierkorrel (SVG-ruis), herbruikbaar als achtergrondlaag. */
   --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.16 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");

@@ -123,14 +123,15 @@ export const colors = {
 };
 
 /**
- * Lettertypes. De bestanden worden geladen in `src/styles/fonts.js`.
- * Wil je een ander lettertype? Installeer het (zie README), importeer het
- * daar en zet hier de naam.
+ * Lettertypes. De bestanden staan in `src/assets/fonts/` en worden
+ * geladen in `src/styles/fonts.css`. Ander lettertype? Zet het bestand
+ * (.woff2) in die map, voeg een @font-face toe in fonts.css en zet hier
+ * de naam.
  */
 export const fonts = {
-  display: "'Londrina Solid', 'Arial Black', Impact, sans-serif",
-  script: "'Sacramento', 'Brush Script MT', cursive",
-  body: "'Inter Variable', Inter, system-ui, -apple-system, 'Segoe UI', sans-serif",
+  display: "'BRANIE', 'Arial Black', Impact, sans-serif",
+  script: "'Rock Salt', 'Marker Felt', 'Comic Sans MS', cursive",
+  body: "'Switzer', system-ui, -apple-system, 'Segoe UI', sans-serif",
 };
 
 /* ------------------------------------------------------------------ */

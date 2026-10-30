@@ -4,7 +4,7 @@ import App from './App.jsx';
 import ComingSoon from './components/ComingSoon.jsx';
 import PillarsPage from './pages/PillarsPage.jsx';
 import { brand, colors, fonts, launch } from './config/site.js';
-import './styles/fonts.js';
+import './styles/fonts.css';
 import './styles/global.css';
 import './styles/wall.css';
 import './styles/hero.css';
