@@ -20,7 +20,6 @@ const PillarDetail = forwardRef(function PillarDetail({ pillar, index, onBack, o
 
       <article className="pillar__intro" aria-labelledby="pillar-title">
         <div className="pillar__text">
-          <p className="pillar__eyebrow">Pijler {String(index + 1).padStart(2, '0')}</p>
           <h1 className="pillar__title" id="pillar-title" tabIndex={-1}>
             {pillar.title}
           </h1>

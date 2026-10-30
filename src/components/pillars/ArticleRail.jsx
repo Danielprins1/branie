@@ -134,9 +134,6 @@ export default function ArticleRail({ pillar, heading, onOpenArticle }) {
                   </span>
                   <span className="rail-item__title">{article.title}</span>
                   {layout === 'note' && <span className="rail-item__excerpt">{article.excerpt}</span>}
-                  <span className="rail-item__more" aria-hidden="true">
-                    Lees →
-                  </span>
                 </a>
               </li>
             );

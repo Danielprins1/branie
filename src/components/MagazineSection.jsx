@@ -3,6 +3,8 @@ import { cover, magazine } from '../config/site.js';
 import MagazineCover from './MagazineCover.jsx';
 import PreOrderButton from './PreOrderButton.jsx';
 import BrandLogo from './BrandLogo.jsx';
+import { tearAway } from '../lib/tearAway.js';
+import { navigateTo } from '../lib/navigate.js';
 
 /**
  * De magazinepresentatie. `targetRef` is de plek waar de vallende cover
@@ -44,7 +46,18 @@ const MagazineSection = forwardRef(function MagazineSection({ targetRef }, ref) 
           <div className="magazine-section__cta" data-reveal>
             <PreOrderButton />
           </div>
-          <a className="magazine-section__pillars" href="/pijlers" data-reveal>
+          <a
+            className="magazine-section__pillars"
+            href="/pijlers"
+            data-reveal
+            onClick={(event) => {
+              if (event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0) return;
+              event.preventDefault();
+              const rect = event.currentTarget.getBoundingClientRect();
+              const y = event.clientY || rect.top + rect.height / 2;
+              tearAway({ y, navigate: () => navigateTo('/pijlers') });
+            }}
+          >
             Scheur de stad open: ontdek de pijlers <span aria-hidden="true">→</span>
           </a>
         </div>

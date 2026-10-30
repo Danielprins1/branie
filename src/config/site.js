@@ -147,17 +147,17 @@ export const fonts = {
  *    `photo` + de teksten hieronder.
  */
 export const cover = {
-  image: '', // bijv. 'branie-cover-nr1.webp'
+  image: 'branie-cover-tijdelijk.webp', // tijdelijke cover
   photo: 'cover-stickerkast.webp',
   photoPosition: '50% 30%',
-  alt: 'Cover van BRANIE nummer 1: iemand staat op een beplakte stroomkast.',
+  alt: 'Cover van BRANIE: een Amsterdamse vrouw met hoofddoek en rode kralenketting steekt haar middelvinger op, met grachtenpanden op de achtergrond.',
   issue: 'Nº 01',
   price: '1950 tot nu',
   headline: 'Amsterdam verandert.',
   headlineAccent: 'De branie blijft.',
   lines: ['De kroegbaas van de Zeedijk', 'Van omafiets naar fatbike', 'Wat was dit gebouw vroeger?'],
-  /** Verhouding breedte / hoogte. */
-  aspect: 3 / 4,
+  /** Verhouding breedte / hoogte (853 × 1280 px). */
+  aspect: 853 / 1280,
   /** Rotatie (graden) waarmee de cover in de magazinesectie landt. */
   restingRotation: -4,
 };
