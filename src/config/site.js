@@ -39,7 +39,8 @@ export const brand = {
 };
 
 export const magazine = {
-  eyebrow: 'Nº 01 · Amsterdam 1950 tot nu',
+  /** Kleine regel boven de kop (leeg = niet tonen). */
+  eyebrow: '',
   slogan: 'Geen blad voor de mond.',
   intro:
     'Amsterdam verandert. De mensen, de straten, de verhalen. BRANIE brengt het Amsterdam van vroeger en nu samen, verteld door de mensen die de stad maken.',

@@ -200,6 +200,7 @@
 }
 
 .magazine-section__eyebrow {
+  margin-bottom: 0.9rem;
   font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.16em;
@@ -208,7 +209,7 @@
 }
 
 .magazine-section__title {
-  margin-top: 0.9rem;
+  margin-top: 0;
   font-size: clamp(3.4rem, 8vw, 7rem);
   color: var(--logo-color-magazine, var(--color-red));
 }

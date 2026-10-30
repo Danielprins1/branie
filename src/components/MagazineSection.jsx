@@ -23,9 +23,11 @@ const MagazineSection = forwardRef(function MagazineSection({ targetRef }, ref) 
         </div>
 
         <div className="magazine-section__text">
-          <p className="magazine-section__eyebrow" data-reveal>
-            {magazine.eyebrow}
-          </p>
+          {magazine.eyebrow && (
+            <p className="magazine-section__eyebrow" data-reveal>
+              {magazine.eyebrow}
+            </p>
+          )}
           <div data-reveal>
             <BrandLogo as="h2" id="magazine-title" className="magazine-section__title" />
           </div>
