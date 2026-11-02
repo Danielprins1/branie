@@ -1339,3 +1339,9 @@ a.delivery__script {
 .sales-hero__logo .asterisk {
   filter: brightness(0) invert(1);
 }
+
+/* Op rood: sterretje in het logo crème, anders valt het weg */
+.sales-hero__logo,
+.sales-contact__logo {
+  --logo-star-color: var(--color-cream);
+}

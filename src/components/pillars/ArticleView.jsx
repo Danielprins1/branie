@@ -1,12 +1,17 @@
 import { useLayoutEffect, useMemo, useRef } from 'react';
 import gsap from 'gsap';
 import { pillarsPage } from '../../config/pillars.js';
+import { lockedText } from '../../config/articles-locked.js';
 import { anyImage } from '../../lib/assets.js';
 import { between, straight, tearLine } from '../../lib/tornEdge.js';
+import PreOrderButton from '../PreOrderButton.jsx';
+import Asterisk from '../Asterisk.jsx';
 
-const PLACEHOLDER_BODY = ['De tekst van dit artikel volgt.'];
-
-/** Het volledige artikel, als een vel papier dat over de pijler schuift. */
+/**
+ * Het artikel, als een vel papier dat over de pijler schuift.
+ * Zichtbaar: titel, introductie en foto. De rest staat versleuteld en
+ * wazig achter de pre-orderknop (voorlopig alleen visueel).
+ */
 export default function ArticleView({ article, pillar, onClose }) {
   const sheetRef = useRef(null);
   const topEdge = useMemo(() => {
@@ -27,7 +32,8 @@ export default function ArticleView({ article, pillar, onClose }) {
     return () => tween.kill();
   }, [article.slug]);
 
-  const body = article.body?.length ? article.body : PLACEHOLDER_BODY;
+  // Alleen het begin van de versleutelde tekst tonen: genoeg voor de vorm.
+  const locked = (lockedText[article.slug] ?? []).slice(0, 7);
 
   return (
     <div className="article-view" role="dialog" aria-modal="true" aria-labelledby="article-title">
@@ -41,31 +47,56 @@ export default function ArticleView({ article, pillar, onClose }) {
           <h1 className="article-view__title" id="article-title" tabIndex={-1}>
             {article.title}
           </h1>
-          {article.excerpt && <p className="article-view__excerpt">{article.excerpt}</p>}
-          {article.placeholder && <p className="article-view__note">{pillarsPage.placeholderNote}</p>}
+          {article.subtitle && <p className="article-view__subtitle">{article.subtitle}</p>}
+          <p className="article-view__meta">
+            {article.author && <span>Door {article.author}</span>}
+            <span>{article.minutes} minuten lezen</span>
+          </p>
+
+          <div className="article-view__intro">
+            {article.intro.map((paragraph) => (
+              <p key={paragraph.slice(0, 24)} className={/^[“"‘']/.test(paragraph) ? 'is-quote' : undefined}>
+                {paragraph}
+              </p>
+            ))}
+          </div>
+
           {article.image && (
             <figure className="article-view__figure">
-              <img src={anyImage(article.image)} alt="" decoding="async" />
+              <img
+                src={anyImage(article.image)}
+                alt=""
+                decoding="async"
+                onLoad={(event) => {
+                  // Kleine foto's niet oprekken tot de volle breedte.
+                  const img = event.currentTarget;
+                  if (img.naturalWidth < 700) img.style.maxWidth = `${Math.round(img.naturalWidth * 1.6)}px`;
+                }}
+              />
             </figure>
           )}
-          <div className="article-view__body">
-            {body.map((paragraph, i) =>
-              paragraph.startsWith('“') ? (
-                <blockquote key={i}>{paragraph}</blockquote>
-              ) : (
-                <p key={i}>{paragraph}</p>
-              ),
-            )}
-          </div>
-          {article.gallery?.length > 0 && (
-            <div className="article-view__gallery">
-              {article.gallery.map((name, i) => (
-                <figure key={name} className="article-view__print" style={{ '--r': `${[-1.4, 1.1, -0.6, 1.6, -1][i % 5]}deg` }}>
-                  <img src={anyImage(name)} alt="" loading="lazy" decoding="async" />
-                </figure>
-              ))}
+
+          <section className="locked" aria-labelledby="locked-title">
+            <div className="locked__text" aria-hidden="true">
+              {locked.map(([kind, text], i) =>
+                kind === 'h' ? (
+                  <p key={i} className="locked__h">
+                    {text}
+                  </p>
+                ) : (
+                  <p key={i}>{text}</p>
+                ),
+              )}
             </div>
-          )}
+            <div className="locked__card">
+              <Asterisk className="locked__asterisk" />
+              <h2 className="locked__title" id="locked-title">
+                {pillarsPage.lockedHeading}
+              </h2>
+              <p className="locked__text-intro">{pillarsPage.lockedText}</p>
+              <PreOrderButton />
+            </div>
+          </section>
         </div>
       </div>
     </div>

@@ -5,6 +5,7 @@ import ScrollHint from './components/ScrollHint.jsx';
 import MagazineSection from './components/MagazineSection.jsx';
 import MagazineTransition from './components/MagazineTransition.jsx';
 import Footer from './components/Footer.jsx';
+import BollardNav from './components/BollardNav.jsx';
 
 export default function App() {
   const stageRef = useRef(null);
@@ -40,6 +41,7 @@ export default function App() {
         <MagazineSection ref={sectionRef} targetRef={coverTargetRef} />
       </main>
       <Footer />
+      <BollardNav sectionRef={sectionRef} />
       <MagazineTransition
         stageRef={stageRef}
         sectionRef={sectionRef}

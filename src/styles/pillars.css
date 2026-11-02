@@ -688,22 +688,7 @@ html.is-pillars body {
   outline: none;
 }
 
-.article-view__excerpt {
-  margin-top: 1.2rem;
-  font-size: clamp(1.1rem, 2vw, 1.3rem);
-  font-weight: 600;
-  line-height: 1.5;
-}
 
-.article-view__note {
-  margin-top: 1.4rem;
-  padding: 0.8rem 1rem;
-  border: 2px dashed var(--color-red);
-  background: rgb(221 176 58 / 0.18);
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--color-bordeaux);
-}
 
 .article-view__figure {
   margin: 2rem 0 0;
@@ -715,63 +700,15 @@ html.is-pillars body {
   filter: grayscale(0.1) contrast(1.05) saturate(0.85);
 }
 
-.article-view__body {
-  margin-top: 2rem;
-  max-width: 38em;
-}
 
-.article-view__body p {
-  font-size: 1.1rem;
-  line-height: 1.7;
-}
 
-.article-view__body p + p {
-  margin-top: 1rem;
-}
 
-.article-view__body blockquote {
-  margin: 2rem 0;
-  font-family: var(--font-display);
-  font-weight: 900;
-  font-size: clamp(1.7rem, 3.4vw, 2.4rem);
-  line-height: 1;
-  text-transform: uppercase;
-  color: var(--color-red);
-}
 
 /* Fotoserie in een artikel: losse afdrukken, licht scheef */
-.article-view__gallery {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  align-items: start;
-  gap: clamp(1rem, 3vw, 2rem);
-  margin-top: 2.5rem;
-}
 
-.article-view__print {
-  margin: 0;
-  padding: 8px 8px 26px;
-  background: #faf8f2;
-  rotate: var(--r, 0deg);
-  box-shadow:
-    0 1px 2px rgb(0 0 0 / 0.2),
-    4px 12px 24px rgb(0 0 0 / 0.18);
-}
 
-.article-view__print:nth-child(3n + 1) {
-  grid-column: 1 / -1;
-}
 
-.article-view__print img {
-  width: 100%;
-  height: auto;
-}
 
-@media (max-width: 560px) {
-  .article-view__gallery {
-    grid-template-columns: 1fr;
-  }
-}
 
 /* ---------- De homepage scheurt weg (src/lib/tearAway.js) ---------- */
 .tear-overlay {
@@ -824,4 +761,149 @@ html.is-pillars body {
 
 .tear-half--bottom .tear-half__shadow {
   background: linear-gradient(transparent, rgb(0 0 0 / 0.55));
+}
+
+/* Artikel: ondertitel, meta, intro */
+.article-view__subtitle {
+  margin-top: 1rem;
+  font-size: clamp(1.1rem, 2vw, 1.3rem);
+  font-weight: 700;
+  line-height: 1.45;
+  color: var(--color-bordeaux);
+}
+
+.article-view__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 1.2rem;
+  margin-top: 1rem;
+  font-family: var(--font-script);
+  font-size: 0.9rem;
+  color: var(--color-red);
+}
+
+.article-view__intro {
+  max-width: 38em;
+  margin-top: 1.6rem;
+}
+
+.article-view__intro p {
+  font-size: clamp(1.08rem, 1.6vw, 1.22rem);
+  line-height: 1.7;
+}
+
+.article-view__intro p + p {
+  margin-top: 1rem;
+}
+
+.article-view__intro p:first-child:not(.is-quote)::first-letter {
+  float: left;
+  margin: 0.08em 0.1em 0 0;
+  font-family: var(--font-display);
+  font-size: 3.4em;
+  line-height: 0.8;
+  color: var(--color-red);
+}
+
+/* Versleutelde rest + pre-orderkaart */
+.locked {
+  position: relative;
+  margin-top: 2.4rem;
+  min-height: 460px;
+}
+
+.locked__text {
+  max-width: 38em;
+  user-select: none;
+  pointer-events: none;
+  filter: blur(4.5px);
+  opacity: 0.75;
+  -webkit-mask-image: linear-gradient(#000 0%, #000 35%, transparent 95%);
+  mask-image: linear-gradient(#000 0%, #000 35%, transparent 95%);
+}
+
+.locked__text p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+.locked__text p + p {
+  margin-top: 1rem;
+}
+
+.locked__text .locked__h {
+  margin-top: 1.6rem;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--color-bordeaux);
+}
+
+.locked__card {
+  position: absolute;
+  left: 50%;
+  top: clamp(70px, 14vh, 130px);
+  width: min(460px, 100%);
+  translate: -50% 0;
+  padding: 1.8rem 1.6rem 1.6rem;
+  background: var(--color-cream) var(--grain);
+  background-size: 180px;
+  text-align: center;
+  rotate: -1.2deg;
+  box-shadow:
+    0 2px 3px rgb(0 0 0 / 0.18),
+    6px 18px 40px rgb(0 0 0 / 0.25);
+}
+
+.locked__card::before,
+.locked__card::after {
+  content: '';
+  position: absolute;
+  top: -12px;
+  width: 80px;
+  height: 24px;
+  background: rgb(232 222 192 / 0.75);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.15);
+}
+
+.locked__card::before {
+  left: 14px;
+  rotate: -8deg;
+}
+
+.locked__card::after {
+  right: 14px;
+  rotate: 7deg;
+}
+
+.locked__asterisk {
+  width: 46px;
+  margin: 0 auto 0.6rem;
+}
+
+.locked__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 3.4vw, 2.3rem);
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--color-bordeaux);
+}
+
+.locked__text-intro {
+  margin: 0.8rem 0 1.4rem;
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+.locked__card .preorder-wrap {
+  display: grid;
+  justify-items: center;
+}
+
+.article-view__intro p.is-quote {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  line-height: 1.1;
+  color: var(--color-red);
 }

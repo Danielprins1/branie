@@ -158,14 +158,14 @@ function ItemContent({ item }) {
           <span>{item.text}</span>
         </div>
       );
-    case 'placeholder':
+    case 'pair':
       return (
-        <div className="placeholder-board" role="img" aria-label="Lege fotolijsten: hier komen nog foto's van vroeger en nu.">
-          {(item.pair ?? ['']).map((label) => (
-            <div key={label} className="placeholder-board__slot">
-              <span className="placeholder-board__year">{label}</span>
-              <span className="placeholder-board__label">{item.label}</span>
-            </div>
+        <div className="pair-board">
+          {item.pair.map((side) => (
+            <figure key={side.label} className="pair-board__slot">
+              <img src={anyImage(side.image)} alt={side.alt ?? ''} loading="eager" decoding="async" draggable="false" />
+              <figcaption className="pair-board__year">{side.label}</figcaption>
+            </figure>
           ))}
         </div>
       );

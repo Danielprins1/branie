@@ -14,6 +14,7 @@ import './styles/magazine.css';
 import './styles/coming-soon.css';
 import './styles/pillars.css';
 import './styles/sales.css';
+import './styles/bollard.css';
 
 // Huisstijl uit de config als CSS-variabelen beschikbaar maken.
 const rootStyle = document.documentElement.style;

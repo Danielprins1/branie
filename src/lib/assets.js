@@ -35,14 +35,20 @@ const pillarFiles = import.meta.glob('../assets/pillars/*.{webp,avif,jpg,jpeg,pn
   import: 'default',
 });
 export const pillarImage = byName(pillarFiles, 'pillars');
-export function anyImage(name) {
-  if (!name) return undefined;
-  return pillarFiles[`../assets/pillars/${name}`] ?? wall[`../assets/wall/${name}`] ?? wallImage(name);
-}
-
-// Foto's voor de salespagina (src/assets/sales/).
 const salesFiles = import.meta.glob('../assets/sales/*.{webp,avif,jpg,jpeg,png}', {
   eager: true,
   import: 'default',
 });
-export const salesImage = (name) => salesFiles[`../assets/sales/${name}`] ?? anyImage(name);
+/** Zoekt een foto op naam in pillars/, wall/ en sales/. */
+export function anyImage(name) {
+  if (!name) return undefined;
+  return (
+    pillarFiles[`../assets/pillars/${name}`] ??
+    wall[`../assets/wall/${name}`] ??
+    salesFiles[`../assets/sales/${name}`] ??
+    wallImage(name)
+  );
+}
+
+// Foto's voor de salespagina (src/assets/sales/).
+export const salesImage = (name) => anyImage(name);

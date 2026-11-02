@@ -17,7 +17,11 @@ export default function BrandLogo({ as: Tag = 'h1', className = '', id }) {
         <>
           <span
             className="brand-logo__mark"
-            style={{ '--logo-url': `url("${logoUrl}")`, aspectRatio: brand.logoAspect }}
+            style={{
+              '--logo-url': `url("${logoUrl}")`,
+              '--logo-star': `${(brand.logoAsteriskPart ?? 0) * 100}%`,
+              aspectRatio: brand.logoAspect,
+            }}
             aria-hidden="true"
           />
           <span className="visually-hidden">{brand.name}</span>

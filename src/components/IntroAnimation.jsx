@@ -20,6 +20,16 @@ export default function IntroAnimation() {
     mm.add('(prefers-reduced-motion: no-preference)', () => {
       const tl = gsap.timeline({ paused: true, defaults: { ease: 'power2.out' } });
 
+      // Los sterretje (alleen als brand.showAsterisk aan staat)
+      if (document.querySelector('.hero__brand .brand-logo__asterisk')) {
+        tl.fromTo(
+          '.hero__brand .brand-logo__asterisk',
+          { scale: 0, rotate: -120 },
+          { scale: 1, rotate: 0, duration: 0.55, ease: 'back.out(1.8)' },
+          1.1,
+        );
+      }
+
       tl.fromTo('.wall', { opacity: 0 }, { opacity: 1, duration: 0.7 }, 0)
         .fromTo(
           '.wall-item__body',
@@ -33,12 +43,7 @@ export default function IntroAnimation() {
           { opacity: 1, y: 0, scale: 1, filter: 'blur(0px)', duration: 1, ease: 'power3.out' },
           0.5,
         )
-        .fromTo(
-          '.brand-logo__asterisk',
-          { scale: 0, rotate: -120 },
-          { scale: 1, rotate: 0, duration: 0.55, ease: 'back.out(1.8)' },
-          1.1,
-        )
+
         .fromTo(
           '.payoff',
           { '--reveal': '-15%' },

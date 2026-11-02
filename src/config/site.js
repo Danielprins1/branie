@@ -22,7 +22,13 @@ export const brand = {
    */
   logo: 'branie-logo.svg',
   /** Breedte ÷ hoogte van het logo (uit de viewBox van de SVG). */
-  logoAspect: 2543 / 718,
+  logoAspect: 2417 / 661,
+  /**
+   * Het logo begint met het sterretje. Dat deel (links, als fractie van de
+   * breedte) krijgt altijd de rode huisstijlkleur; de letters de kleur van
+   * de plek. Zet op 0 als het logo geen sterretje vooraan heeft.
+   */
+  logoAsteriskPart: 0.115,
   /**
    * Kleur van het logo per plek: de naam van een kleur uit `colors`
    * (bijv. 'red', 'cream', 'bordeaux').
@@ -34,8 +40,8 @@ export const brand = {
   },
   /** Het rode sterretje (src/assets/brand/). */
   asterisk: 'asterisk.svg',
-  /** Toont het rode sterretje naast het logo. */
-  showAsterisk: true,
+  /** Toont een los rood sterretje achter het logo (niet nodig: zit al in het logo). */
+  showAsterisk: false,
 };
 
 export const magazine = {
@@ -200,7 +206,7 @@ export const cover = {
  *  - 'ticket'      toegangskaartje (`top`, `main`, `bottom`)
  *  - 'ad'          prikbordbriefje met afscheurstrookjes
  *  - 'sticker'     ronde sticker (`text`)
- *  - 'placeholder' lege lijst(en) voor foto's die nog komen
+ *  - 'pair'        twee foto's naast elkaar (vroeger en nu), met jaartal
  *
  * Bevestiging (`attach`): 'tape' | 'tape-corners' | 'pin' | 'none'
  * Toon poster (`tone`):   'red' | 'black' | 'olive' | 'ochre' | 'blue' | 'paper'
@@ -370,9 +376,13 @@ export const wallItems = [
   },
   {
     id: 'vroeger-nu',
-    type: 'placeholder',
-    pair: ['1950', 'nu'],
-    label: 'foto volgt',
+    type: 'pair',
+    /** Twee foto's naast elkaar: vroeger en nu. */
+    pair: [
+      { label: '1950', image: 'stad-markt.webp', alt: 'Zwart-witfoto van een drukke Amsterdamse markt.' },
+      { label: 'nu', image: 'concerto-strips-hoek.webp', alt: 'Bakken met tweedehands strips en platen bij Concerto.' },
+    ],
+    title: 'Vroeger naast nu',
     attach: 'tape-corners',
     pillar: 'Wonen, plekken & buurten',
     desktop: { x: 756, y: 686, w: 392, h: 262, r: 0.6, z: 2 },

@@ -149,6 +149,13 @@ naar het ontwerp in `originals/knop-staten.webp`: normaal, hover (rode gloed) en
 Het papier komt uit `src/assets/brand/knop-normaal.webp` en `knop-ingedrukt.webp`. Een nieuwe knop maak je door
 `className="paper-btn"` toe te voegen.
 
+### De navigatie (het Amsterdammertje)
+
+Onderaan de homepage komt een navigatie in de vorm van een liggend Amsterdammertje omhoog zodra je bij de
+magazinesectie bent (`src/components/BollardNav.jsx`, stijl in `src/styles/bollard.css`). Bovenaan en over de
+fotomuur is hij er niet. Op smalle schermen wacht hij tot de pre-orderknop erboven staat. Links aanpassen doe je in
+`BollardNav.jsx`.
+
 ### De pre-orderlink wijzigen
 
 In `site.js` → `preorder`:
@@ -169,8 +176,11 @@ open; daarachter staan de introductie en de verhalen van die pijler.
   foto in de smalle strook valt), introductie en artikelen. Uitleg staat bovenin dat bestand.
 - **Foto's:** zet ze in `src/assets/pillars/` (breed, liggend, bij voorkeur WebP van ±2000 px breed) en vul de
   bestandsnaam in. Foto's van de fotomuur (`src/assets/wall/`) kun je ook gebruiken.
-- **Artikelen:** zolang `placeholder: true` staat, ziet de lezer duidelijk dat het een voorbeeldartikel is. Vul
-  `body` met de alinea's van het echte artikel en haal `placeholder` weg.
+- **Artikelen:** staan in `src/config/articles.js` (titel, intro, foto, schrijver, leestijd). Op de site is alleen de
+  introductie met één foto te lezen; de rest staat wazig en versleuteld achter de pre-orderknop (alleen visueel). De
+  versleutelde tekst staat in `src/config/articles-locked.js`; de echte teksten zitten bewust niet in de website.
+  Nieuw artikel? Voeg het toe in `articles.js` onder de juiste pijler; zonder regel in `articles-locked.js` krijgt het
+  geen wazige tekst, maar wel de pre-orderkaart.
 - **Adressen:** `/pijlers`, `/pijlers/<pijler>` en `/pijlers/<pijler>/<artikel>`. Je kunt ze direct delen en de
   terugknop van de browser werkt. `vercel.json` zorgt dat Vercel deze adressen naar de site stuurt.
 - **De scheuranimatie** staat in `src/pages/PillarsPage.jsx` (`buildTimeline`). De gescheurde randen worden

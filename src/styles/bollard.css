@@ -1,0 +1,166 @@
+/* ------------------------------------------------------------------
+   Navigatie als Amsterdammertje (src/components/BollardNav.jsx)
+   Een liggend paaltje in BRANIE-bordeaux: bolle kop links, de drie
+   andreaskruisen in de huisstijlletter, iets taps naar rechts, en
+   een donkere voet waar hij 'uit de stoep' komt.
+   ------------------------------------------------------------------ */
+.bollard-dock {
+  position: fixed;
+  z-index: 60;
+  left: 0;
+  right: 0;
+  bottom: max(14px, env(safe-area-inset-bottom));
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.bollard {
+  --bollard: var(--color-bordeaux);
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: clamp(10px, 2vw, 22px);
+  height: 58px;
+  padding: 0 clamp(18px, 3vw, 30px) 0 0;
+  pointer-events: auto;
+  color: var(--color-cream);
+  background:
+    var(--grain),
+    linear-gradient(180deg, rgb(255 255 255 / 0.16) 0%, rgb(255 255 255 / 0.04) 22%, transparent 45%, rgb(0 0 0 / 0.28) 100%),
+    var(--bollard);
+  background-size: 180px, auto, auto;
+  /* licht taps: aan de kop breder dan aan de voet */
+  clip-path: polygon(0 0, 100% 9%, 100% 91%, 0 100%);
+  visibility: hidden; /* tot GSAP hem neerzet */
+  border-radius: 0 6px 6px 0;
+  filter: drop-shadow(0 8px 14px rgb(0 0 0 / 0.35)) drop-shadow(0 1px 2px rgb(0 0 0 / 0.3));
+}
+
+/* De bolle kop, met een smalle hals ervoor */
+.bollard__cap {
+  position: relative;
+  flex: none;
+  width: 52px;
+  height: 100%;
+  background:
+    radial-gradient(ellipse 60% 70% at 35% 30%, rgb(255 255 255 / 0.28), transparent 60%),
+    linear-gradient(180deg, transparent 40%, rgb(0 0 0 / 0.25)),
+    var(--bollard);
+  border-radius: 50% 0 0 50% / 50% 0 0 50%;
+  box-shadow: inset -4px 0 0 rgb(0 0 0 / 0.28);
+}
+
+.bollard__cap::after {
+  content: '';
+  position: absolute;
+  right: -9px;
+  top: 6px;
+  bottom: 6px;
+  width: 6px;
+  background: rgb(0 0 0 / 0.25);
+  border-radius: 2px;
+}
+
+/* De drie kruisen, zoals in het wapen van Amsterdam */
+.bollard__crosses {
+  display: flex;
+  gap: 2px;
+  margin-left: 4px;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  line-height: 1;
+  color: #5a0800;
+  text-shadow:
+    0 1px 0 rgb(255 255 255 / 0.18),
+    0 -1px 0 rgb(0 0 0 / 0.35);
+}
+
+.bollard__links {
+  display: flex;
+  align-items: center;
+  gap: clamp(4px, 1.4vw, 18px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.bollard__links a {
+  display: block;
+  padding: 0.55em 0.5em 0.45em;
+  font-family: var(--font-display);
+  font-size: clamp(0.9rem, 1.6vw, 1.1rem);
+  letter-spacing: 0.02em;
+  color: var(--color-cream);
+  text-decoration: none;
+  white-space: nowrap;
+  background: linear-gradient(var(--color-ochre), var(--color-ochre)) 50% 100% / 0 3px no-repeat;
+  transition:
+    background-size 0.2s,
+    color 0.2s;
+}
+
+.bollard__links a:hover,
+.bollard__links a:focus-visible {
+  color: #fff;
+  background-size: 80% 3px;
+}
+
+.bollard__links a:focus-visible {
+  outline: 2px solid var(--color-ochre);
+  outline-offset: 2px;
+}
+
+.bollard__links .bollard__preorder {
+  margin-left: 4px;
+  padding: 0.55em 0.85em 0.45em;
+  background: var(--color-red);
+  color: #fff;
+  rotate: -2deg;
+  box-shadow: 0 2px 0 rgb(0 0 0 / 0.35);
+}
+
+.bollard__links .bollard__preorder:hover {
+  background: #ff1a1a;
+}
+
+/* De voet: waar het paaltje uit de stoep steekt */
+.bollard__foot {
+  position: absolute;
+  right: -2px;
+  top: 0;
+  bottom: 0;
+  width: 10px;
+  background: linear-gradient(90deg, rgb(0 0 0 / 0.1), rgb(0 0 0 / 0.45));
+}
+
+@media (max-width: 560px) {
+  .bollard {
+    height: 50px;
+    gap: 6px;
+    padding-right: 12px;
+  }
+
+  .bollard__cap {
+    width: 38px;
+  }
+
+  .bollard__crosses {
+    display: none;
+  }
+
+  .bollard__links li:first-child {
+    display: none;
+  }
+}
+
+/* Niet over de magazine-tekst heen: ruimte onderaan */
+.footer {
+  padding-bottom: 7rem;
+}
+
+/* Ruimte onder de magazinesectie, zodat het paaltje nooit over de
+   pre-orderknop valt. */
+.magazine-section {
+  padding-bottom: calc(clamp(3rem, 8vh, 6rem) + 70px);
+}

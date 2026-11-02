@@ -4,6 +4,13 @@ import { between, straight, tearLine } from '../../lib/tornEdge.js';
 
 const LAYOUTS = ['feature', 'note', 'wide', 'small', 'feature'];
 
+/** Eerste zin(nen) van de intro, ingekort tot ±150 tekens. */
+function teaser(text = '') {
+  if (text.length <= 150) return text;
+  const cut = text.slice(0, 150);
+  return `${cut.slice(0, cut.lastIndexOf(' '))}…`;
+}
+
 function layoutFor(article, i) {
   if (article.layout) return article.layout;
   const auto = LAYOUTS[i % LAYOUTS.length];
@@ -133,7 +140,7 @@ export default function ArticleRail({ pillar, heading, onOpenArticle }) {
                     <span className="rail-item__category">{article.category}</span>
                   </span>
                   <span className="rail-item__title">{article.title}</span>
-                  {layout === 'note' && <span className="rail-item__excerpt">{article.excerpt}</span>}
+                  {layout === 'note' && <span className="rail-item__excerpt">{teaser(article.intro[0])}</span>}
                 </a>
               </li>
             );
