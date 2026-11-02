@@ -151,10 +151,16 @@ Het papier komt uit `src/assets/brand/knop-normaal.webp` en `knop-ingedrukt.webp
 
 ### De navigatie (het Amsterdammertje)
 
-Onderaan de homepage komt een navigatie in de vorm van een liggend Amsterdammertje omhoog zodra je bij de
-magazinesectie bent (`src/components/BollardNav.jsx`, stijl in `src/styles/bollard.css`). Bovenaan en over de
-fotomuur is hij er niet. Op smalle schermen wacht hij tot de pre-orderknop erboven staat. Links aanpassen doe je in
-`BollardNav.jsx`.
+Linksonder staat een rechtopstaand Amsterdammertje met de links (`src/components/BollardNav.jsx`, stijl in
+`src/styles/bollard.css`). Op de homepage komt hij pas omhoog bij de magazinesectie; op de pijlers en de saleskit
+staat hij er meteen. Klik op de bolle kop om hem in de stoep te laten zakken (alleen de kop blijft zichtbaar) en weer
+omhoog te halen. Op telefoons begint hij ingeklapt. Links aanpassen doe je in `BollardNav.jsx`.
+
+### Het logo
+
+Het logo bestaat uit twee lagen met dezelfde afmetingen: `branie-logo-woord.svg` (de letters, in de kleur van de
+plek) en `branie-logo-ster.svg` (het sterretje, altijd rood; crème op rode achtergronden). Nieuw logo? Lever beide
+delen apart aan, of vul alleen `brand.logo` in voor een logo in één kleur.
 
 ### De pre-orderlink wijzigen
 

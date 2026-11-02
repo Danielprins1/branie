@@ -1,109 +1,166 @@
 /* ------------------------------------------------------------------
-   Navigatie als Amsterdammertje (src/components/BollardNav.jsx)
-   Een liggend paaltje in BRANIE-bordeaux: bolle kop links, de drie
-   andreaskruisen in de huisstijlletter, iets taps naar rechts, en
-   een donkere voet waar hij 'uit de stoep' komt.
+   Navigatie als rechtopstaand Amsterdammertje (BollardNav.jsx)
+   Bordeaux gietijzer: bolle kop met een kraag, een romp die naar
+   onderen breder wordt, ronde schaduw en de drie andreaskruisen.
    ------------------------------------------------------------------ */
-.bollard-dock {
+.bollard {
+  --w: 128px; /* breedte van de voet */
+  --cap-h: 74px; /* zichtbaar deel als hij is ingeklapt */
+  --iron: var(--color-bordeaux);
   position: fixed;
   z-index: 60;
-  left: 0;
-  right: 0;
-  bottom: max(14px, env(safe-area-inset-bottom));
-  display: flex;
-  justify-content: center;
+  left: clamp(10px, 2.2vw, 32px);
+  bottom: 0;
+  width: var(--w);
   pointer-events: none;
 }
 
-.bollard {
-  --bollard: var(--color-bordeaux);
+.bollard__post {
   position: relative;
-  display: flex;
-  align-items: center;
-  gap: clamp(10px, 2vw, 22px);
-  height: 58px;
-  padding: 0 clamp(18px, 3vw, 30px) 0 0;
+  visibility: hidden; /* tot GSAP hem plaatst */
   pointer-events: auto;
-  color: var(--color-cream);
-  background:
-    var(--grain),
-    linear-gradient(180deg, rgb(255 255 255 / 0.16) 0%, rgb(255 255 255 / 0.04) 22%, transparent 45%, rgb(0 0 0 / 0.28) 100%),
-    var(--bollard);
-  background-size: 180px, auto, auto;
-  /* licht taps: aan de kop breder dan aan de voet */
-  clip-path: polygon(0 0, 100% 9%, 100% 91%, 0 100%);
-  visibility: hidden; /* tot GSAP hem neerzet */
-  border-radius: 0 6px 6px 0;
-  filter: drop-shadow(0 8px 14px rgb(0 0 0 / 0.35)) drop-shadow(0 1px 2px rgb(0 0 0 / 0.3));
+  filter: drop-shadow(4px 0 6px rgb(0 0 0 / 0.35)) drop-shadow(0 2px 2px rgb(0 0 0 / 0.25));
+  transform-origin: 50% 100%;
 }
 
-/* De bolle kop, met een smalle hals ervoor */
+/* Bolle kop + kraag: de knop om in en uit te klappen */
 .bollard__cap {
   position: relative;
-  flex: none;
-  width: 52px;
-  height: 100%;
+  display: block;
+  width: 74%;
+  height: var(--cap-h);
+  margin: 0 auto;
+  padding: 0;
+  border: 0;
+  cursor: pointer;
+  border-radius: 50% 50% 8px 8px / 62% 62% 8px 8px;
   background:
-    radial-gradient(ellipse 60% 70% at 35% 30%, rgb(255 255 255 / 0.28), transparent 60%),
-    linear-gradient(180deg, transparent 40%, rgb(0 0 0 / 0.25)),
-    var(--bollard);
-  border-radius: 50% 0 0 50% / 50% 0 0 50%;
-  box-shadow: inset -4px 0 0 rgb(0 0 0 / 0.28);
+    radial-gradient(ellipse 34% 30% at 34% 26%, rgb(255 255 255 / 0.42), transparent 70%),
+    linear-gradient(90deg, rgb(0 0 0 / 0.38), transparent 30%, rgb(255 255 255 / 0.1) 45%, transparent 60%, rgb(0 0 0 / 0.45)),
+    var(--iron);
+  -webkit-tap-highlight-color: transparent;
 }
 
+/* de kraag onder de kop */
 .bollard__cap::after {
   content: '';
   position: absolute;
-  right: -9px;
-  top: 6px;
-  bottom: 6px;
-  width: 6px;
-  background: rgb(0 0 0 / 0.25);
-  border-radius: 2px;
+  left: -6%;
+  right: -6%;
+  bottom: 0;
+  height: 13px;
+  border-radius: 6px;
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 0.22), transparent 45%, rgb(0 0 0 / 0.4)),
+    linear-gradient(90deg, rgb(0 0 0 / 0.4), transparent 30%, transparent 65%, rgb(0 0 0 / 0.45)),
+    var(--iron);
 }
 
-/* De drie kruisen, zoals in het wapen van Amsterdam */
-.bollard__crosses {
+.bollard__cap:hover,
+.bollard__cap:focus-visible {
+  filter: brightness(1.15);
+}
+
+.bollard__cap:focus-visible {
+  outline: 3px solid var(--color-ochre);
+  outline-offset: 3px;
+}
+
+.bollard__cap-hint {
+  position: absolute;
+  inset: 0 0 13px;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-script);
+  font-size: 0.8rem;
+  color: var(--color-cream);
+  text-shadow: 0 1px 2px rgb(0 0 0 / 0.5);
+}
+
+/* De romp: smal onder de kraag, breder naar de voet, met afgeronde
+   'schouders' en ronde schaduw zoals gietijzer. */
+.bollard__body {
+  position: relative;
   display: flex;
-  gap: 2px;
-  margin-left: 4px;
-  font-family: var(--font-display);
-  font-size: 1.15rem;
-  line-height: 1;
-  color: #5a0800;
-  text-shadow:
-    0 1px 0 rgb(255 255 255 / 0.18),
-    0 -1px 0 rgb(0 0 0 / 0.35);
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  margin-top: -1px;
+  padding: 22px 0 46px;
+  clip-path: polygon(13% 0, 87% 0, 100% 100%, 0 100%);
+  border-radius: 6px 6px 0 0;
+  background:
+    var(--grain),
+    linear-gradient(90deg, rgb(0 0 0 / 0.45) 0%, rgb(0 0 0 / 0.08) 18%, rgb(255 255 255 / 0.16) 32%, rgb(255 255 255 / 0.04) 44%, transparent 60%, rgb(0 0 0 / 0.18) 80%, rgb(0 0 0 / 0.5) 100%),
+    var(--iron);
+  background-size: 180px, auto, auto;
+}
+
+/* Drie andreaskruisen in reliëf, onder elkaar */
+.bollard__crosses {
+  display: grid;
+  gap: 7px;
+}
+
+.bollard__crosses span {
+  position: relative;
+  width: 30px;
+  height: 26px;
+}
+
+.bollard__crosses span::before,
+.bollard__crosses span::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 34px;
+  height: 7px;
+  border-radius: 2px;
+  background: linear-gradient(180deg, rgb(255 255 255 / 0.2), rgb(0 0 0 / 0.25)), #5c0900;
+  box-shadow:
+    0 -1px 0 rgb(255 255 255 / 0.15),
+    0 1.5px 1px rgb(0 0 0 / 0.45);
+  translate: -50% -50%;
+  rotate: 42deg;
+}
+
+.bollard__crosses span::after {
+  rotate: -42deg;
 }
 
 .bollard__links {
-  display: flex;
-  align-items: center;
-  gap: clamp(4px, 1.4vw, 18px);
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  width: 100%;
   margin: 0;
-  padding: 0;
+  padding: 0 8px;
   list-style: none;
 }
 
 .bollard__links a {
   display: block;
-  padding: 0.55em 0.5em 0.45em;
+  padding: 0.45em 0.2em 0.35em;
   font-family: var(--font-display);
-  font-size: clamp(0.9rem, 1.6vw, 1.1rem);
-  letter-spacing: 0.02em;
+  font-size: 0.92rem;
+  line-height: 1;
   color: var(--color-cream);
+  text-align: center;
   text-decoration: none;
   white-space: nowrap;
-  background: linear-gradient(var(--color-ochre), var(--color-ochre)) 50% 100% / 0 3px no-repeat;
+  text-shadow: 0 1px 2px rgb(0 0 0 / 0.45);
+  background: linear-gradient(var(--color-ochre), var(--color-ochre)) 50% 100% / 0 2px no-repeat;
   transition:
     background-size 0.2s,
     color 0.2s;
 }
 
 .bollard__links a:hover,
-.bollard__links a:focus-visible {
+.bollard__links a:focus-visible,
+.bollard__links a[aria-current='page'] {
   color: #fff;
-  background-size: 80% 3px;
+  background-size: 90% 2px;
 }
 
 .bollard__links a:focus-visible {
@@ -112,55 +169,47 @@
 }
 
 .bollard__links .bollard__preorder {
-  margin-left: 4px;
-  padding: 0.55em 0.85em 0.45em;
+  margin-top: 6px;
+  padding: 0.55em 0.6em 0.45em;
   background: var(--color-red);
   color: #fff;
-  rotate: -2deg;
-  box-shadow: 0 2px 0 rgb(0 0 0 / 0.35);
+  rotate: -3deg;
+  box-shadow: 0 2px 0 rgb(0 0 0 / 0.4);
 }
 
-.bollard__links .bollard__preorder:hover {
+.bollard__links .bollard__preorder:hover,
+.bollard__links .bollard__preorder:focus-visible {
   background: #ff1a1a;
 }
 
-/* De voet: waar het paaltje uit de stoep steekt */
-.bollard__foot {
+/* De stoep waar hij uitsteekt */
+.bollard__pavement {
   position: absolute;
-  right: -2px;
-  top: 0;
-  bottom: 0;
-  width: 10px;
-  background: linear-gradient(90deg, rgb(0 0 0 / 0.1), rgb(0 0 0 / 0.45));
+  left: -14px;
+  right: -14px;
+  bottom: -6px;
+  height: 14px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at 50% 30%, rgb(0 0 0 / 0.45), transparent 70%);
 }
 
-@media (max-width: 560px) {
+@media (max-width: 700px) {
   .bollard {
-    height: 50px;
-    gap: 6px;
-    padding-right: 12px;
+    --w: 104px;
+    --cap-h: 60px;
   }
 
-  .bollard__cap {
-    width: 38px;
+  .bollard__body {
+    gap: 12px;
+    padding: 16px 0 34px;
   }
 
-  .bollard__crosses {
-    display: none;
-  }
-
-  .bollard__links li:first-child {
-    display: none;
+  .bollard__links a {
+    font-size: 0.82rem;
   }
 }
 
-/* Niet over de magazine-tekst heen: ruimte onderaan */
+/* Ruimte zodat het paaltje de inhoud niet bedekt */
 .footer {
   padding-bottom: 7rem;
-}
-
-/* Ruimte onder de magazinesectie, zodat het paaltje nooit over de
-   pre-orderknop valt. */
-.magazine-section {
-  padding-bottom: calc(clamp(3rem, 8vh, 6rem) + 70px);
 }

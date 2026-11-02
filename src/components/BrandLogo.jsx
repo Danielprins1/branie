@@ -10,20 +10,19 @@ import Asterisk from './Asterisk.jsx';
  */
 export default function BrandLogo({ as: Tag = 'h1', className = '', id }) {
   const logoUrl = brandAsset(brand.logo);
+  const wordUrl = brandAsset(brand.logoWord);
+  const starUrl = brandAsset(brand.logoStar);
 
   return (
     <Tag className={`brand-logo ${className}`.trim()} id={id}>
       {logoUrl ? (
         <>
-          <span
-            className="brand-logo__mark"
-            style={{
-              '--logo-url': `url("${logoUrl}")`,
-              '--logo-star': `${(brand.logoAsteriskPart ?? 0) * 100}%`,
-              aspectRatio: brand.logoAspect,
-            }}
-            aria-hidden="true"
-          />
+          <span className="brand-logo__mark" style={{ aspectRatio: brand.logoAspect }} aria-hidden="true">
+            <span className="brand-logo__layer" style={{ '--logo-url': `url("${wordUrl ?? logoUrl}")` }} />
+            {starUrl && (
+              <span className="brand-logo__layer brand-logo__layer--star" style={{ '--logo-url': `url("${starUrl}")` }} />
+            )}
+          </span>
           <span className="visually-hidden">{brand.name}</span>
         </>
       ) : (

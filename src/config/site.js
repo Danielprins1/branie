@@ -21,14 +21,15 @@ export const brand = {
    * Laat leeg ('') om het logo als gewone tekst te tonen.
    */
   logo: 'branie-logo.svg',
+  /**
+   * Het logo in twee lagen, zodat de letters de kleur van de plek krijgen
+   * en het sterretje altijd rood blijft. Beide bestanden hebben dezelfde
+   * viewBox als het hele logo. Laat leeg om `logo` in één kleur te tonen.
+   */
+  logoWord: 'branie-logo-woord.svg',
+  logoStar: 'branie-logo-ster.svg',
   /** Breedte ÷ hoogte van het logo (uit de viewBox van de SVG). */
   logoAspect: 2417 / 661,
-  /**
-   * Het logo begint met het sterretje. Dat deel (links, als fractie van de
-   * breedte) krijgt altijd de rode huisstijlkleur; de letters de kleur van
-   * de plek. Zet op 0 als het logo geen sterretje vooraan heeft.
-   */
-  logoAsteriskPart: 0.115,
   /**
    * Kleur van het logo per plek: de naam van een kleur uit `colors`
    * (bijv. 'red', 'cream', 'bordeaux').

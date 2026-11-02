@@ -1,35 +1,35 @@
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useId, useLayoutEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { navigateTo } from '../lib/navigate.js';
 import { tearAway } from '../lib/tearAway.js';
 
-/**
- * Navigatie in de vorm van een liggend Amsterdammertje: bordeaux, met de
- * bolle kop en de drie andreaskruisen. Bovenaan de pagina is hij er niet;
- * hij komt omhoog uit de 'stoep' zodra de magazinesectie (pre-order) in
- * beeld komt, en zakt weer weg als je terug naar de fotomuur scrollt.
- */
-export default function BollardNav({ sectionRef }) {
-  const [visible, setVisible] = useState(false);
-  const navRef = useRef(null);
+const reduceMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const isNarrow = () => window.innerWidth < 700;
 
+/**
+ * Navigatie als een rechtopstaand Amsterdammertje, linksonder in beeld.
+ * - Op de homepage komt hij pas omhoog bij de magazinesectie (pre-order);
+ *   op /pijlers en /sales staat hij er meteen.
+ * - De bolle kop is een knop: het paaltje zakt in de stoep (alleen de kop
+ *   blijft zichtbaar) en komt met nog een klik weer omhoog.
+ */
+export default function BollardNav({ path }) {
+  const isHome = path === '/' || path === '';
+  const [inView, setInView] = useState(!isHome);
+  const [open, setOpen] = useState(() => !isNarrow());
+  const postRef = useRef(null);
+  const menuId = useId();
+
+  // Op de homepage: zichtbaar zodra de magazinesectie grotendeels in beeld is.
   useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return undefined;
-    // Zichtbaar zodra de magazinesectie voor een groot deel in beeld is. Op
-    // smalle schermen pas als de pre-orderknop boven het paaltje uitkomt,
-    // zodat het paaltje de knop niet bedekt.
+    if (!isHome) {
+      setInView(true);
+      return undefined;
+    }
     const update = () => {
-      const top = section.getBoundingClientRect().top;
-      const vh = window.innerHeight;
-      const cta = section.querySelector('.magazine-section__cta');
-      const narrow = window.innerWidth < 700;
-      let show = top < vh * 0.55;
-      if (narrow && cta) {
-        const c = cta.getBoundingClientRect();
-        show = show && c.bottom < vh - 110;
-      }
-      setVisible(show);
+      const section = document.getElementById('magazine');
+      if (!section) return;
+      setInView(section.getBoundingClientRect().top < window.innerHeight * 0.55);
     };
     update();
     window.addEventListener('scroll', update, { passive: true });
@@ -38,84 +38,119 @@ export default function BollardNav({ sectionRef }) {
       window.removeEventListener('scroll', update);
       window.removeEventListener('resize', update);
     };
-  }, [sectionRef]);
+  }, [isHome]);
 
-  // Startpositie: onder de rand van het scherm, in de 'stoep'.
+  // Eerste plaatsing zonder animatie: onder de stoep.
   useLayoutEffect(() => {
-    gsap.set(navRef.current, { yPercent: 160, autoAlpha: 1 });
+    const post = postRef.current;
+    gsap.set(post, { y: post.offsetHeight + 40, autoAlpha: 1 });
   }, []);
 
-  // Omhoogkomen als een paaltje uit de grond: korte overshoot, licht wiebelen.
-  useEffect(() => {
-    const nav = navRef.current;
-    if (!nav) return undefined;
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduce) {
-      gsap.set(nav, { yPercent: visible ? 0 : 160 });
+  // Hoe ver het paaltje omhoog staat: weg (onder de stoep), ingeklapt
+  // (alleen de kop) of helemaal uitgeschoven.
+  useLayoutEffect(() => {
+    const post = postRef.current;
+    if (!post) return undefined;
+    const h = post.offsetHeight;
+    const capH = parseFloat(getComputedStyle(post.parentElement).getPropertyValue('--cap-h')) || 70;
+    const y = !inView ? h + 40 : open ? 0 : h - capH;
+    if (reduceMotion()) {
+      gsap.set(post, { y, rotation: 0 });
       return undefined;
     }
-    const tween = visible
-      ? gsap
-          .timeline()
-          .to(nav, { yPercent: -8, duration: 0.45, ease: 'power3.out' })
-          .to(nav, { yPercent: 0, duration: 0.35, ease: 'power2.inOut' })
-          .fromTo(nav, { rotation: -1.2 }, { rotation: 0, duration: 0.6, ease: 'elastic.out(1, 0.4)' }, 0.25)
-      : gsap.to(nav, { yPercent: 160, duration: 0.35, ease: 'power2.in' });
-    return () => tween.kill();
-  }, [visible]);
-
-  const go = (path, event) => {
-    if (event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0) return;
-    event.preventDefault();
-    if (path === '/pijlers') {
-      tearAway({ y: event.clientY || window.innerHeight / 2, navigate: () => navigateTo(path) });
-      return;
+    const tl = gsap.timeline();
+    if (inView && y < (gsap.getProperty(post, 'y') || 0)) {
+      // omhoog uit de stoep: even doorschieten en wiebelen
+      tl.to(post, { y: y - 10, duration: 0.42, ease: 'power3.out' })
+        .to(post, { y, duration: 0.3, ease: 'power2.inOut' })
+        .fromTo(post, { rotation: -1.6 }, { rotation: 0, duration: 0.7, ease: 'elastic.out(1, 0.35)' }, 0.2);
+    } else {
+      tl.to(post, { y, rotation: 0, duration: 0.38, ease: 'power2.in' });
     }
-    navigateTo(path);
-    window.scrollTo(0, 0);
-  };
+    return () => tl.kill();
+  }, [inView, open]);
 
-  const toPreorder = (event) => {
-    event.preventDefault();
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const scrollToPreorder = () => {
     const target = document.querySelector('.magazine-section__cta');
-    target?.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
+    target?.scrollIntoView({ behavior: reduceMotion() ? 'auto' : 'smooth', block: 'center' });
     target?.querySelector('button, a')?.focus({ preventScroll: true });
   };
 
+  const go = (to, event) => {
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0) return;
+    event.preventDefault();
+    if (isNarrow()) setOpen(false);
+    if (to === 'preorder' || to === 'magazine') {
+      if (isHome) {
+        if (to === 'preorder') scrollToPreorder();
+        else document.getElementById('magazine')?.scrollIntoView({ behavior: reduceMotion() ? 'auto' : 'smooth' });
+      } else {
+        navigateTo('/');
+        // na het wisselen van pagina naar het magazine
+        setTimeout(() => {
+          const top = document.getElementById('magazine')?.getBoundingClientRect().top ?? 0;
+          window.scrollTo(0, top + window.scrollY);
+          if (to === 'preorder') setTimeout(scrollToPreorder, 50);
+        }, 60);
+      }
+      return;
+    }
+    if (to === '/pijlers' && isHome) {
+      tearAway({ y: event.clientY || window.innerHeight / 2, navigate: () => navigateTo(to) });
+      return;
+    }
+    navigateTo(to);
+    window.scrollTo(0, 0);
+  };
+
+  const current = (p) => (path.startsWith(p) ? 'page' : undefined);
+
   return (
-    <div className="bollard-dock" aria-hidden={!visible || undefined}>
-      <nav className="bollard" ref={navRef} aria-label="Hoofdmenu" inert={!visible || undefined}>
-        <span className="bollard__cap" aria-hidden="true" />
-        <span className="bollard__crosses" aria-hidden="true">
-          <span>✕</span>
-          <span>✕</span>
-          <span>✕</span>
-        </span>
-        <ul className="bollard__links">
-          <li>
-            <a href="#magazine" onClick={toPreorder}>
-              Magazine
-            </a>
-          </li>
-          <li>
-            <a href="/pijlers" onClick={(e) => go('/pijlers', e)}>
-              Pijlers
-            </a>
-          </li>
-          <li>
-            <a href="/sales" onClick={(e) => go('/sales', e)}>
-              Adverteren
-            </a>
-          </li>
-          <li>
-            <a className="bollard__preorder" href="#magazine" onClick={toPreorder}>
-              Pre-order
-            </a>
-          </li>
-        </ul>
-        <span className="bollard__foot" aria-hidden="true" />
-      </nav>
-    </div>
+    <nav className={`bollard${open ? ' is-open' : ''}`} aria-label="Hoofdmenu" inert={!inView || undefined}>
+      <div className="bollard__post" ref={postRef}>
+        <button
+          type="button"
+          className="bollard__cap"
+          aria-expanded={open}
+          aria-controls={menuId}
+          onClick={() => setOpen((o) => !o)}
+        >
+          <span className="visually-hidden">{open ? 'Menu inklappen' : 'Menu openen'}</span>
+          <span className="bollard__cap-hint" aria-hidden="true">
+            {open ? '' : 'menu'}
+          </span>
+        </button>
+        <div className="bollard__body" id={menuId} inert={!open || undefined}>
+          <span className="bollard__crosses" aria-hidden="true">
+            <span />
+            <span />
+            <span />
+          </span>
+          <ul className="bollard__links">
+            <li>
+              <a href="/#magazine" onClick={(e) => go('magazine', e)}>
+                Magazine
+              </a>
+            </li>
+            <li>
+              <a href="/pijlers" aria-current={current('/pijlers')} onClick={(e) => go('/pijlers', e)}>
+                Pijlers
+              </a>
+            </li>
+            <li>
+              <a href="/sales" aria-current={current('/sales')} onClick={(e) => go('/sales', e)}>
+                Adverteren
+              </a>
+            </li>
+            <li>
+              <a className="bollard__preorder" href="/#magazine" onClick={(e) => go('preorder', e)}>
+                Pre-order
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <span className="bollard__pavement" aria-hidden="true" />
+    </nav>
   );
 }

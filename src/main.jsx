@@ -4,6 +4,7 @@ import App from './App.jsx';
 import ComingSoon from './components/ComingSoon.jsx';
 import PillarsPage from './pages/PillarsPage.jsx';
 import SalesPage from './pages/SalesPage.jsx';
+import BollardNav from './components/BollardNav.jsx';
 import { brand, colors, cover, fonts, launch } from './config/site.js';
 import './styles/fonts.css';
 import './styles/global.css';
@@ -45,11 +46,20 @@ function Root() {
       window.removeEventListener('branie:navigate', sync);
     };
   }, []);
+  let page;
   if (isSalesPath(path) && (!showComingSoon || (launch.salesPageOnProduction && !params.has('binnenkort')))) {
-    return <SalesPage />;
+    page = <SalesPage />;
+  } else if (showComingSoon) {
+    return <ComingSoon />;
+  } else {
+    page = isPillarsPath(path) ? <PillarsPage /> : <App />;
   }
-  if (showComingSoon) return <ComingSoon />;
-  return isPillarsPath(path) ? <PillarsPage /> : <App />;
+  return (
+    <>
+      {page}
+      <BollardNav path={path} />
+    </>
+  );
 }
 
 createRoot(document.getElementById('root')).render(

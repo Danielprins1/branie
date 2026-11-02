@@ -78,14 +78,20 @@
   position: relative;
   display: block;
   width: 3.4em;
-  /* letters in de kleur van de plek, het sterretje linksboven in
-     --logo-star-color (standaard rood) */
-  background:
-    linear-gradient(var(--logo-star-color, var(--color-red)), var(--logo-star-color, var(--color-red))) 0 0 /
-      var(--logo-star, 0%) 52% no-repeat,
-    currentColor;
+}
+
+/* Twee gemaskeerde lagen: de letters in de kleur van de plek, het
+   sterretje in --logo-star-color (standaard rood). */
+.brand-logo__layer {
+  position: absolute;
+  inset: 0;
+  background: currentColor;
   -webkit-mask: var(--logo-url) center / contain no-repeat;
   mask: var(--logo-url) center / contain no-repeat;
+}
+
+.brand-logo__layer--star {
+  background: var(--logo-star-color, var(--color-red));
 }
 
 /* Het sterretje rechtsonder naast het logo. --asterisk-gap = ruimte
