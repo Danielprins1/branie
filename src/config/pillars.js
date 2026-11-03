@@ -30,7 +30,7 @@ export const pillarsPage = {
 export const pillars = [
   {
     slug: 'personen',
-    title: 'Personen in Amsterdam',
+    title: 'De Amsterdamse bek',
     subtitle: 'De (on)bekende Amsterdammer, ondernemers en lokale makers.',
     image: 'personen-schaatsen.webp',
     focus: '50% 40%',
@@ -42,7 +42,7 @@ export const pillars = [
   },
   {
     slug: 'de-stad',
-    title: 'De stad en de plekken',
+    title: 'Achter de gevel',
     subtitle: 'Wonen, architectuur, plekken, buurten en het veranderende straatbeeld.',
     image: 'stad-markt.webp',
     focus: '50% 38%',
@@ -54,7 +54,7 @@ export const pillars = [
   },
   {
     slug: 'onderweg',
-    title: 'Onderweg',
+    title: 'Dwars door de straten',
     subtitle: 'Openbaar vervoer, fietsen, mobiliteit en bereikbaarheid.',
     image: 'onderweg-pont.webp',
     focus: '50% 30%',
@@ -65,7 +65,7 @@ export const pillars = [
   },
   {
     slug: 'cultuur',
-    title: 'Amsterdamse cultuur',
+    title: 'De stad maakt lawaai',
     subtitle: '(Straat)cultuur, mode, identiteit, muziek, nachtleven, taal en kunst.',
     image: 'cultuur-straat.webp',
     focus: '50% 34%',
@@ -77,7 +77,7 @@ export const pillars = [
   },
   {
     slug: 'proef-de-stad',
-    title: 'Proef de stad',
+    title: 'Om je vingers bij af te likken',
     subtitle: 'Eten, drinken, horeca en de Amsterdamse eetcultuur.',
     image: 'proef-bruine-kroeg.webp',
     focus: '50% 70%',

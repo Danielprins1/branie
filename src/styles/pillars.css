@@ -148,7 +148,10 @@ html.is-pillars body {
 .strip__title {
   font-family: var(--font-display);
   font-weight: 900;
-  font-size: min(9.5vh, 8vw);
+  /* Lange namen krijgen een kleinere letter, zodat elke titel op één
+     regel past tussen het nummer en het label (±0,62em per teken). */
+  --avail: calc(100vw - 300px);
+  font-size: min(9.5vh, 8vw, calc(var(--avail) / (var(--len, 14) * 0.62)));
   line-height: 0.9;
   letter-spacing: 0.01em;
   text-transform: uppercase;
@@ -260,7 +263,14 @@ html.is-pillars body {
   }
 
   .strip__title {
+    --avail: calc(100vw - 120px);
     justify-self: center;
+    /* staande strook is hoog genoeg voor twee regels */
+    font-size: min(8.5vw, 6vh, calc(var(--avail) * 1.8 / (var(--len, 14) * 0.62)));
+    line-height: 0.95;
+    white-space: normal;
+    text-align: center;
+    text-wrap: balance;
   }
 
   .strip__hint {

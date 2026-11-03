@@ -168,8 +168,8 @@ export const cover = {
   headline: 'Amsterdam verandert.',
   headlineAccent: 'De branie blijft.',
   lines: ['De kroegbaas van de Zeedijk', 'Van omafiets naar fatbike', 'Wat was dit gebouw vroeger?'],
-  /** Verhouding breedte / hoogte (1600 × 2000 px). */
-  aspect: 4 / 5,
+  /** Verhouding breedte / hoogte (853 × 1280 px). */
+  aspect: 853 / 1280,
   /** Rotatie (graden) waarmee de cover in de magazinesectie landt. */
   restingRotation: -4,
 };
