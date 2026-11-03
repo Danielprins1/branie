@@ -86,9 +86,7 @@
 }
 
 /* Kleinere knoppen: dunnere randen */
-.pillar__back,
-.rail__arrow,
-.strip__hint {
+.pillar__back {
   --paper-k: 0.22;
 }
 

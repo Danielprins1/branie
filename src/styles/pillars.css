@@ -165,21 +165,6 @@ html.is-pillars body {
   mask-composite: exclude;
 }
 
-.strip__hint {
-  justify-self: end;
-  padding: 0.6em 0.95em 0.55em;
-  font-family: var(--font-display);
-  font-size: 0.95rem;
-  font-weight: 900;
-  letter-spacing: 0.03em;
-  white-space: nowrap;
-  rotate: -2deg;
-  opacity: 0;
-  translate: 10px 0;
-  transition:
-    opacity 0.3s,
-    translate 0.3s;
-}
 
 /* Hover / focus: deze strook komt naar voren, de rest wordt rustiger */
 .strip.is-active {
@@ -191,10 +176,6 @@ html.is-pillars body {
   translate: 0 -2px;
 }
 
-.strip.is-active .strip__hint {
-  opacity: 1;
-  translate: 0 0;
-}
 
 .strips.has-active .strip:not(.is-active) .strip__img {
   filter: grayscale(0.6) brightness(0.72) contrast(1.02);
@@ -250,12 +231,6 @@ html.is-pillars body {
   text-shadow: 0 2px 8px rgb(0 0 0 / 0.7);
 }
 
-@media (hover: none) {
-  .strip__hint {
-    opacity: 0.95;
-    translate: 0 0;
-  }
-}
 
 @media (max-width: 700px) {
   .strip__band {
@@ -273,14 +248,7 @@ html.is-pillars body {
     text-wrap: balance;
   }
 
-  .strip__hint {
-    font-size: 0;
-    padding: 0.35rem 0.55rem;
-  }
 
-  .strip__hint span {
-    font-size: 0.9rem;
-  }
 }
 
 /* ---------- Achter het papier: de pijler -------------------------- */
@@ -414,16 +382,7 @@ html.is-pillars body {
   text-transform: uppercase;
 }
 
-.rail__arrows {
-  display: flex;
-  gap: 8px;
-}
 
-.rail__arrow {
-  width: 56px;
-  height: 48px;
-  font-size: 1.3rem;
-}
 
 .rail__scroller {
   overflow-x: auto;

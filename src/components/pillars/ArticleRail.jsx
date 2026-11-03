@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { anyImage } from '../../lib/assets.js';
 import { between, straight, tearLine } from '../../lib/tornEdge.js';
 
@@ -35,24 +35,17 @@ function TornPhoto({ src, seed }) {
 /**
  * Horizontaal scrollbare verhalen in tijdschriftopmaak.
  * Bladeren: trackpad, muiswiel (verticaal → horizontaal), slepen met de
- * muis, de pijlknoppen of Tab door de artikelen.
+ * muis of Tab door de artikelen.
  */
 export default function ArticleRail({ pillar, heading, onOpenArticle }) {
   const scrollerRef = useRef(null);
   const drag = useRef({ active: false, moved: false, x: 0, left: 0 });
-  const [edges, setEdges] = useState({ start: true, end: false });
 
-  const updateEdges = () => {
-    const el = scrollerRef.current;
-    if (!el) return;
-    setEdges({ start: el.scrollLeft <= 4, end: el.scrollLeft + el.clientWidth >= el.scrollWidth - 4 });
-  };
 
   useEffect(() => {
     const el = scrollerRef.current;
     if (!el) return undefined;
     el.scrollLeft = 0;
-    updateEdges();
     // Muiswiel omhoog/omlaag bladert horizontaal, zolang er ruimte is.
     const onWheel = (event) => {
       if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return;
@@ -63,18 +56,11 @@ export default function ArticleRail({ pillar, heading, onOpenArticle }) {
       el.scrollLeft += event.deltaY;
     };
     el.addEventListener('wheel', onWheel, { passive: false });
-    window.addEventListener('resize', updateEdges);
     return () => {
       el.removeEventListener('wheel', onWheel);
-      window.removeEventListener('resize', updateEdges);
     };
   }, [pillar.slug]);
 
-  const page = (dir) => {
-    const el = scrollerRef.current;
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    el.scrollBy({ left: dir * el.clientWidth * 0.75, behavior: reduce ? 'auto' : 'smooth' });
-  };
 
   // Slepen met de muis (touch scrolt al vanzelf).
   const onPointerDown = (event) => {
@@ -98,20 +84,11 @@ export default function ArticleRail({ pillar, heading, onOpenArticle }) {
         <h2 className="rail__heading" id={`rail-${pillar.slug}`}>
           {heading}
         </h2>
-        <div className="rail__arrows">
-          <button type="button" className="paper-btn rail__arrow" onClick={() => page(-1)} disabled={edges.start} aria-label="Vorige verhalen">
-            ←
-          </button>
-          <button type="button" className="paper-btn rail__arrow" onClick={() => page(1)} disabled={edges.end} aria-label="Volgende verhalen">
-            →
-          </button>
-        </div>
       </div>
 
       <div
         className="rail__scroller"
         ref={scrollerRef}
-        onScroll={updateEdges}
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={endDrag}

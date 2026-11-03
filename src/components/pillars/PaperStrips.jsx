@@ -53,9 +53,6 @@ function StripFace({ pillar, index, hidden = false }) {
         <span className="strip__title" style={{ '--len': pillar.title.length }}>
           {pillar.title}
         </span>
-        <span className="paper-btn paper-btn--static strip__hint">
-          {pillarsPage.hint} <span aria-hidden="true">→</span>
-        </span>
       </span>
     </div>
   );
