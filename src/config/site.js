@@ -66,7 +66,7 @@ export const launch = {
    * Tip: zet ?binnenkort achter een URL om de 'in opbouw'-pagina altijd
    * te bekijken, bijvoorbeeld op een preview of lokaal.
    */
-  comingSoonOnProduction: true,
+  comingSoonOnProduction: false,
   /**
    * true → de salespagina (/sales) is op de live website al te zien,
    * ook als de rest nog 'in opbouw' is (handig voor adverteerders).
