@@ -119,6 +119,21 @@ export const preorder = {
   testNote: 'Testmodus: er wordt niets echt betaald. Gebruik kaart 4242 4242 4242 4242.',
   /** Opent de bestelpagina in een nieuw tabblad. */
   openInNewTab: false,
+  /**
+   * Bedankpagina na het betalen: /bedankt. Stel in Stripe bij de Payment
+   * Link onder 'Na betaling' in: doorsturen naar <jouw site>/bedankt.
+   */
+  thankYou: {
+    heading: 'Bedankt voor je pre-order!',
+    lead: 'Je exemplaar van BRANIE Nº 01 is gereserveerd. Je krijgt van ons een bevestiging per e-mail.',
+    steps: [
+      ['Bevestiging', 'Binnen een paar minuten staat de bevestiging van je betaling in je mail. Niets ontvangen? Kijk even in je spam.'],
+      ['Drukpers', 'Het eerste nummer gaat naar de drukker. 164 pagina’s Amsterdam van 1950 tot nu.'],
+      ['Bezorging', 'Rond de lancering op 14 januari 2027 komt BRANIE naar het adres dat je hebt opgegeven.'],
+    ],
+    contactText: 'Vragen over je bestelling?',
+    contactEmail: 'sales@braniemagazine.nl',
+  },
   comingSoonBadge: 'Binnenkort',
   comingSoonNote: 'Bestellen kan nog niet: de pre-order opent binnenkort.',
 };
