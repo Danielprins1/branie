@@ -110,6 +110,13 @@ export const preorder = {
    * duidelijk zien dat bestellen nog niet kan.
    */
   url: '',
+  /**
+   * Stripe-testlink (testmodus): werkt alleen op previews en lokaal, nooit
+   * op de live site. Daar telt alleen `url` hierboven. Testbetalen met
+   * kaart 4242 4242 4242 4242, een datum in de toekomst en een willekeurige CVC.
+   */
+  testUrl: 'https://buy.stripe.com/test_bJe7sN7ck5y484UeEadjO00',
+  testNote: 'Testmodus: er wordt niets echt betaald. Gebruik kaart 4242 4242 4242 4242.',
   /** Opent de bestelpagina in een nieuw tabblad. */
   openInNewTab: false,
   comingSoonBadge: 'Binnenkort',
