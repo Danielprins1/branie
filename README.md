@@ -171,6 +171,14 @@ Klasgenotenlinks (`utm_campaign=klasgenoten`) krijgen de betaallink uit `preorde
 `preorder.classTestUrl` (test), bijv. zonder verzendkosten. Nieuwe persoon? Kopieer een regel uit de CSV en vervang
 de naam (kleine letters, geen spaties).
 
+### Cookiemelding en Google Analytics 4
+
+Bij het eerste bezoek verschijnt rechtsonder een cookiemelding (`src/components/CookieBanner.jsx`, teksten in
+`cookieBanner` in `site.js`). Google Analytics laadt pas na 'Prima'; bij 'Liever niet' wordt er niets geladen. De
+keuze geldt 180 dagen en is te wijzigen via 'Cookie-instellingen' in de footer. Vul het GA4-meet-ID (`G-…`) in bij
+`analytics.measurementId` in `site.js`. Gemeten gebeurtenissen: paginaweergaven (ook zonder herladen),
+`begin_checkout` (klik op Pre-order) en `pre_order_bedankt` (bedankpagina). UTM-codes in de links neemt GA4 zelf mee.
+
 ### De pre-orderlink wijzigen
 
 In `site.js` → `preorder`:

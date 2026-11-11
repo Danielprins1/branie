@@ -2,6 +2,7 @@ import { useEffect, useLayoutEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { brand, preorder } from '../config/site.js';
 import { navigateTo } from '../lib/navigate.js';
+import { track } from '../lib/consent.js';
 import BrandLogo from '../components/BrandLogo.jsx';
 import MagazineCover from '../components/MagazineCover.jsx';
 import Asterisk from '../components/Asterisk.jsx';
@@ -18,6 +19,7 @@ export default function ThankYouPage() {
     const prev = document.title;
     document.title = `${t.heading} · ${brand.name}`;
     window.scrollTo(0, 0);
+    track('pre_order_bedankt');
     return () => {
       document.title = prev;
     };

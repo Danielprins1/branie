@@ -21,6 +21,9 @@ export default function Footer() {
       >
         Adverteren in BRANIE? Bekijk de saleskit <span aria-hidden="true">→</span>
       </a>
+      <button type="button" className="footer__cookies" onClick={() => window.dispatchEvent(new Event('branie:cookies'))}>
+        Cookie-instellingen
+      </button>
       <p className="footer__meta">
         {brand.name} · {brand.slogan} · © {new Date().getFullYear()}
       </p>

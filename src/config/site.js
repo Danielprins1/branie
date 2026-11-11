@@ -115,6 +115,31 @@ export const tracking = {
 };
 
 /* ------------------------------------------------------------------ */
+/* Cookies & Google Analytics 4                                        */
+/* ------------------------------------------------------------------ */
+/**
+ * Google Analytics laadt pas nadat de bezoeker 'ja' zegt in de
+ * cookiemelding. Zonder meet-ID wordt er niets geladen.
+ */
+export const analytics = {
+  /** GA4 meet-ID, bijv. 'G-AB12CD34EF' (Google Analytics → Beheer → Gegevensstreams). */
+  measurementId: '',
+  /** Hoe lang de keuze geldt, daarna vragen we opnieuw. */
+  rememberDays: 180,
+  /** Link naar de privacyverklaring (leeg = geen link). */
+  privacyUrl: '',
+};
+
+export const cookieBanner = {
+  heading: 'Een koekje bij de koffie?',
+  text: 'Wij gebruiken cookies van Google Analytics om te zien hoe je BRANIE leest, zodat we de site beter maken. Alleen als jij dat goed vindt. Zonder cookies werkt alles gewoon.',
+  accept: 'Prima',
+  decline: 'Liever niet',
+  privacyLabel: 'Meer in onze privacyverklaring',
+  reopenLabel: 'Cookie-instellingen',
+};
+
+/* ------------------------------------------------------------------ */
 /* Pre-order                                                           */
 /* ------------------------------------------------------------------ */
 export const preorder = {

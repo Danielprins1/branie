@@ -7,6 +7,7 @@ import SalesPage from './pages/SalesPage.jsx';
 import ThankYouPage from './pages/ThankYouPage.jsx';
 import BollardNav from './components/BollardNav.jsx';
 import { captureAttribution } from './lib/tracking.js';
+import CookieBanner from './components/CookieBanner.jsx';
 import { brand, colors, cover, fonts, launch } from './config/site.js';
 import './styles/fonts.css';
 import './styles/global.css';
@@ -19,6 +20,7 @@ import './styles/pillars.css';
 import './styles/sales.css';
 import './styles/bollard.css';
 import './styles/thank-you.css';
+import './styles/cookies.css';
 
 // Huisstijl uit de config als CSS-variabelen beschikbaar maken.
 const rootStyle = document.documentElement.style;
@@ -60,7 +62,12 @@ function Root() {
   } else if (isSalesPath(path) && (!showComingSoon || (launch.salesPageOnProduction && !params.has('binnenkort')))) {
     page = <SalesPage />;
   } else if (showComingSoon) {
-    return <ComingSoon />;
+    return (
+      <>
+        <ComingSoon />
+        <CookieBanner />
+      </>
+    );
   } else {
     page = isPillarsPath(path) ? <PillarsPage /> : <App />;
   }
@@ -68,6 +75,7 @@ function Root() {
     <>
       {page}
       <BollardNav path={path} />
+      <CookieBanner />
     </>
   );
 }
