@@ -100,6 +100,21 @@ export const comingSoon = {
 };
 
 /* ------------------------------------------------------------------ */
+/* UTM-tracking                                                        */
+/* ------------------------------------------------------------------ */
+/**
+ * Wie binnenkomt via een link met utm_-parameters wordt 30 dagen
+ * onthouden (in de browser). Bij de pre-order gaan die gegevens mee naar
+ * Stripe: als UTM-codes en als client_reference_id, bijv.
+ * 'klasgenoten-caya' of 'instagram'. Zo zie je per bestelling via wie
+ * hij binnenkwam. De links staan in docs/utm-links.csv.
+ */
+export const tracking = {
+  classCampaign: 'klasgenoten',
+  rememberDays: 30,
+};
+
+/* ------------------------------------------------------------------ */
 /* Pre-order                                                           */
 /* ------------------------------------------------------------------ */
 export const preorder = {
@@ -117,6 +132,15 @@ export const preorder = {
    */
   testUrl: 'https://buy.stripe.com/test_cNifZj2W4f8EfxmbrYdjO01',
   testNote: 'Testmodus: er wordt niets echt betaald. Gebruik kaart 4242 4242 4242 4242.',
+  /**
+   * Klasgenoten: wie binnenkomt via een klasgenotenlink (utm_campaign=
+   * tracking.classCampaign) krijgt deze betaallink, bijv. zonder
+   * verzendkosten. Leeg = gewone link (wel bijgehouden wie verkocht).
+   */
+  classUrl: '',
+  classTestUrl: '',
+  classBadge: 'Gratis verzending',
+  classNote: 'Via een klasgenoot: jij betaalt geen verzendkosten.',
   /** Opent de bestelpagina in een nieuw tabblad. */
   openInNewTab: false,
   /**

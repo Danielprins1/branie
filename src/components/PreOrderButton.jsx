@@ -1,19 +1,26 @@
 import { useId, useState } from 'react';
 import { preorder } from '../config/site.js';
+import { getAttribution, isClassmate, withAttribution } from '../lib/tracking.js';
 
 /**
  * Pre-orderknop. De link staat in src/config/site.js (preorder.url).
  * Zolang er geen URL is, is de knop duidelijk gemarkeerd als "binnenkort"
  * en kan er niets besteld worden.
  */
-// Op de live site alleen de echte link; elders mag de Stripe-testlink.
+// Op de live site alleen de echte links; elders mogen de Stripe-testlinks.
 const isProduction = __VERCEL_ENV__ === 'production';
-const testMode = !isProduction && !preorder.url && Boolean(preorder.testUrl);
-const href = preorder.url || (testMode ? preorder.testUrl : '');
 
 export default function PreOrderButton() {
   const noteId = useId();
   const [nudge, setNudge] = useState(0);
+
+  const attribution = getAttribution();
+  const classmate = isClassmate(attribution);
+  const liveUrl = (classmate && preorder.classUrl) || preorder.url;
+  const testUrl = (classmate && preorder.classTestUrl) || preorder.testUrl;
+  const testMode = !isProduction && !liveUrl && Boolean(testUrl);
+  const href = withAttribution(liveUrl || (testMode ? testUrl : ''), attribution);
+  const classDeal = classmate && Boolean(testMode ? preorder.classTestUrl : preorder.classUrl);
 
   if (href) {
     const external = preorder.openInNewTab;
@@ -27,8 +34,11 @@ export default function PreOrderButton() {
         >
           <span>{preorder.label}</span>
           <span className="preorder__arrow" aria-hidden="true">→</span>
-          {testMode && <span className="preorder__badge">Test</span>}
+          {(testMode || classDeal) && (
+            <span className="preorder__badge">{classDeal ? preorder.classBadge : 'Test'}</span>
+          )}
         </a>
+        {classDeal && <p className="preorder-note">{preorder.classNote}</p>}
         {testMode && <p className="preorder-note">{preorder.testNote}</p>}
       </div>
     );

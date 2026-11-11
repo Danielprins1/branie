@@ -6,6 +6,7 @@ import PillarsPage from './pages/PillarsPage.jsx';
 import SalesPage from './pages/SalesPage.jsx';
 import ThankYouPage from './pages/ThankYouPage.jsx';
 import BollardNav from './components/BollardNav.jsx';
+import { captureAttribution } from './lib/tracking.js';
 import { brand, colors, cover, fonts, launch } from './config/site.js';
 import './styles/fonts.css';
 import './styles/global.css';
@@ -26,6 +27,9 @@ for (const [name, value] of Object.entries(fonts)) rootStyle.setProperty(`--font
 rootStyle.setProperty('--cover-aspect', String(cover.aspect));
 for (const [place, color] of Object.entries(brand.logoColors ?? {}))
   rootStyle.setProperty(`--logo-color-${place}`, `var(--color-${color})`);
+
+// Herkomst (utm_-links) onthouden voor de pre-order.
+captureAttribution();
 
 // Welke pagina? Zie `launch` in src/config/site.js.
 const params = new URLSearchParams(window.location.search);
