@@ -122,8 +122,11 @@ export const tracking = {
  * cookiemelding. Zonder meet-ID wordt er niets geladen.
  */
 export const analytics = {
-  /** GA4 meet-ID, bijv. 'G-AB12CD34EF' (Google Analytics → Beheer → Gegevensstreams). */
-  measurementId: '',
+  /**
+   * ID van de Google-tag: 'GTM-…' (zoals Google hem nu aanlevert) of een
+   * GA4-meet-ID 'G-…'. Beide werken; laden gebeurt pas na toestemming.
+   */
+  measurementId: 'GTM-5TRNWCHN',
   /** Hoe lang de keuze geldt, daarna vragen we opnieuw. */
   rememberDays: 180,
   /** Link naar de privacyverklaring (leeg = geen link). */

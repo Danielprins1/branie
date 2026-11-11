@@ -39,11 +39,14 @@ export function loadAnalytics() {
     window.dataLayer.push(arguments); // eslint-disable-line prefer-rest-params
   };
   window.gtag('js', new Date());
-  // Paginawissels zonder herladen (pushState) meet GA4 zelf via 'enhanced measurement'.
-  window.gtag('config', id);
+  const isContainer = id.startsWith('GTM-');
+  // Een G-meet-ID krijgt zelf een 'config'; een GTM-/Google-tag-container
+  // bevat die instellingen al (zoals in het fragment dat Google geeft).
+  // Paginawissels zonder herladen (pushState) meet GA4 via 'enhanced measurement'.
+  if (!isContainer) window.gtag('config', id);
   const s = document.createElement('script');
   s.async = true;
-  s.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(id)}`;
+  s.src = `https://www.googletagmanager.com/${isContainer ? 'gtm.js' : 'gtag/js'}?id=${encodeURIComponent(id)}`;
   document.head.appendChild(s);
 }
 

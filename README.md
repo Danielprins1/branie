@@ -175,7 +175,7 @@ de naam (kleine letters, geen spaties).
 
 Bij het eerste bezoek verschijnt rechtsonder een cookiemelding (`src/components/CookieBanner.jsx`, teksten in
 `cookieBanner` in `site.js`). Google Analytics laadt pas na 'Prima'; bij 'Liever niet' wordt er niets geladen. De
-keuze geldt 180 dagen en is te wijzigen via 'Cookie-instellingen' in de footer. Vul het GA4-meet-ID (`G-…`) in bij
+keuze geldt 180 dagen en is te wijzigen via 'Cookie-instellingen' in de footer. Vul het ID van de Google-tag (`GTM-…` of `G-…`) in bij
 `analytics.measurementId` in `site.js`. Gemeten gebeurtenissen: paginaweergaven (ook zonder herladen),
 `begin_checkout` (klik op Pre-order) en `pre_order_bedankt` (bedankpagina). UTM-codes in de links neemt GA4 zelf mee.
 
