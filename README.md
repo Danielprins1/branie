@@ -164,7 +164,8 @@ delen apart aan, of vul alleen `brand.logo` in voor een logo in één kleur.
 
 ### UTM-links en verkoop per persoon
 
-De links per kanaal en per klasgenoot staan in `docs/utm-links.csv`. Komt iemand binnen via zo'n link, dan onthoudt
+De links per kanaal en per klasgenoot staan in `docs/utm-links.csv`, met een korte versie (bijv.
+`braniemagazine.nl/caya`) die via `vercel.json` (redirects) doorstuurt naar de volledige UTM-link. Komt iemand binnen via zo'n link, dan onthoudt
 de site dat 30 dagen (`src/lib/tracking.js`) en geeft het mee aan Stripe: als UTM-codes en als
 `client_reference_id` (bijv. `klasgenoten-caya` of `instagram`). Zo zie je per bestelling via wie hij binnenkwam.
 Klasgenotenlinks (`utm_campaign=klasgenoten`) krijgen de betaallink uit `preorder.classUrl` (live) of

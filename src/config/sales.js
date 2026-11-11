@@ -141,7 +141,7 @@ export const sales = {
     email: 'sales@braniemagazine.nl',
     website: 'www.braniemagazine.nl',
     /** Zet `url` op '' zolang de website nog niet online is. */
-    websiteUrl: '',
+    websiteUrl: 'https://www.braniemagazine.nl',
     socials: '@braniemagazine',
     socialLinks: [
       { label: 'Instagram', url: 'https://www.instagram.com/braniemagazine' },

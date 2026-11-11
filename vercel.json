@@ -1,7 +1,168 @@
 {
   "rewrites": [
-    { "source": "/pijlers/:path*", "destination": "/index.html" },
-    { "source": "/sales", "destination": "/index.html" },
-    { "source": "/bedankt", "destination": "/index.html" }
+    {
+      "source": "/pijlers/:path*",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/sales",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/bedankt",
+      "destination": "/index.html"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/instagram",
+      "destination": "/?utm_source=instagram&utm_medium=social&utm_campaign=preorder",
+      "permanent": false
+    },
+    {
+      "source": "/facebook",
+      "destination": "/?utm_source=facebook&utm_medium=social&utm_campaign=preorder",
+      "permanent": false
+    },
+    {
+      "source": "/tiktok",
+      "destination": "/?utm_source=tiktok&utm_medium=social&utm_campaign=preorder",
+      "permanent": false
+    },
+    {
+      "source": "/linkedin",
+      "destination": "/?utm_source=linkedin&utm_medium=social&utm_campaign=preorder",
+      "permanent": false
+    },
+    {
+      "source": "/caya",
+      "destination": "/?utm_source=caya&utm_medium=persoonlijk&utm_campaign=klasgenoten",
+      "permanent": false
+    },
+    {
+      "source": "/ninthe",
+      "destination": "/?utm_source=ninthe&utm_medium=persoonlijk&utm_campaign=klasgenoten",
+      "permanent": false
+    },
+    {
+      "source": "/maudde",
+      "destination": "/?utm_source=maudde&utm_medium=persoonlijk&utm_campaign=klasgenoten",
+      "permanent": false
+    },
+    {
+      "source": "/sem",
+      "destination": "/?utm_source=sem&utm_medium=persoonlijk&utm_campaign=klasgenoten",
+      "permanent": false
+    },
+    {
+      "source": "/iris",
+      "destination": "/?utm_source=iris&utm_medium=persoonlijk&utm_campaign=klasgenoten",
+      "permanent": false
+    },
+    {
+      "source": "/sanne",
+      "destination": "/?utm_source=sanne&utm_medium=persoonlijk&utm_campaign=klasgenoten",
+      "permanent": false
+    },
+    {
+      "source": "/aniek",
+      "destination": "/?utm_source=aniek&utm_medium=persoonlijk&utm_campaign=klasgenoten",
+      "permanent": false
+    },
+    {
+      "source": "/maudkh",
+      "destination": "/?utm_source=maudkh&utm_medium=persoonlijk&utm_campaign=klasgenoten",
+      "permanent": false
+    },
+    {
+      "source": "/thijs",
+      "destination": "/?utm_source=thijs&utm_medium=persoonlijk&utm_campaign=klasgenoten",
+      "permanent": false
+    },
+    {
+      "source": "/serra",
+      "destination": "/?utm_source=serra&utm_medium=persoonlijk&utm_campaign=klasgenoten",
+      "permanent": false
+    },
+    {
+      "source": "/milou",
+      "destination": "/?utm_source=milou&utm_medium=persoonlijk&utm_campaign=klasgenoten",
+      "permanent": false
+    },
+    {
+      "source": "/lynsey",
+      "destination": "/?utm_source=lynsey&utm_medium=persoonlijk&utm_campaign=klasgenoten",
+      "permanent": false
+    },
+    {
+      "source": "/yenthe",
+      "destination": "/?utm_source=yenthe&utm_medium=persoonlijk&utm_campaign=klasgenoten",
+      "permanent": false
+    },
+    {
+      "source": "/esmee",
+      "destination": "/?utm_source=esmee&utm_medium=persoonlijk&utm_campaign=klasgenoten",
+      "permanent": false
+    },
+    {
+      "source": "/jet",
+      "destination": "/?utm_source=jet&utm_medium=persoonlijk&utm_campaign=klasgenoten",
+      "permanent": false
+    },
+    {
+      "source": "/indy",
+      "destination": "/?utm_source=indy&utm_medium=persoonlijk&utm_campaign=klasgenoten",
+      "permanent": false
+    },
+    {
+      "source": "/jonna",
+      "destination": "/?utm_source=jonna&utm_medium=persoonlijk&utm_campaign=klasgenoten",
+      "permanent": false
+    },
+    {
+      "source": "/puck",
+      "destination": "/?utm_source=puck&utm_medium=persoonlijk&utm_campaign=klasgenoten",
+      "permanent": false
+    },
+    {
+      "source": "/senna",
+      "destination": "/?utm_source=senna&utm_medium=persoonlijk&utm_campaign=klasgenoten",
+      "permanent": false
+    },
+    {
+      "source": "/roemer",
+      "destination": "/?utm_source=roemer&utm_medium=persoonlijk&utm_campaign=klasgenoten",
+      "permanent": false
+    },
+    {
+      "source": "/tamar",
+      "destination": "/?utm_source=tamar&utm_medium=persoonlijk&utm_campaign=klasgenoten",
+      "permanent": false
+    },
+    {
+      "source": "/dyllon",
+      "destination": "/?utm_source=dyllon&utm_medium=persoonlijk&utm_campaign=klasgenoten",
+      "permanent": false
+    },
+    {
+      "source": "/charlie",
+      "destination": "/?utm_source=charlie&utm_medium=persoonlijk&utm_campaign=klasgenoten",
+      "permanent": false
+    },
+    {
+      "source": "/charissa",
+      "destination": "/?utm_source=charissa&utm_medium=persoonlijk&utm_campaign=klasgenoten",
+      "permanent": false
+    },
+    {
+      "source": "/madeline",
+      "destination": "/?utm_source=madeline&utm_medium=persoonlijk&utm_campaign=klasgenoten",
+      "permanent": false
+    },
+    {
+      "source": "/daniel",
+      "destination": "/?utm_source=daniel&utm_medium=persoonlijk&utm_campaign=klasgenoten",
+      "permanent": false
+    }
   ]
 }
