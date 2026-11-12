@@ -3,6 +3,7 @@ import gsap from 'gsap';
 import { navigateTo } from '../lib/navigate.js';
 import { tearAway } from '../lib/tearAway.js';
 import { cameraFlash } from '../lib/flash.js';
+import { shutterDown } from '../lib/shutter.js';
 
 const reduceMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const isNarrow = () => window.innerWidth < 700;
@@ -108,6 +109,14 @@ export default function BollardNav({ path }) {
       });
       return;
     }
+    if (to === '/faq' && !path.startsWith(to)) {
+      // het rolluik zakt; op de FAQ-pagina scrol je het weer open
+      shutterDown(() => {
+        navigateTo(to);
+        window.scrollTo(0, 0);
+      });
+      return;
+    }
     navigateTo(to);
     window.scrollTo(0, 0);
   };
@@ -149,6 +158,11 @@ export default function BollardNav({ path }) {
             <li>
               <a href="/over-ons" aria-current={current('/over-ons')} onClick={(e) => go('/over-ons', e)}>
                 Over ons
+              </a>
+            </li>
+            <li>
+              <a href="/faq" aria-current={current('/faq')} onClick={(e) => go('/faq', e)}>
+                FAQ
               </a>
             </li>
             <li>

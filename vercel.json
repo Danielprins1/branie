@@ -15,6 +15,10 @@
     {
       "source": "/over-ons",
       "destination": "/index.html"
+    },
+    {
+      "source": "/faq",
+      "destination": "/index.html"
     }
   ],
   "redirects": [

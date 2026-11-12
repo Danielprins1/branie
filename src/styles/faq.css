@@ -1,0 +1,447 @@
+/* ------------------------------------------------------------------
+   Het rolluik met graffiti (src/lib/shutter.js)
+   Bovenaan de FAQ-pagina en als overgang ernaartoe.
+   ------------------------------------------------------------------ */
+.shutter {
+  --slat: clamp(22px, 3.4vh, 34px);
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: #232322;
+  container-type: size;
+  cursor: pointer;
+  box-shadow: 0 14px 30px rgb(0 0 0 / 0.55);
+}
+
+.shutter--overlay {
+  position: fixed;
+  z-index: 1050;
+  cursor: default;
+}
+
+/* de lamellen: elke strook bol, met een donkere naad eronder */
+.shutter__slats,
+.shutter__lines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.shutter__slats {
+  background:
+    var(--grain-strong),
+    linear-gradient(90deg, rgb(0 0 0 / 0.55), transparent 5%, transparent 95%, rgb(0 0 0 / 0.55)),
+    repeating-linear-gradient(
+      180deg,
+      #4a4a47 0,
+      #3a3a38 calc(var(--slat) * 0.18),
+      #2c2c2b calc(var(--slat) * 0.62),
+      #171716 calc(var(--slat) * 0.9),
+      #0c0c0c var(--slat)
+    );
+  background-size: 180px, auto, auto;
+}
+
+/* dezelfde naden nog eens óver de verf, zodat die op het luik lijkt te zitten */
+.shutter__lines {
+  background: repeating-linear-gradient(
+    180deg,
+    rgb(255 255 255 / 0.07) 0,
+    transparent calc(var(--slat) * 0.25),
+    transparent calc(var(--slat) * 0.6),
+    rgb(0 0 0 / 0.5) calc(var(--slat) * 0.9),
+    rgb(0 0 0 / 0.8) var(--slat)
+  );
+}
+
+.shutter__paint {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  padding-bottom: 4cqh;
+}
+
+.shutter__small {
+  justify-self: start;
+  margin-left: calc(50% - min(40cqw, 52cqh));
+  font-family: var(--font-script);
+  font-size: min(7.5cqw, 11cqh);
+  line-height: 1;
+  color: var(--color-cream);
+  rotate: -7deg;
+  filter: blur(0.6px);
+  text-shadow: 0 0 14px rgb(255 253 249 / 0.55), 0 0 3px rgb(255 253 249 / 0.8);
+}
+
+.shutter__logo {
+  position: relative;
+  width: min(80cqw, 104cqh);
+  margin-top: 1cqh;
+  filter: blur(0.7px) drop-shadow(0 0 10px rgb(255 20 0 / 0.75)) drop-shadow(0 0 30px rgb(225 0 0 / 0.45));
+}
+
+.shutter__logo-layer {
+  position: absolute;
+  inset: 0;
+  background: #f20d0d;
+  -webkit-mask: var(--logo-url) center / contain no-repeat;
+  mask: var(--logo-url) center / contain no-repeat;
+}
+
+/* druipers onder de letters */
+.shutter__drip {
+  position: absolute;
+  top: 96%;
+  width: max(2px, 0.5cqw);
+  border-radius: 0 0 99px 99px;
+  background: #f20d0d;
+}
+
+.shutter__hint {
+  display: grid;
+  justify-items: center;
+  gap: 0.5em;
+  margin-top: 9cqh;
+  font-family: var(--font-script);
+  font-size: clamp(0.95rem, 2.4cqw, 1.9rem);
+  line-height: 1;
+  color: var(--color-cream);
+  rotate: -2deg;
+  filter: blur(0.4px);
+  text-shadow: 0 0 10px rgb(255 253 249 / 0.5);
+}
+
+.shutter__arrow {
+  font-size: 1.5em;
+  animation: shutter-nudge 1.6s ease-in-out infinite;
+}
+
+@keyframes shutter-nudge {
+  50% {
+    translate: 0 0.35em;
+  }
+}
+
+/* de zware onderlat */
+.shutter__bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: clamp(18px, 3cqh, 28px);
+  background: linear-gradient(180deg, #5a5a57, #2a2a29 35%, #111 100%);
+  box-shadow: 0 -2px 0 rgb(0 0 0 / 0.6);
+}
+
+/* ------------------------------------------------------------------
+   FAQ (/faq)
+   ------------------------------------------------------------------ */
+.faq {
+  position: relative;
+  background: var(--color-cream) var(--grain);
+  background-size: 180px;
+  color: var(--color-ink);
+}
+
+.faq__logo {
+  position: absolute;
+  z-index: 5;
+  top: clamp(14px, 3vh, 26px);
+  left: clamp(16px, 4vw, 40px);
+  color: var(--color-cream);
+  font-size: 30px;
+  mix-blend-mode: normal;
+}
+
+/* De 'poort': twee schermen hoog, het venster blijft plakken terwijl
+   het rolluik omhoog gaat. */
+.faq__gate {
+  height: 190vh;
+  height: 190svh;
+}
+
+.faq__window {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+}
+
+.faq__hero {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  padding: 5rem clamp(20px, 6vw, 80px) 3rem;
+  background: var(--color-bordeaux) var(--grain-strong);
+  background-size: 180px;
+  color: var(--color-cream);
+  text-align: center;
+}
+
+.faq__hero-inner {
+  display: grid;
+  justify-items: center;
+  max-width: 60rem;
+}
+
+.faq__script {
+  font-family: var(--font-script);
+  font-size: clamp(0.9rem, 1.6vw, 1.2rem);
+  color: var(--color-ochre);
+  rotate: -3deg;
+}
+
+.faq__title {
+  margin-top: 0.6rem;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(3rem, 11vw, 8.5rem);
+  line-height: 0.86;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.faq__asterisk {
+  width: 0.36em;
+  margin-left: 0.08em;
+  vertical-align: top;
+  color: var(--color-red);
+}
+
+.faq__intro {
+  max-width: 30em;
+  margin-top: 1.4rem;
+  font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+  line-height: 1.5;
+}
+
+.faq__jump {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem 0.7rem;
+  margin: 2rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.faq__chip {
+  display: block;
+  padding: 0.6em 0.8em 0.5em;
+  font-family: var(--font-display);
+  font-size: clamp(0.95rem, 1.5vw, 1.15rem);
+  line-height: 1;
+  text-decoration: none;
+  color: var(--color-cream);
+  background: var(--tone);
+  box-shadow: 0 3px 0 rgb(0 0 0 / 0.35);
+  transition: translate 0.15s, box-shadow 0.15s;
+}
+
+.faq__jump li:nth-child(odd) .faq__chip {
+  rotate: -2deg;
+}
+
+.faq__jump li:nth-child(even) .faq__chip {
+  rotate: 1.5deg;
+}
+
+.faq__chip:hover {
+  translate: 0 2px;
+  box-shadow: 0 1px 0 rgb(0 0 0 / 0.35);
+}
+
+.faq__chip--red,
+.faq__group--red {
+  --tone: var(--color-red);
+}
+
+.faq__chip--olive,
+.faq__group--olive {
+  --tone: var(--color-olive);
+}
+
+.faq__chip--ochre,
+.faq__group--ochre {
+  --tone: var(--color-ochre);
+}
+
+.faq__chip--bordeaux,
+.faq__group--bordeaux {
+  --tone: var(--color-bordeaux);
+}
+
+.faq__chip--ochre {
+  color: var(--color-bordeaux);
+}
+
+.faq__chip--bordeaux {
+  background: var(--color-cream);
+  color: var(--color-bordeaux);
+}
+
+/* ---------- De vragen ---------- */
+.faq__groups {
+  display: grid;
+  gap: clamp(3rem, 7vw, 5rem);
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: clamp(4rem, 9vw, 7rem) clamp(20px, 5vw, 40px) clamp(2rem, 5vw, 4rem);
+}
+
+.faq__group {
+  scroll-margin-top: 2rem;
+}
+
+.faq__group-title {
+  margin-bottom: 1rem;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(2rem, 5.5vw, 3.6rem);
+  line-height: 0.95;
+  text-transform: uppercase;
+  color: var(--tone);
+}
+
+.faq__item {
+  border-bottom: 2px solid var(--color-ink);
+}
+
+.faq__item:first-of-type {
+  border-top: 2px solid var(--color-ink);
+}
+
+.faq__item summary {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.1rem 0.2rem 1rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 2.2vw, 1.5rem);
+  line-height: 1.15;
+  color: var(--color-bordeaux);
+  cursor: pointer;
+  list-style: none;
+}
+
+.faq__item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq__item summary:hover,
+.faq__item[open] summary {
+  color: var(--color-red);
+}
+
+.faq__item summary:focus-visible {
+  outline: 3px solid var(--color-ochre);
+  outline-offset: 2px;
+}
+
+/* plus die een min wordt */
+.faq__plus {
+  position: relative;
+  width: 1.9rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--tone);
+  transition: rotate 0.25s ease;
+}
+
+.faq__plus::before,
+.faq__plus::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 46%;
+  height: 3px;
+  background: var(--color-cream);
+  translate: -50% -50%;
+  transition: rotate 0.25s ease;
+}
+
+.faq__plus::after {
+  rotate: 90deg;
+}
+
+.faq__item[open] .faq__plus::after {
+  rotate: 0deg;
+}
+
+.faq__item p {
+  max-width: 40em;
+  padding: 0 0.2rem 1.4rem;
+  font-size: clamp(1.05rem, 1.4vw, 1.18rem);
+  line-height: 1.6;
+}
+
+.faq__item p a,
+.faq__outro a {
+  color: var(--color-red);
+  font-weight: 700;
+  text-underline-offset: 3px;
+}
+
+/* het antwoord klapt soepel open */
+@supports (interpolate-size: allow-keywords) {
+  .faq__item {
+    interpolate-size: allow-keywords;
+  }
+
+  .faq__item::details-content {
+    block-size: 0;
+    overflow: clip;
+    transition: block-size 0.3s ease, content-visibility 0.3s allow-discrete;
+  }
+
+  .faq__item[open]::details-content {
+    block-size: auto;
+  }
+}
+
+.faq__outro {
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: 1rem clamp(20px, 5vw, 40px) clamp(5rem, 12vw, 8rem);
+  font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+}
+
+.faq__outro-title {
+  margin-bottom: 0.5rem;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(1.8rem, 4.5vw, 3rem);
+  line-height: 0.95;
+  text-transform: uppercase;
+  color: var(--color-bordeaux);
+}
+
+.faq__cta {
+  margin-top: 2rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* geen rolluik: je staat meteen binnen */
+  .faq__gate {
+    height: auto;
+  }
+
+  .faq__window {
+    position: static;
+    height: auto;
+    min-height: 70svh;
+  }
+
+  .faq__shutter {
+    display: none;
+  }
+
+  .shutter__arrow {
+    animation: none;
+  }
+}

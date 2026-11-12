@@ -241,6 +241,17 @@ cameraflits (`src/lib/flash.js`).
 - **Iemand toevoegen of verplaatsen:** zet de foto in `src/assets/team/` en
   de naam bij het juiste team in `about.teams`. De stapel past zich aan.
 
+## De FAQ-pagina (`/faq`)
+
+Bovenaan hangt een rolluik met graffiti dat omhoog rolt als je scrolt (of
+erop klikt). Wie via het menu komt, ziet het luik eerst over de vorige
+pagina zakken (`src/lib/shutter.js`). Daaronder staan de vragen per groep
+als uitklappers.
+
+- **Vragen en antwoorden:** `src/config/faq.js`. Een link schrijf je als
+  `[tekst](adres)`.
+- **Tekst op het rolluik:** `faq.shutter` in hetzelfde bestand.
+
 ## 'In opbouw'-pagina en lanceren
 
 Zolang BRANIE nog niet af is, toont de **live website** een 'in opbouw'-pagina: een grote, opgeplakte poster op de

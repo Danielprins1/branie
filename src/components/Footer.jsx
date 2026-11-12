@@ -2,6 +2,7 @@ import { brand } from '../config/site.js';
 import Asterisk from './Asterisk.jsx';
 import { navigateTo } from '../lib/navigate.js';
 import { cameraFlash } from '../lib/flash.js';
+import { shutterDown } from '../lib/shutter.js';
 
 export default function Footer() {
   return (
@@ -36,6 +37,22 @@ export default function Footer() {
           }}
         >
           De koppen achter BRANIE
+        </a>
+      )}
+      {!/^\/faq/.test(window.location.pathname) && (
+        <a
+          className="footer__about"
+          href="/faq"
+          onClick={(event) => {
+            if (event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0) return;
+            event.preventDefault();
+            shutterDown(() => {
+              navigateTo('/faq');
+              window.scrollTo(0, 0);
+            });
+          }}
+        >
+          Veelgestelde vragen
         </a>
       )}
       <button type="button" className="footer__cookies" onClick={() => window.dispatchEvent(new Event('branie:cookies'))}>
