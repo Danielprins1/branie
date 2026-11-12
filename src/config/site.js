@@ -78,7 +78,7 @@ export const comingSoon = {
   /** Optionele regels; laat leeg ('') om ze niet te tonen. */
   eyebrow: '',
   heading: 'Het magazine over Amsterdam',
-  text: 'Over het Amsterdam van vroeger en nu, verteld door de mensen die de stad maken. Het eerste nummer ligt bijna op de drukpers.',
+  text: 'Over het Amsterdam van vroeger en nu, verteld door de mensen die de stad maken. Het magazine ligt bijna op de drukpers.',
   stamp: 'Binnenkort',
   stampSmall: '', // kleine regel boven 'Binnenkort' (leeg = niet tonen)
   /**
@@ -135,7 +135,7 @@ export const analytics = {
 
 export const cookieBanner = {
   heading: 'Een koekje bij de koffie?',
-  text: 'Wij gebruiken cookies van Google Analytics om te zien hoe je BRANIE leest, zodat we de site beter maken. Alleen als jij dat goed vindt. Zonder cookies werkt alles gewoon.',
+  text: 'Waar blijf je hangen en waar blader je door? Met jouw toestemming gebruiken we cookies van Google Analytics om dat te meten en de site te verbeteren. Laat je het koekje liggen? Dan lees je gewoon verder.',
   accept: 'Prima',
   decline: 'Liever niet',
   privacyLabel: 'Meer in onze privacyverklaring',
@@ -180,7 +180,7 @@ export const preorder = {
     lead: 'Je exemplaar van BRANIE Nº 01 is gereserveerd. Je krijgt van ons een bevestiging per e-mail.',
     steps: [
       ['Bevestiging', 'Binnen een paar minuten staat de bevestiging van je betaling in je mail. Niets ontvangen? Kijk even in je spam.'],
-      ['Drukpers', 'Het eerste nummer gaat naar de drukker. 164 pagina’s Amsterdam van 1950 tot nu.'],
+      ['Drukpers', 'BRANIE gaat naar de drukker. 164 pagina’s Amsterdam van 1950 tot nu.'],
       ['Bezorging', 'Rond de lancering op 14 januari 2027 komt BRANIE naar het adres dat je hebt opgegeven.'],
     ],
     contactText: 'Vragen over je bestelling?',
@@ -389,12 +389,12 @@ export const wallItems = [
     mobile: { x: 80, y: 900, w: 190, r: 2, z: 4 },
   },
   {
-    id: 'de-meer',
+    id: 'tuschinski',
     type: 'ticket',
-    top: 'Stadion De Meer',
-    main: 'Staanplaats',
-    bottom: 'Vak 410 · ƒ 7,50',
-    pillar: 'Sport',
+    top: 'Theater Tuschinski',
+    main: 'Balkon',
+    bottom: 'Rij 4 · ƒ 3,50',
+    pillar: 'Cultuur',
     desktop: { x: 1200, y: 314, w: 236, h: 112, r: 4, z: 4 },
   },
   {

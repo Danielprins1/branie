@@ -24,7 +24,7 @@ export const pillarsPage = {
   backLabel: 'Alle pijlers',
   articlesHeading: 'Verhalen',
   lockedHeading: 'Lees verder in BRANIE',
-  lockedText: 'Dit verhaal staat in het eerste nummer van BRANIE. Pre-order het magazine en lees het hele artikel.',
+  lockedText: 'Net als het leuk wordt, hè? Het hele verhaal lees je in BRANIE. Pre-order het magazine en lees verder.',
 };
 
 export const pillars = [

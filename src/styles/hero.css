@@ -71,6 +71,7 @@
 
 .brand-logo__word {
   display: block;
+  font-family: 'BRANIE Logo', var(--font-display);
 }
 
 /* Het SVG-logo als masker: de kleur komt van `color`. */

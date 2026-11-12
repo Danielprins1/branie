@@ -2,13 +2,25 @@
    De BRANIE-lettertypes (lokaal, in src/assets/fonts/).
    Originelen staan in originals/fonts/.
 
-   - BRANIE    huisletter voor logo-achtige koppen (één gewicht; de
-               ruime font-weight voorkomt dat de browser hem nep-vet maakt)
+   - BRANIE    huisletter voor koppen (één gewicht; de ruime font-weight
+               voorkomt dat de browser hem nep-vet maakt). In lopende
+               koppen is de B de gewone B: BRANIE-tekst.woff2 is hetzelfde
+               lettertype, maar zonder de logo-B met de lange uithaal.
+   - BRANIE Logo  het originele lettertype mét de logo-B. Alleen voor
+               het logo zelf.
    - Rock Salt handgeschreven accenten
    - Switzer   lopende tekst (variabel, 100–900, met cursief)
    ------------------------------------------------------------------ */
 @font-face {
   font-family: 'BRANIE';
+  src: url('../assets/fonts/BRANIE-tekst.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'BRANIE Logo';
   src: url('../assets/fonts/BRANIECOMPLEET.woff2') format('woff2');
   font-weight: 100 900;
   font-style: normal;

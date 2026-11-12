@@ -53,7 +53,7 @@ function internalLink(path) {
 
 /**
  * Over ons (/over-ons). Bovenaan ligt een stapel polaroids die uitwaaiert
- * als je scrolt; daaronder wie we zijn, de teams, het project en BRANIE.
+ * als je scrolt; daaronder over BRANIE, de teams en het magazine.
  * Teksten en teamindeling: src/config/about.js.
  */
 export default function AboutPage() {
@@ -188,7 +188,7 @@ export default function AboutPage() {
     };
   }, []);
 
-  const { who, project, magazine } = about;
+  const { who, magazine } = about;
 
   return (
     <main className="about" ref={rootRef}>
@@ -240,24 +240,14 @@ export default function AboutPage() {
         ))}
       </section>
 
-      <section className="about__block about__block--project about__reveal">
-        <p className="about__script">{project.script}</p>
-        <h2 className="about__heading">
-          {project.heading}
-          <Asterisk className="about__asterisk" />
-        </h2>
-        {project.body.map((text) => (
-          <p key={text}>{text}</p>
+      <dl className="about__facts about__reveal">
+        {about.facts.map(([label, value]) => (
+          <div key={label}>
+            <dt>{label}</dt>
+            <dd>{value}</dd>
+          </div>
         ))}
-        <dl className="about__facts">
-          {project.facts.map(([label, value]) => (
-            <div key={label}>
-              <dt>{label}</dt>
-              <dd>{value}</dd>
-            </div>
-          ))}
-        </dl>
-      </section>
+      </dl>
 
       <section className="about__magazine">
         <div className="about__magazine-cover about__reveal">

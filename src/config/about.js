@@ -3,9 +3,6 @@
  * ------------------------------------------------------------------
  * Alle teksten en de teamindeling staan hier. De polaroids staan in
  * src/assets/team/ (vul alleen de bestandsnaam in).
- *
- * LET OP: 'Wie we zijn' en 'Het project' zijn een eerste opzet.
- * Herschrijf ze gerust in jullie eigen woorden.
  */
 
 export const about = {
@@ -13,11 +10,12 @@ export const about = {
   scrollHint: 'Scroll en gooi de stapel om',
 
   who: {
-    heading: 'Wie we zijn',
-    script: '26 koppen, één blad',
+    heading: 'Over BRANIE',
+    script: 'toen en nu',
     body: [
-      'Wij zijn de 26 koppen achter BRANIE. Zesentwintig studenten die samen één redactie vormen, verdeeld over vier teams: tekst, beeld en vormgeving, marketing en digital, en sales, operations en events.',
-      'We schrijven de verhalen, maken de foto’s, geven het blad vorm, bellen adverteerders en regelen de lancering. Alles zelf, van het eerste idee tot het moment dat BRANIE bij jou op de mat valt.',
+      'BRANIE is een magazine over Amsterdam toen en nu, gemaakt door studenten van de Hogeschool van Amsterdam. We gaan op zoek naar de verhalen achter de straten waar je elke dag doorheen fietst. Iemand die er is opgegroeid ziet een andere buurt dan iemand die er vorige week de sleutel kreeg. Wij willen ze allebei spreken.',
+      'Een beetje branie komt daarbij goed van pas. We stellen die ene vraag die je normaal inslikt, bellen aan waar we anders voorbij zouden lopen en vragen door als iemand zegt: ‘Zo gaat dat hier nou eenmaal.’ Juist dan willen we weten waarom.',
+      'Want wat missen we nou écht aan vroeger? Wie voelt zich vandaag thuis in de stad? En wat zie je als je eens aan de andere kant van de straat gaat staan?',
     ],
   },
 
@@ -76,24 +74,17 @@ export const about = {
     },
   ],
 
-  project: {
-    heading: 'Het project',
-    script: 'van idee tot drukker',
-    body: [
-      'BRANIE begon als opdracht binnen de minor Start-up: bedenk een magazine, maak het en breng het echt op de markt. Geen oefening die in een la verdwijnt, maar een blad dat je kunt vasthouden.',
-      'Daarom doen we alles wat een echte uitgever ook doet. We zoeken adverteerders, bouwen een merk op, organiseren de lancering en verkopen het magazine zelf. Op 14 januari 2027 ligt het er.',
-    ],
-    facts: [
-      ['Lancering', '14 januari 2027'],
-      ['Oplage', '750 stuks'],
-      ['Omvang', '164 pagina’s'],
-      ['Editie', 'Eenmalig'],
-    ],
-  },
+  /** De feiten op een rij, onder de teams. */
+  facts: [
+    ['Lancering', '14 januari 2027'],
+    ['Oplage', '750 stuks'],
+    ['Omvang', '164 pagina’s'],
+    ['Editie', 'Eenmalig'],
+  ],
 
   magazine: {
-    heading: 'En BRANIE zelf',
-    script: 'toen naast nu',
+    heading: 'Het magazine',
+    script: 'om te bewaren',
     // Deze tekst komt uit de saleskit.
     lead: 'Een magazine dat het Amsterdam van toen opnieuw tot leven brengt.',
     body: [
