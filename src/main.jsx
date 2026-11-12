@@ -5,6 +5,7 @@ import ComingSoon from './components/ComingSoon.jsx';
 import PillarsPage from './pages/PillarsPage.jsx';
 import SalesPage from './pages/SalesPage.jsx';
 import ThankYouPage from './pages/ThankYouPage.jsx';
+import AboutPage from './pages/AboutPage.jsx';
 import BollardNav from './components/BollardNav.jsx';
 import { captureAttribution } from './lib/tracking.js';
 import CookieBanner from './components/CookieBanner.jsx';
@@ -21,6 +22,7 @@ import './styles/sales.css';
 import './styles/bollard.css';
 import './styles/thank-you.css';
 import './styles/cookies.css';
+import './styles/about.css';
 
 // Huisstijl uit de config als CSS-variabelen beschikbaar maken.
 const rootStyle = document.documentElement.style;
@@ -41,6 +43,7 @@ const showComingSoon =
 
 const isPillarsPath = (path) => /^\/pijlers(\/|$)/.test(path);
 const isSalesPath = (path) => /^\/sales\/?$/.test(path);
+const isAboutPath = (path) => /^\/over-ons\/?$/.test(path);
 const isThankYouPath = (path) => /^\/bedankt\/?$/.test(path);
 
 /** Kiest de pagina op basis van het pad, en wisselt zonder herladen. */
@@ -69,7 +72,7 @@ function Root() {
       </>
     );
   } else {
-    page = isPillarsPath(path) ? <PillarsPage /> : <App />;
+    page = isPillarsPath(path) ? <PillarsPage /> : isAboutPath(path) ? <AboutPage /> : <App />;
   }
   return (
     <>

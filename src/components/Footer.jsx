@@ -1,6 +1,7 @@
 import { brand } from '../config/site.js';
 import Asterisk from './Asterisk.jsx';
 import { navigateTo } from '../lib/navigate.js';
+import { cameraFlash } from '../lib/flash.js';
 
 export default function Footer() {
   return (
@@ -21,6 +22,22 @@ export default function Footer() {
       >
         Adverteren in BRANIE? Bekijk de saleskit <span aria-hidden="true">→</span>
       </a>
+      {!/^\/over-ons/.test(window.location.pathname) && (
+        <a
+          className="footer__about"
+          href="/over-ons"
+          onClick={(event) => {
+            if (event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0) return;
+            event.preventDefault();
+            cameraFlash(() => {
+              navigateTo('/over-ons');
+              window.scrollTo(0, 0);
+            });
+          }}
+        >
+          De koppen achter BRANIE
+        </a>
+      )}
       <button type="button" className="footer__cookies" onClick={() => window.dispatchEvent(new Event('branie:cookies'))}>
         Cookie-instellingen
       </button>

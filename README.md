@@ -228,6 +228,19 @@ de pakketten, de prijs, de aanleverspecificaties (met de dagen tot de deadline) 
 - **Website-link:** zet `contact.websiteUrl` in `sales.js` zodra braniemagazine.nl online is.
 - De link naar de pagina staat in de footer van de homepage ("Adverteren in BRANIE? Bekijk de saleskit").
 
+## De pagina Over ons (`/over-ons`)
+
+De koppen achter BRANIE. Bovenaan ligt een stapel polaroids die uitwaaiert
+als je scrolt; daaronder staan wie we zijn, de vier teams, het project en
+BRANIE zelf. Wie via het menu naar deze pagina gaat, krijgt eerst een
+cameraflits (`src/lib/flash.js`).
+
+- **Teksten en teamindeling:** `src/config/about.js`.
+- **Polaroids:** `src/assets/team/` (webp, 520 px breed, met de naam al op
+  de foto). Staat er geen naam op de foto, vul dan `caption` in.
+- **Iemand toevoegen of verplaatsen:** zet de foto in `src/assets/team/` en
+  de naam bij het juiste team in `about.teams`. De stapel past zich aan.
+
 ## 'In opbouw'-pagina en lanceren
 
 Zolang BRANIE nog niet af is, toont de **live website** een 'in opbouw'-pagina: een grote, opgeplakte poster op de

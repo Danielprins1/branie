@@ -2,6 +2,7 @@ import { useEffect, useId, useLayoutEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { navigateTo } from '../lib/navigate.js';
 import { tearAway } from '../lib/tearAway.js';
+import { cameraFlash } from '../lib/flash.js';
 
 const reduceMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const isNarrow = () => window.innerWidth < 700;
@@ -9,7 +10,7 @@ const isNarrow = () => window.innerWidth < 700;
 /**
  * Navigatie als een rechtopstaand Amsterdammertje, linksonder in beeld.
  * - Op de homepage komt hij pas omhoog bij de magazinesectie (pre-order);
- *   op /pijlers en /sales staat hij er meteen.
+ *   op de andere pagina's staat hij er meteen.
  * - De bolle kop is een knop: het paaltje zakt in de stoep (alleen de kop
  *   blijft zichtbaar) en komt met nog een klik weer omhoog.
  */
@@ -99,6 +100,14 @@ export default function BollardNav({ path }) {
       tearAway({ y: event.clientY || window.innerHeight / 2, navigate: () => navigateTo(to) });
       return;
     }
+    if (to === '/over-ons' && !path.startsWith(to)) {
+      // er wordt een foto gemaakt: flits, en dan ligt de stapel polaroids er
+      cameraFlash(() => {
+        navigateTo(to);
+        window.scrollTo(0, 0);
+      });
+      return;
+    }
     navigateTo(to);
     window.scrollTo(0, 0);
   };
@@ -135,6 +144,11 @@ export default function BollardNav({ path }) {
             <li>
               <a href="/pijlers" aria-current={current('/pijlers')} onClick={(e) => go('/pijlers', e)}>
                 Pijlers
+              </a>
+            </li>
+            <li>
+              <a href="/over-ons" aria-current={current('/over-ons')} onClick={(e) => go('/over-ons', e)}>
+                Over ons
               </a>
             </li>
             <li>

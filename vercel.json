@@ -11,6 +11,10 @@
     {
       "source": "/bedankt",
       "destination": "/index.html"
+    },
+    {
+      "source": "/over-ons",
+      "destination": "/index.html"
     }
   ],
   "redirects": [

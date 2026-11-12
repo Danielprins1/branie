@@ -1,0 +1,341 @@
+/* ------------------------------------------------------------------
+   Over ons (/over-ons): de koppen achter BRANIE
+   ------------------------------------------------------------------ */
+
+/* De cameraflits bij het openen van de pagina (src/lib/flash.js) */
+.camera-flash {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  background: radial-gradient(circle at 50% 42%, #fff 0 45%, #fffbe9 100%);
+  pointer-events: none;
+}
+
+.about {
+  position: relative;
+  background: var(--color-cream) var(--grain);
+  background-size: 180px;
+  color: var(--color-ink);
+  overflow-x: clip;
+}
+
+.about__logo {
+  position: absolute;
+  z-index: 5;
+  top: clamp(14px, 3vh, 26px);
+  left: clamp(16px, 4vw, 40px);
+  color: var(--color-red);
+  font-size: 30px;
+}
+
+/* ---------- De polaroid zelf ---------- */
+.polaroid {
+  position: relative;
+  margin: 0;
+  container-type: inline-size;
+  filter: drop-shadow(0 2px 3px rgb(0 0 0 / 0.28)) drop-shadow(0 10px 18px rgb(0 0 0 / 0.16));
+}
+
+.polaroid img {
+  display: block;
+  width: 100%;
+  height: auto;
+  user-select: none;
+}
+
+/* naam met de hand op de witte rand (voor een foto zonder naam) */
+.polaroid__caption {
+  position: absolute;
+  left: 12%;
+  bottom: 5.5%;
+  font-family: var(--font-script);
+  font-size: 12cqw;
+  line-height: 1;
+  color: #111;
+  rotate: -3deg;
+}
+
+/* ---------- Bovenaan: de stapel die uitwaaiert ---------- */
+.about__stage {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: 100vh;
+  height: 100svh;
+  padding: clamp(4rem, 9vh, 5.5rem) clamp(16px, 4vw, 56px) clamp(1rem, 3vh, 2rem);
+}
+
+.about__title {
+  display: grid;
+  justify-items: center;
+  gap: 0.15em;
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(1.7rem, 4.6vw, 3.4rem);
+  line-height: 0.95;
+  text-transform: uppercase;
+  color: var(--color-red);
+}
+
+.about__title-logo {
+  font-size: clamp(3.4rem, 10vw, 7rem);
+  color: var(--color-red);
+}
+
+.about__table {
+  position: relative;
+  min-height: 0;
+  margin-top: clamp(0.8rem, 2.5vh, 1.6rem);
+}
+
+.about__pile .polaroid {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--polaroid-w, 120px);
+  /* lichtere schaduw: op de stapel liggen er 26 op elkaar */
+  filter: drop-shadow(0 1px 2px rgb(0 0 0 / 0.3));
+  will-change: transform;
+}
+
+.about__hint {
+  justify-self: center;
+  margin-top: 0.6rem;
+  font-family: var(--font-script);
+  font-size: clamp(0.8rem, 1.3vw, 1rem);
+  color: var(--color-bordeaux);
+}
+
+/* ---------- Tekstblokken ---------- */
+.about__block {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: clamp(4rem, 10vw, 7rem) clamp(20px, 5vw, 40px) clamp(2rem, 5vw, 3.5rem);
+  font-size: clamp(1.08rem, 1.5vw, 1.25rem);
+  line-height: 1.6;
+}
+
+.about__block p + p,
+.about__magazine-text p + p {
+  margin-top: 1em;
+}
+
+.about__script {
+  font-family: var(--font-script);
+  font-size: clamp(0.85rem, 1.3vw, 1.05rem);
+  color: var(--color-red);
+  rotate: -2deg;
+  transform-origin: left;
+}
+
+.about__heading {
+  margin: 0.5rem 0 1.2rem;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(2.6rem, 7vw, 4.8rem);
+  line-height: 0.9;
+  text-transform: uppercase;
+  color: var(--color-bordeaux);
+}
+
+.about__asterisk {
+  width: 0.42em;
+  margin-left: 0.12em;
+  vertical-align: top;
+}
+
+.about__facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.8rem;
+  margin: 2.2rem 0 0;
+}
+
+.about__facts div {
+  padding: 0.9rem 1rem 0.8rem;
+  background: var(--color-bordeaux);
+  color: var(--color-cream);
+}
+
+.about__facts div:nth-child(2) {
+  background: var(--color-red);
+}
+
+.about__facts div:nth-child(3) {
+  background: var(--color-olive);
+}
+
+.about__facts div:nth-child(4) {
+  background: var(--color-ochre);
+  color: var(--color-bordeaux);
+}
+
+.about__facts dt {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.about__facts dd {
+  margin: 0.15rem 0 0;
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  line-height: 1.05;
+}
+
+/* ---------- De vier teams ---------- */
+.about__teams {
+  display: grid;
+  gap: clamp(3rem, 7vw, 5rem);
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: clamp(1.5rem, 4vw, 3rem) clamp(16px, 4vw, 56px);
+}
+
+.about__team-name {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(1.9rem, 5vw, 3.4rem);
+  line-height: 0.95;
+  text-transform: uppercase;
+  color: var(--tone);
+  text-wrap: balance;
+}
+
+.about__team--red {
+  --tone: var(--color-red);
+}
+
+.about__team--olive {
+  --tone: var(--color-olive);
+}
+
+.about__team--ochre {
+  --tone: var(--color-ochre);
+}
+
+.about__team--bordeaux {
+  --tone: var(--color-bordeaux);
+}
+
+.about__members {
+  --polaroid-w: clamp(132px, 15vw, 172px);
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(0.7rem, 1.8vw, 1.4rem);
+  margin: clamp(1rem, 2.5vw, 1.8rem) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.about__members li {
+  width: var(--polaroid-w);
+  rotate: var(--tilt, 0deg);
+  transition: rotate 0.25s ease, scale 0.25s ease;
+}
+
+.about__members li:nth-child(even) {
+  margin-top: 0.9rem;
+}
+
+.about__members li:hover {
+  z-index: 2;
+  rotate: 0deg;
+  scale: 1.06;
+}
+
+/* ---------- BRANIE zelf ---------- */
+.about__magazine {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  align-items: center;
+  gap: clamp(2.5rem, 6vw, 6rem);
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: clamp(3rem, 8vw, 6rem) clamp(20px, 5vw, 64px) clamp(5rem, 12vw, 9rem);
+  font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+  line-height: 1.6;
+}
+
+.about__magazine-cover {
+  justify-self: center;
+  width: min(100%, 360px);
+  rotate: -4deg;
+}
+
+.about__lead {
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 2.2vw, 1.7rem);
+  line-height: 1.15;
+  color: var(--color-red);
+}
+
+.about__cta {
+  margin-top: 2rem;
+}
+
+.about__link {
+  display: inline-block;
+  margin-top: 1.6rem;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--color-bordeaux);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 5px;
+}
+
+.about__link:hover {
+  color: var(--color-red);
+}
+
+.footer__about {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--color-cream);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 5px;
+}
+
+.footer__about:hover {
+  color: var(--color-ochre);
+}
+
+/* ruimte voor het Amsterdammertje linksonder */
+@media (min-width: 700px) {
+  .about__stage {
+    padding-inline: clamp(150px, 13vw, 190px);
+  }
+
+  .about__teams {
+    padding-left: max(clamp(16px, 4vw, 56px), calc(190px - (100vw - 1280px) / 2));
+  }
+}
+
+@media (max-width: 860px) {
+  .about__magazine {
+    grid-template-columns: 1fr;
+  }
+
+  .about__magazine-cover {
+    width: min(64vw, 280px);
+  }
+}
+
+@media (max-width: 520px) {
+  .about__members {
+    --polaroid-w: calc((100% - 1.4rem) / 3);
+    gap: 0.7rem;
+  }
+
+  .about__members li:nth-child(even) {
+    margin-top: 0.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about__hint {
+    display: none;
+  }
+}

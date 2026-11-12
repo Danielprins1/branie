@@ -52,3 +52,10 @@ export function anyImage(name) {
 
 // Foto's voor de salespagina (src/assets/sales/).
 export const salesImage = (name) => anyImage(name);
+
+// Polaroids van het team voor de pagina Over ons (src/assets/team/).
+const teamFiles = import.meta.glob('../assets/team/*.{webp,avif,jpg,jpeg,png}', {
+  eager: true,
+  import: 'default',
+});
+export const teamImage = byName(teamFiles, 'team');
