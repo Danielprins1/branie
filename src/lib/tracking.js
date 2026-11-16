@@ -40,7 +40,13 @@ export function getAttribution() {
 
 export const isClassmate = (a = getAttribution()) => a?.utm_campaign === tracking.classCampaign;
 
-/** Plakt de herkomst aan een Stripe-betaallink. */
+/** De vouchercode van deze persoon (bijv. CAYA27), of null. */
+export function promoCodeFor(a = getAttribution()) {
+  if (!isClassmate(a) || !tracking.promoSources.includes(a.utm_source)) return null;
+  return `${a.utm_source.toUpperCase()}${tracking.promoSuffix}`;
+}
+
+/** Plakt de herkomst (en de vouchercode van die persoon) aan een Stripe-betaallink. */
 export function withAttribution(url, a = getAttribution()) {
   if (!url || !a) return url;
   try {
@@ -48,6 +54,8 @@ export function withAttribution(url, a = getAttribution()) {
     for (const f of FIELDS) if (a[f]) u.searchParams.set(f, a[f]);
     const ref = isClassmate(a) ? `${tracking.classCampaign}-${a.utm_source}` : a.utm_source;
     if (ref) u.searchParams.set('client_reference_id', clean(ref));
+    const code = promoCodeFor(a);
+    if (code) u.searchParams.set('prefilled_promo_code', code);
     return u.toString();
   } catch {
     return url;

@@ -112,6 +112,17 @@ export const comingSoon = {
 export const tracking = {
   classCampaign: 'klasgenoten',
   rememberDays: 30,
+  /**
+   * Iedereen heeft een eigen vouchercode in Stripe (gratis verzending),
+   * bijv. CAYA27. Wie via iemands persoonlijke link binnenkomt
+   * (braniemagazine.nl/caya) krijgt die code automatisch ingevuld. Het
+   * aantal verkopen per persoon zie je in Stripe bij de promotiecodes.
+   */
+  promoSuffix: '27',
+  promoSources: [
+    'caya', 'ninthe', 'maudde', 'sem', 'iris', 'sanne', 'aniek', 'maudkh', 'thijs', 'serra', 'milou', 'lynsey', 'yenthe',
+    'esmee', 'jet', 'indy', 'jonna', 'puck', 'senna', 'roemer', 'tamar', 'dyllon', 'charlie', 'charissa', 'madeline', 'daniel',
+  ],
 };
 
 /* ------------------------------------------------------------------ */
@@ -152,7 +163,7 @@ export const preorder = {
    * 'https://www.branie.nl/pre-order'. Zolang dit leeg is, laat de knop
    * duidelijk zien dat bestellen nog niet kan.
    */
-  url: '',
+  url: 'https://buy.stripe.com/bJefZj8fR42mdv1gZvbQY00',
   /**
    * Stripe-testlink (testmodus): werkt alleen op previews en lokaal, nooit
    * op de live site. Daar telt alleen `url` hierboven. Testbetalen met
@@ -168,7 +179,7 @@ export const preorder = {
   classUrl: '',
   classTestUrl: '',
   classBadge: 'Gratis verzending',
-  classNote: 'Via een klasgenoot: jij betaalt geen verzendkosten.',
+  classNote: 'Via een klasgenoot: de vouchercode is al ingevuld, jij betaalt geen verzendkosten.',
   /** Opent de bestelpagina in een nieuw tabblad. */
   openInNewTab: false,
   /**
@@ -177,7 +188,7 @@ export const preorder = {
    */
   thankYou: {
     heading: 'Bedankt voor je pre-order!',
-    lead: 'Je exemplaar van BRANIE Nº 01 is gereserveerd. Je krijgt van ons een bevestiging per e-mail.',
+    lead: 'Je exemplaar van BRANIE is gereserveerd. Je krijgt van ons een bevestiging per e-mail.',
     steps: [
       ['Bevestiging', 'Binnen een paar minuten staat de bevestiging van je betaling in je mail. Niets ontvangen? Kijk even in je spam.'],
       ['Drukpers', 'BRANIE gaat naar de drukker. 164 pagina’s Amsterdam van 1950 tot nu.'],

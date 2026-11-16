@@ -1,6 +1,6 @@
 import { useId, useState } from 'react';
 import { preorder } from '../config/site.js';
-import { getAttribution, isClassmate, withAttribution } from '../lib/tracking.js';
+import { getAttribution, isClassmate, promoCodeFor, withAttribution } from '../lib/tracking.js';
 import { track } from '../lib/consent.js';
 
 /**
@@ -21,7 +21,7 @@ export default function PreOrderButton() {
   const testUrl = (classmate && preorder.classTestUrl) || preorder.testUrl;
   const testMode = !isProduction && !liveUrl && Boolean(testUrl);
   const href = withAttribution(liveUrl || (testMode ? testUrl : ''), attribution);
-  const classDeal = classmate && Boolean(testMode ? preorder.classTestUrl : preorder.classUrl);
+  const classDeal = classmate && (Boolean(testMode ? preorder.classTestUrl : preorder.classUrl) || Boolean(promoCodeFor(attribution)));
 
   if (href) {
     const external = preorder.openInNewTab;
@@ -32,7 +32,7 @@ export default function PreOrderButton() {
           href={href}
           target={external ? '_blank' : undefined}
           rel={external ? 'noopener noreferrer' : undefined}
-          onClick={() => track('begin_checkout', { currency: 'EUR', value: 19.99, item_name: 'BRANIE Nº 01' })}
+          onClick={() => track('begin_checkout', { currency: 'EUR', value: 19.99, item_name: 'BRANIE (pre-sale)' })}
         >
           <span>{preorder.label}</span>
           <span className="preorder__arrow" aria-hidden="true">→</span>
