@@ -252,6 +252,13 @@ als uitklappers.
   `[tekst](adres)`.
 - **Tekst op het rolluik:** `faq.shutter` in hetzelfde bestand.
 
+## De voorwaardenpagina (`/voorwaarden`)
+
+Algemene voorwaarden, bewust kort. Staat alleen in de footer, niet in het
+menu. Alle tekst staat in `src/config/terms.js`. Vul `seller.kvk` en
+`seller.btw` in zodra je die hebt: lege velden verschijnen niet op de
+pagina. Laat de tekst controleren door de HvA of een jurist.
+
 ## 'In opbouw'-pagina en lanceren
 
 Zolang BRANIE nog niet af is, toont de **live website** een 'in opbouw'-pagina: een grote, opgeplakte poster op de

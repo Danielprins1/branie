@@ -55,9 +55,25 @@ export default function Footer() {
           Veelgestelde vragen
         </a>
       )}
+      <div className="footer__small">
+      {!/^\/voorwaarden/.test(window.location.pathname) && (
+        <a
+          className="footer__terms"
+          href="/voorwaarden"
+          onClick={(event) => {
+            if (event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0) return;
+            event.preventDefault();
+            navigateTo('/voorwaarden');
+            window.scrollTo(0, 0);
+          }}
+        >
+          Algemene voorwaarden
+        </a>
+      )}
       <button type="button" className="footer__cookies" onClick={() => window.dispatchEvent(new Event('branie:cookies'))}>
         Cookie-instellingen
       </button>
+      </div>
       <p className="footer__meta">
         {brand.name} · {brand.slogan} · © {new Date().getFullYear()}
       </p>
