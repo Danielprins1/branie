@@ -177,7 +177,7 @@ export const preorder = {
    */
   thankYou: {
     heading: 'Bedankt voor je pre-order!',
-    lead: 'Je exemplaar van BRANIE Nº 01 is gereserveerd. Je krijgt van ons een bevestiging per e-mail.',
+    lead: 'Je exemplaar van BRANIE is gereserveerd. Je krijgt van ons een bevestiging per e-mail.',
     steps: [
       ['Bevestiging', 'Binnen een paar minuten staat de bevestiging van je betaling in je mail. Niets ontvangen? Kijk even in je spam.'],
       ['Drukpers', 'BRANIE gaat naar de drukker. 164 pagina’s Amsterdam van 1950 tot nu.'],
