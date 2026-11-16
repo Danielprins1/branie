@@ -7,6 +7,7 @@ import SalesPage from './pages/SalesPage.jsx';
 import ThankYouPage from './pages/ThankYouPage.jsx';
 import AboutPage from './pages/AboutPage.jsx';
 import FaqPage from './pages/FaqPage.jsx';
+import TermsPage from './pages/TermsPage.jsx';
 import BollardNav from './components/BollardNav.jsx';
 import { captureAttribution } from './lib/tracking.js';
 import CookieBanner from './components/CookieBanner.jsx';
@@ -25,6 +26,7 @@ import './styles/thank-you.css';
 import './styles/cookies.css';
 import './styles/about.css';
 import './styles/faq.css';
+import './styles/terms.css';
 
 // Huisstijl uit de config als CSS-variabelen beschikbaar maken.
 const rootStyle = document.documentElement.style;
@@ -46,6 +48,7 @@ const showComingSoon =
 const isPillarsPath = (path) => /^\/pijlers(\/|$)/.test(path);
 const isSalesPath = (path) => /^\/sales\/?$/.test(path);
 const isAboutPath = (path) => /^\/over-ons\/?$/.test(path);
+const isTermsPath = (path) => /^\/voorwaarden\/?$/.test(path);
 const isFaqPath = (path) => /^\/faq\/?$/.test(path);
 const isThankYouPath = (path) => /^\/bedankt\/?$/.test(path);
 
@@ -75,7 +78,7 @@ function Root() {
       </>
     );
   } else {
-    page = isPillarsPath(path) ? <PillarsPage /> : isAboutPath(path) ? <AboutPage /> : isFaqPath(path) ? <FaqPage /> : <App />;
+    page = isPillarsPath(path) ? <PillarsPage /> : isAboutPath(path) ? <AboutPage /> : isFaqPath(path) ? <FaqPage /> : isTermsPath(path) ? <TermsPage /> : <App />;
   }
   return (
     <>

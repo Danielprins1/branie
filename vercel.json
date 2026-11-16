@@ -19,6 +19,10 @@
     {
       "source": "/faq",
       "destination": "/index.html"
+    },
+    {
+      "source": "/voorwaarden",
+      "destination": "/index.html"
     }
   ],
   "redirects": [
