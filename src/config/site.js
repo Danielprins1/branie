@@ -103,26 +103,17 @@ export const comingSoon = {
 /* UTM-tracking                                                        */
 /* ------------------------------------------------------------------ */
 /**
- * Wie binnenkomt via een link met utm_-parameters wordt 30 dagen
- * onthouden (in de browser). Bij de pre-order gaan die gegevens mee naar
- * Stripe: als UTM-codes en als client_reference_id, bijv.
- * 'klasgenoten-caya' of 'instagram'. Zo zie je per bestelling via wie
- * hij binnenkwam. De links staan in docs/utm-links.csv.
+ * Wie binnenkomt via een link met utm_-parameters (de sociale links in
+ * docs/utm-links.csv) wordt 30 dagen onthouden, in de browser. Bij de
+ * pre-order gaat dat mee naar Stripe: als UTM-codes en als
+ * client_reference_id, bijv. 'instagram'.
+ *
+ * Verkoop per persoon meet je met de vouchercodes in Stripe (bijv.
+ * CAYA27, gratis verzending): bij Producten, Kortingscodes zie je per
+ * code hoe vaak hij is gebruikt.
  */
 export const tracking = {
-  classCampaign: 'klasgenoten',
   rememberDays: 30,
-  /**
-   * Iedereen heeft een eigen vouchercode in Stripe (gratis verzending),
-   * bijv. CAYA27. Wie via iemands persoonlijke link binnenkomt
-   * (braniemagazine.nl/caya) krijgt die code automatisch ingevuld. Het
-   * aantal verkopen per persoon zie je in Stripe bij de promotiecodes.
-   */
-  promoSuffix: '27',
-  promoSources: [
-    'caya', 'ninthe', 'maudde', 'sem', 'iris', 'sanne', 'aniek', 'maudkh', 'thijs', 'serra', 'milou', 'lynsey', 'yenthe',
-    'esmee', 'jet', 'indy', 'jonna', 'puck', 'senna', 'roemer', 'tamar', 'dyllon', 'charlie', 'charissa', 'madeline', 'daniel',
-  ],
 };
 
 /* ------------------------------------------------------------------ */
@@ -171,15 +162,6 @@ export const preorder = {
    */
   testUrl: 'https://buy.stripe.com/test_cNifZj2W4f8EfxmbrYdjO01',
   testNote: 'Testmodus: er wordt niets echt betaald. Gebruik kaart 4242 4242 4242 4242.',
-  /**
-   * Klasgenoten: wie binnenkomt via een klasgenotenlink (utm_campaign=
-   * tracking.classCampaign) krijgt deze betaallink, bijv. zonder
-   * verzendkosten. Leeg = gewone link (wel bijgehouden wie verkocht).
-   */
-  classUrl: '',
-  classTestUrl: '',
-  classBadge: 'Gratis verzending',
-  classNote: 'Via een klasgenoot: de vouchercode is al ingevuld, jij betaalt geen verzendkosten.',
   /** Opent de bestelpagina in een nieuw tabblad. */
   openInNewTab: false,
   /**

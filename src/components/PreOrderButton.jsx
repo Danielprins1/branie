@@ -1,6 +1,6 @@
 import { useId, useState } from 'react';
 import { preorder } from '../config/site.js';
-import { getAttribution, isClassmate, promoCodeFor, withAttribution } from '../lib/tracking.js';
+import { getAttribution, withAttribution } from '../lib/tracking.js';
 import { track } from '../lib/consent.js';
 
 /**
@@ -16,12 +16,9 @@ export default function PreOrderButton() {
   const [nudge, setNudge] = useState(0);
 
   const attribution = getAttribution();
-  const classmate = isClassmate(attribution);
-  const liveUrl = (classmate && preorder.classUrl) || preorder.url;
-  const testUrl = (classmate && preorder.classTestUrl) || preorder.testUrl;
-  const testMode = !isProduction && !liveUrl && Boolean(testUrl);
-  const href = withAttribution(liveUrl || (testMode ? testUrl : ''), attribution);
-  const classDeal = classmate && (Boolean(testMode ? preorder.classTestUrl : preorder.classUrl) || Boolean(promoCodeFor(attribution)));
+  const liveUrl = preorder.url;
+  const testMode = !isProduction && !liveUrl && Boolean(preorder.testUrl);
+  const href = withAttribution(liveUrl || (testMode ? preorder.testUrl : ''), attribution);
 
   if (href) {
     const external = preorder.openInNewTab;
@@ -36,11 +33,8 @@ export default function PreOrderButton() {
         >
           <span>{preorder.label}</span>
           <span className="preorder__arrow" aria-hidden="true">→</span>
-          {(testMode || classDeal) && (
-            <span className="preorder__badge">{classDeal ? preorder.classBadge : 'Test'}</span>
-          )}
+          {testMode && <span className="preorder__badge">Test</span>}
         </a>
-        {classDeal && <p className="preorder-note">{preorder.classNote}</p>}
         {testMode && <p className="preorder-note">{preorder.testNote}</p>}
       </div>
     );

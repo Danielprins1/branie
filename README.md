@@ -162,15 +162,15 @@ Het logo bestaat uit twee lagen met dezelfde afmetingen: `branie-logo-woord.svg`
 plek) en `branie-logo-ster.svg` (het sterretje, altijd rood; crème op rode achtergronden). Nieuw logo? Lever beide
 delen apart aan, of vul alleen `brand.logo` in voor een logo in één kleur.
 
-### UTM-links en verkoop per persoon
+### Herkomst (sociale links) en verkoop per persoon
 
-De links per kanaal en per klasgenoot staan in `docs/utm-links.csv`, met een korte versie (bijv.
-`braniemagazine.nl/caya`) die via `vercel.json` (redirects) doorstuurt naar de volledige UTM-link. Komt iemand binnen via zo'n link, dan onthoudt
-de site dat 30 dagen (`src/lib/tracking.js`) en geeft het mee aan Stripe: als UTM-codes en als
-`client_reference_id` (bijv. `klasgenoten-caya` of `instagram`). Zo zie je per bestelling via wie hij binnenkwam.
-Klasgenotenlinks (`utm_campaign=klasgenoten`) krijgen de betaallink uit `preorder.classUrl` (live) of
-`preorder.classTestUrl` (test), bijv. zonder verzendkosten. Nieuwe persoon? Kopieer een regel uit de CSV en vervang
-de naam (kleine letters, geen spaties).
+**Sociale links:** de korte links (`braniemagazine.nl/instagram`, `/facebook`, `/tiktok`, `/linkedin`) staan in
+`docs/utm-links.csv` en sturen via `vercel.json` (redirects) door naar de volledige UTM-link. Komt iemand binnen via
+zo'n link, dan onthoudt de site dat 30 dagen (`src/lib/tracking.js`) en geeft het mee aan Stripe: als UTM-codes en als
+`client_reference_id` (bijv. `instagram`).
+
+**Verkoop per persoon:** iedereen heeft een eigen vouchercode in Stripe (bijv. `CAYA27`, gratis verzending). De koper
+vult die in bij het afrekenen. In Stripe bij Producten, Kortingscodes zie je per code hoe vaak hij is gebruikt.
 
 ### Cookiemelding en Google Analytics 4
 
