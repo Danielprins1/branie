@@ -154,7 +154,7 @@ export const preorder = {
    * 'https://www.branie.nl/pre-order'. Zolang dit leeg is, laat de knop
    * duidelijk zien dat bestellen nog niet kan.
    */
-  url: 'https://buy.stripe.com/9B67sN0Np1UefD9dNjbQY04',
+  url: 'https://buy.stripe.com/eVqbJ31RtaqKez55gNbQY05',
   /**
    * Stripe-testlink (testmodus): werkt alleen op previews en lokaal, nooit
    * op de live site. Daar telt alleen `url` hierboven. Testbetalen met
