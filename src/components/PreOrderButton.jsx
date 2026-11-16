@@ -32,7 +32,7 @@ export default function PreOrderButton() {
           href={href}
           target={external ? '_blank' : undefined}
           rel={external ? 'noopener noreferrer' : undefined}
-          onClick={() => track('begin_checkout', { currency: 'EUR', value: 19.99, item_name: 'BRANIE (pre-sale)' })}
+          onClick={() => track('begin_checkout', { currency: 'EUR', value: 21.79, item_name: 'BRANIE (pre-sale)' })}
         >
           <span>{preorder.label}</span>
           <span className="preorder__arrow" aria-hidden="true">→</span>
