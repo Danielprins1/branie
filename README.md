@@ -259,6 +259,28 @@ menu. Alle tekst staat in `src/config/terms.js`. Vul `seller.kvk` en
 `seller.btw` in zodra je die hebt: lege velden verschijnen niet op de
 pagina. Laat de tekst controleren door de HvA of een jurist.
 
+## Het verkoopdashboard
+
+Een pagina voor het team met een staafdiagram: hoeveel exemplaren heeft iedereen verkocht via de eigen vouchercode,
+en hoeveel van de 750 zijn er in totaal weg. De cijfers komen live uit Stripe. Teruggestorte bestellingen tellen niet mee.
+
+- **Adres:** `braniemagazine.nl/` + de naam in `src/config/dashboard.js` (`slug`). Staat niet in het menu of de footer.
+- **Beveiliging:** de pagina vraagt om een wachtwoord. Dat is nodig, want deze repository is openbaar en de naam van de
+  pagina staat dus voor iedereen te lezen. De server geeft alleen aantallen terug, nooit gegevens van kopers.
+- **Server:** `api/verkoop.js` (en `api/_stats.js` voor de telling). Past Stripe nooit aan, leest alleen.
+
+**Eenmalig instellen**
+
+1. Stripe: Developers, API-sleutels, "Beperkte sleutel maken". Naam: `Verkoopdashboard`. Zet **alleen-lezen (Read)** aan
+   voor: Checkout Sessions, PaymentIntents, Charges, Promotion codes (of Coupons), Products en Prices. Al het andere op
+   Geen. Kopieer de sleutel (begint met `rk_live_`). Plak hem **nooit** in een chat of in de code.
+2. Vercel: project, Settings, Environment Variables. Maak twee variabelen, voor Production en Preview:
+   `STRIPE_READ_KEY` (de sleutel) en `DASHBOARD_PASSWORD` (een lang wachtwoord, minstens 12 tekens).
+3. Zet een nieuwe versie live (Deployments, Redeploy), want nieuwe variabelen gelden pas bij een nieuwe build.
+
+Foutmeldingen: "nog niet gekoppeld" = een van de twee variabelen ontbreekt. "Stripe geeft de gegevens niet" = de sleutel
+mist een leesrecht. De cijfers kloppen alleen als kopers de vouchercode invullen; bestellingen zonder code staan apart.
+
 ## 'In opbouw'-pagina en lanceren
 
 Zolang BRANIE nog niet af is, toont de **live website** een 'in opbouw'-pagina: een grote, opgeplakte poster op de

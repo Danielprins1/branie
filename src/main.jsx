@@ -8,6 +8,8 @@ import ThankYouPage from './pages/ThankYouPage.jsx';
 import AboutPage from './pages/AboutPage.jsx';
 import FaqPage from './pages/FaqPage.jsx';
 import TermsPage from './pages/TermsPage.jsx';
+import DashboardPage from './pages/DashboardPage.jsx';
+import { dashboard } from './config/dashboard.js';
 import BollardNav from './components/BollardNav.jsx';
 import { captureAttribution } from './lib/tracking.js';
 import CookieBanner from './components/CookieBanner.jsx';
@@ -27,6 +29,7 @@ import './styles/cookies.css';
 import './styles/about.css';
 import './styles/faq.css';
 import './styles/terms.css';
+import './styles/dashboard.css';
 
 // Huisstijl uit de config als CSS-variabelen beschikbaar maken.
 const rootStyle = document.documentElement.style;
@@ -48,6 +51,7 @@ const showComingSoon =
 const isPillarsPath = (path) => /^\/pijlers(\/|$)/.test(path);
 const isSalesPath = (path) => /^\/sales\/?$/.test(path);
 const isAboutPath = (path) => /^\/over-ons\/?$/.test(path);
+const isDashboardPath = (path) => path.replace(/\/$/, '') === `/${dashboard.slug}`;
 const isTermsPath = (path) => /^\/voorwaarden\/?$/.test(path);
 const isFaqPath = (path) => /^\/faq\/?$/.test(path);
 const isThankYouPath = (path) => /^\/bedankt\/?$/.test(path);
@@ -68,6 +72,10 @@ function Root() {
   if (isThankYouPath(path)) {
     // Altijd bereikbaar: Stripe stuurt hier naartoe na het betalen.
     page = <ThankYouPage />;
+  } else if (isDashboardPath(path)) {
+    // Alleen voor het team: geen menu, geen cookiemelding en dus ook geen
+    // Google Analytics, zodat dit adres nergens wordt vastgelegd.
+    return <DashboardPage />;
   } else if (isSalesPath(path) && (!showComingSoon || (launch.salesPageOnProduction && !params.has('binnenkort')))) {
     page = <SalesPage />;
   } else if (showComingSoon) {

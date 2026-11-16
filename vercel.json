@@ -23,6 +23,10 @@
     {
       "source": "/voorwaarden",
       "destination": "/index.html"
+    },
+    {
+      "source": "/betalingen-piofwodom-2875",
+      "destination": "/index.html"
     }
   ],
   "redirects": [
@@ -45,6 +49,34 @@
       "source": "/linkedin",
       "destination": "/?utm_source=linkedin&utm_medium=social&utm_campaign=preorder",
       "permanent": false
+    }
+  ],
+  "headers": [
+    {
+      "source": "/betalingen-piofwodom-2875",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "no-store"
+        }
+      ]
+    },
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "no-store"
+        }
+      ]
     }
   ]
 }

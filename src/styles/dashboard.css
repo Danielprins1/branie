@@ -1,0 +1,261 @@
+/* ------------------------------------------------------------------
+   Verkoopdashboard (alleen voor het team)
+   ------------------------------------------------------------------ */
+.dash {
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: clamp(4.5rem, 10vh, 6rem) clamp(18px, 5vw, 40px) 5rem;
+  background: var(--color-cream) var(--grain);
+  background-size: 180px;
+  color: var(--color-ink);
+}
+
+.dash__top {
+  position: absolute;
+  top: clamp(14px, 3vh, 26px);
+  left: clamp(16px, 4vw, 40px);
+  color: var(--color-red);
+  font-size: 30px;
+}
+
+.dash__inner {
+  max-width: 52rem;
+  margin: 0 auto;
+}
+
+.dash__title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(2.3rem, 7vw, 4.2rem);
+  line-height: 0.92;
+  text-transform: uppercase;
+  color: var(--color-bordeaux);
+}
+
+/* ---------- Inloggen ---------- */
+.dash__login {
+  display: grid;
+  gap: 0.5rem;
+  max-width: 24rem;
+  margin-top: 2rem;
+}
+
+.dash__login label {
+  font-weight: 600;
+}
+
+.dash__login-row {
+  display: flex;
+  gap: 0.7rem;
+}
+
+.dash__login input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.75rem 0.9rem;
+  border: 2px solid var(--color-ink);
+  border-radius: 0;
+  background: #fff;
+  font: inherit;
+  font-size: 1rem;
+}
+
+.dash__login input:focus-visible {
+  outline: 3px solid var(--color-ochre);
+  outline-offset: 1px;
+}
+
+.dash__login .paper-btn {
+  padding: 0.7rem 1.3rem;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+}
+
+.dash__login .paper-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.dash__note {
+  font-size: 0.95rem;
+  opacity: 0.8;
+}
+
+.dash__error {
+  margin-top: 0.4rem;
+  padding: 0.6rem 0.8rem;
+  background: var(--color-red);
+  color: #fff;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+/* ---------- Voortgang ---------- */
+.dash__progress {
+  margin-top: 2rem;
+}
+
+.dash__big {
+  font-size: clamp(1.15rem, 2.4vw, 1.5rem);
+}
+
+.dash__big strong {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.4rem, 6vw, 3.6rem);
+  line-height: 1;
+  color: var(--color-red);
+}
+
+.dash__track {
+  height: 1.6rem;
+  margin-top: 0.7rem;
+  border: 2px solid var(--color-ink);
+  background: #fff;
+}
+
+.dash__track span {
+  display: block;
+  height: 100%;
+  min-width: 2px;
+  background: var(--color-red);
+  transition: width 0.6s ease;
+}
+
+.dash__facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.6rem;
+  margin: 0.8rem 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 1rem;
+}
+
+/* ---------- Staafdiagram ---------- */
+.dash__chart h2 {
+  margin: 2.6rem 0 0.8rem;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  text-transform: uppercase;
+  color: var(--color-bordeaux);
+}
+
+.dash__chart h2.dash__sub {
+  margin-top: 2rem;
+}
+
+.dash__rows {
+  display: grid;
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.dash__row {
+  display: grid;
+  grid-template-columns: 7.5rem 1fr 6.5rem;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.dash__name {
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.dash__bar {
+  display: block;
+  height: 1.7rem;
+  background: rgb(0 0 0 / 0.07);
+}
+
+.dash__bar span {
+  display: block;
+  height: 100%;
+  min-width: 3px;
+  background: var(--color-bordeaux);
+  transition: width 0.6s ease;
+}
+
+.dash__row.is-first .dash__bar span {
+  background: var(--color-red);
+}
+
+.dash__row.is-none .dash__bar span {
+  background: var(--color-ochre);
+}
+
+.dash__val {
+  display: grid;
+  line-height: 1.1;
+  text-align: right;
+}
+
+.dash__val strong {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.4rem;
+}
+
+.dash__val small {
+  font-size: 0.75rem;
+  opacity: 0.7;
+}
+
+/* ---------- Onderkant ---------- */
+.dash__foot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.6rem 1rem;
+  margin-top: 2.6rem;
+  padding-top: 1rem;
+  border-top: 2px solid var(--color-ink);
+  font-size: 0.9rem;
+}
+
+.dash__actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.dash__actions button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--color-red);
+  font: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.dash__actions button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+@media (max-width: 560px) {
+  .dash__row {
+    grid-template-columns: 1fr auto;
+    gap: 0.15rem 0.8rem;
+  }
+
+  .dash__bar {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    height: 1.2rem;
+  }
+
+  .dash__val {
+    grid-row: 1;
+    grid-column: 2;
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+  }
+}
