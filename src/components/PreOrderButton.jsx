@@ -35,7 +35,7 @@ export default function PreOrderButton() {
           <span className="preorder__arrow" aria-hidden="true">→</span>
           {testMode && <span className="preorder__badge">Test</span>}
         </a>
-        {testMode && <p className="preorder-note">{preorder.testNote}</p>}
+        <p className="preorder-note">{testMode ? preorder.testNote : preorder.liveNote}</p>
       </div>
     );
   }

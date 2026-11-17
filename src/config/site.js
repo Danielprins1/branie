@@ -174,11 +174,13 @@ export const preorder = {
     steps: [
       ['Bevestiging', 'Binnen een paar minuten staat de bevestiging van je betaling in je mail. Niets ontvangen? Kijk even in je spam.'],
       ['Drukpers', 'BRANIE gaat naar de drukker. 164 pagina’s Amsterdam van 1950 tot nu.'],
-      ['Bezorging', 'Rond de lancering op 14 januari 2027 komt BRANIE naar het adres dat je hebt opgegeven.'],
+      ['Bezorging', 'Rond midden januari ligt BRANIE bij je op de mat, op het adres dat je hebt opgegeven. De verschijning is op 14 januari 2027.'],
     ],
     contactText: 'Vragen over je bestelling?',
     contactEmail: 'sales@braniemagazine.nl',
   },
+  /** Staat onder de knop zodra de pre-order open is. */
+  liveNote: 'Rond midden januari ligt BRANIE bij je op de mat.',
   comingSoonBadge: 'Binnenkort',
   comingSoonNote: 'Bestellen kan nog niet: de pre-order opent binnenkort.',
 };

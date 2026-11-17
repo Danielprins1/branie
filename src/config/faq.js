@@ -39,7 +39,7 @@ export const faq = {
         ['Waarom zou ik pre-orderen?', 'Je betaalt minder dan de losse prijs en je weet zeker dat je een exemplaar hebt. De oplage is 750 stuks.'],
         ['Wat kost BRANIE?', '€24,99 per exemplaar. Tijdens de pre-order betaal je €19,99 excl. btw. Met 9% btw is dat €21,79, plus €4,63 verzendkosten (€4,25 excl. btw).'],
         ['Hoe kan ik betalen?', 'Met iDEAL of creditcard. Je rekent veilig af via Stripe.'],
-        ['Wanneer krijg ik mijn exemplaar?', 'Pre-orders worden rond de lancering op 14 januari 2027 verstuurd met PostNL.'],
+        ['Wanneer krijg ik mijn exemplaar?', 'De verschijning is op 14 januari 2027. Pre-orders worden rond die tijd met PostNL verstuurd, dus rond midden januari ligt BRANIE bij je op de mat.'],
         ['Verzenden jullie ook buiten Amsterdam?', 'Ja, we verzenden binnen heel Nederland met PostNL voor €4,63 (€4,25 excl. btw). Heb je een vouchercode van een van de BRANIE-makers? Vul die bij het afrekenen in en je betaalt geen verzendkosten.'],
         ['Kan ik BRANIE ook in de winkel kopen?', 'Ja. De verkooppunten maken we binnenkort bekend.'],
         ['Is BRANIE een leuk cadeau?', 'Voor elke Amsterdammer, en voor iedereen die ooit verliefd werd op de stad: ja.'],
