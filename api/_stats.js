@@ -59,16 +59,18 @@ export async function collectStats(get) {
   for (const session of sessions) {
     if (session.payment_status !== 'paid' && session.payment_status !== 'no_payment_required') continue;
 
+    // Alleen bestellingen met het magazine erin (oude testlinks tellen niet).
+    const copies = (session.line_items?.data ?? [])
+      .filter((item) => idOf(item.price?.product) === MAGAZINE_PRODUCT)
+      .reduce((sum, item) => sum + (item.quantity ?? 0), 0);
+    if (copies === 0) continue;
+
     // Volledig terugbetaald (bijvoorbeeld een test): telt niet mee.
     const charge = session.payment_intent?.latest_charge;
     if (charge && typeof charge === 'object' && charge.refunded === true) {
       total.refunded += 1;
       continue;
     }
-
-    const copies = (session.line_items?.data ?? [])
-      .filter((item) => idOf(item.price?.product) === MAGAZINE_PRODUCT)
-      .reduce((sum, item) => sum + (item.quantity ?? 0), 0);
 
     const promoId = idOf(session.discounts?.[0]?.promotion_code);
     let target = noCode;
