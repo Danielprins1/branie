@@ -151,17 +151,19 @@ export default function BollardNav({ path }) {
           <span className="visually-hidden">{open ? 'Menu inklappen' : 'Menu openen'}</span>
           {!open && (
             <span className="bollard__cap-icon" aria-hidden="true">
-              {/* lijst-icoon: drie regels, met kruisjes in plaats van stipjes */}
+              {/* lijst-icoon: drie regels met kruisjes in plaats van stipjes, met de hand getekend zoals de payoff */}
               <svg viewBox="0 0 512 512" focusable="false">
-                <g fill="none" stroke="currentColor" strokeWidth="34" strokeLinecap="round">
-                  <path d="M15 75 75 135M75 75 15 135" />
-                  <path d="M15 225 75 285M75 225 15 285" />
-                  <path d="M15 375 75 435M75 375 15 435" />
-                </g>
-                <g fill="currentColor">
-                  <rect x="120" y="60" width="392" height="90" rx="45" />
-                  <rect x="120" y="210" width="392" height="90" rx="45" />
-                  <rect x="120" y="360" width="392" height="90" rx="45" />
+                <g fill="none" stroke="currentColor" strokeLinecap="round">
+                  <g strokeWidth="26">
+                    <path d="M17 73C36 96 55 118 76 138M76 70C55 94 36 116 14 141" />
+                    <path d="M16 223C35 246 54 268 75 288M75 220C54 244 35 266 13 291" />
+                    <path d="M17 373C36 396 55 418 76 438M76 370C55 394 36 416 14 441" />
+                  </g>
+                  <g strokeWidth="40">
+                    <path d="M130 106C225 97 345 113 498 101" />
+                    <path d="M130 256C232 263 360 247 476 258" />
+                    <path d="M130 405C216 413 350 397 490 408" />
+                  </g>
                 </g>
               </svg>
             </span>
