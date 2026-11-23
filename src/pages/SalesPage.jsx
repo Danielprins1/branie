@@ -92,7 +92,7 @@ function DaysLeft({ date }) {
  */
 export default function SalesPage() {
   const rootRef = useRef(null);
-  const { introduction: intro, mission, preview, look, where, ads, advertorial, packages, price, delivery, contact } = sales;
+  const { introduction: intro, mission, preview, look, where, ads, advertorial, packages, price, delivery, contact, vatNote } = sales;
 
   useEffect(() => {
     const prev = document.title;
@@ -370,6 +370,7 @@ export default function SalesPage() {
                 </li>
               ))}
             </ul>
+            <p className="rate-card__note">{vatNote}</p>
           </div>
 
           <div className="rate-card rate-card--red" data-stick>
@@ -387,6 +388,7 @@ export default function SalesPage() {
               ))}
             </ul>
             <p className="rate-card__text">{advertorial.text}</p>
+            <p className="rate-card__note">{vatNote}</p>
           </div>
         </section>
 
@@ -431,6 +433,7 @@ export default function SalesPage() {
               );
             })}
           </div>
+          <p className="sales-note">{vatNote}</p>
         </section>
 
         {/* ---------- Prijs ---------- */}
@@ -449,6 +452,7 @@ export default function SalesPage() {
                 <span className="price-sticker__amount">{price.presale.price}</span>
               </p>
             </div>
+            <p className="sales-note">{price.note}</p>
             <div className="sales-price__cta">
               <PreOrderButton />
             </div>
@@ -474,6 +478,14 @@ export default function SalesPage() {
                   <a className="delivery__script" href={`mailto:${contact.email}`}>
                     {contact.email}
                   </a>
+                </dd>
+              </div>
+              <div className="delivery__row">
+                <dt>Specificaties</dt>
+                <dd className="delivery__specs">
+                  {delivery.specs.map((line) => (
+                    <p key={line}>{line}</p>
+                  ))}
                 </dd>
               </div>
             </dl>

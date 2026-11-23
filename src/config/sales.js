@@ -47,6 +47,9 @@ export const sales = {
     statement: 'BRANIE verbindt mensen met verhalen van de stad, en merken met een betrokken publiek dat Amsterdam een warm hart toedraagt.',
   },
 
+  /** Onder de tarieven voor adverteren, advertorials en pakketten. */
+  vatNote: '*Alle prijzen zijn excl. 21% btw.',
+
   pillarsHeading: 'Pijlers BRANIE',
 
   preview: {
@@ -126,14 +129,20 @@ export const sales = {
     heading: 'Wat kost BRANIE?',
     shop: { label: 'In de winkel', price: '€24,99' },
     presale: { label: 'Pre-sale', price: '€19,99' },
+    /** Het magazine valt onder 9% btw. */
+    note: 'De pre-sale prijs is €19,99 exclusief 9% btw, dus €21,79 inclusief btw.',
   },
 
   delivery: {
     heading: 'Aanleverspecificaties',
     text: 'Voor een optimale weergave van je advertentie hanteren we deze specificaties.',
-    deadline: '2026-12-04',
-    deadlineLabel: '4 december 2026',
+    deadline: '2026-11-30',
+    deadlineLabel: '30 november 2026',
     deliverText: 'Mail je materiaal en vragen naar',
+    specs: [
+      'Compleet pdf, met afloop van 3 mm rondom. Resolutie: minimaal 300 dpi.',
+      'Of als open bestand met losse onderdelen. Foto’s hebben een resolutie van minimaal 300 dpi en logo’s (vectorbestanden) een resolutie van minimaal 1200 dpi.',
+    ],
   },
 
   contact: {

@@ -66,7 +66,7 @@ export const pillars = [
   {
     slug: 'cultuur',
     title: 'De stad maakt lawaai',
-    subtitle: '(Straat)cultuur, mode, identiteit, muziek, nachtleven, taal en kunst.',
+    subtitle: '(Straat)cultuur, mode, identiteit, muziek, nachtleven en kunst.',
     image: 'cultuur-straat.webp',
     focus: '50% 34%',
     introImage: 'concerto-cd-wand.webp',
