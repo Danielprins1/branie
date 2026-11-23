@@ -10,28 +10,41 @@ const isNarrow = () => window.innerWidth < 700;
 
 /**
  * Navigatie als een rechtopstaand Amsterdammertje, linksonder in beeld.
- * - Op de homepage komt hij pas omhoog bij de magazinesectie (pre-order);
- *   op de andere pagina's staat hij er meteen.
- * - De bolle kop is een knop: het paaltje zakt in de stoep (alleen de kop
- *   blijft zichtbaar) en komt met nog een klik weer omhoog.
+ * - Hij is altijd zichtbaar. Ingeklapt steekt alleen de bolle kop boven de
+ *   stoep uit, met het lijst-icoon erop. Op de homepage blijft hij zo
+ *   staan tot de magazinesectie (pre-order) in beeld komt; dan schuift
+ *   hij vanzelf uit. Op de andere pagina's staat hij meteen uitgeschoven.
+ * - De bolle kop is een knop: een klik klapt hem in of uit, en die keuze
+ *   blijft dan staan.
  */
 export default function BollardNav({ path }) {
   const isHome = path === '/' || path === '';
-  const [inView, setInView] = useState(!isHome);
-  const [open, setOpen] = useState(() => !isNarrow());
+  const [narrow, setNarrow] = useState(isNarrow);
+  const [reached, setReached] = useState(!isHome); // magazinesectie al in beeld?
+  const [manual, setManual] = useState(null); // null = vanzelf, anders de keuze van de bezoeker
   const postRef = useRef(null);
+  const firstRun = useRef(true);
   const menuId = useId();
 
-  // Op de homepage: zichtbaar zodra de magazinesectie grotendeels in beeld is.
+  // Uitgeschoven: de keuze van de bezoeker, anders vanzelf (niet op mobiel, niet in de eerste sectie).
+  const open = manual ?? (!narrow && reached);
+
+  useEffect(() => {
+    const onResize = () => setNarrow(isNarrow());
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
+
+  // Op de homepage: de magazinesectie 'bereikt' zodra hij grotendeels in beeld is.
   useEffect(() => {
     if (!isHome) {
-      setInView(true);
+      setReached(true);
       return undefined;
     }
     const update = () => {
       const section = document.getElementById('magazine');
       if (!section) return;
-      setInView(section.getBoundingClientRect().top < window.innerHeight * 0.55);
+      setReached(section.getBoundingClientRect().top < window.innerHeight * 0.55);
     };
     update();
     window.addEventListener('scroll', update, { passive: true });
@@ -48,21 +61,23 @@ export default function BollardNav({ path }) {
     gsap.set(post, { y: post.offsetHeight + 40, autoAlpha: 1 });
   }, []);
 
-  // Hoe ver het paaltje omhoog staat: weg (onder de stoep), ingeklapt
-  // (alleen de kop) of helemaal uitgeschoven.
+  // Hoe ver het paaltje omhoog staat: ingeklapt (alleen de kop) of helemaal uitgeschoven.
   useLayoutEffect(() => {
     const post = postRef.current;
     if (!post) return undefined;
     const h = post.offsetHeight;
     const capH = parseFloat(getComputedStyle(post.parentElement).getPropertyValue('--cap-h')) || 70;
-    const y = !inView ? h + 40 : open ? 0 : h - capH;
+    const y = open ? 0 : h - capH;
     if (reduceMotion()) {
       gsap.set(post, { y, rotation: 0 });
       return undefined;
     }
-    const tl = gsap.timeline();
-    if (inView && y < (gsap.getProperty(post, 'y') || 0)) {
-      // omhoog uit de stoep: even doorschieten en wiebelen
+    // Op de homepage even wachten tot de intro klaar is, dan steekt de kop omhoog.
+    const delay = firstRun.current && isHome ? 2.6 : 0;
+    firstRun.current = false;
+    const tl = gsap.timeline({ delay });
+    if (y < (gsap.getProperty(post, 'y') || 0)) {
+      // omhoog: even doorschieten en wiebelen
       tl.to(post, { y: y - 10, duration: 0.42, ease: 'power3.out' })
         .to(post, { y, duration: 0.3, ease: 'power2.inOut' })
         .fromTo(post, { rotation: -1.6 }, { rotation: 0, duration: 0.7, ease: 'elastic.out(1, 0.35)' }, 0.2);
@@ -70,7 +85,7 @@ export default function BollardNav({ path }) {
       tl.to(post, { y, rotation: 0, duration: 0.38, ease: 'power2.in' });
     }
     return () => tl.kill();
-  }, [inView, open]);
+  }, [open]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const scrollToPreorder = () => {
     const target = document.querySelector('.magazine-section__cta');
@@ -81,7 +96,7 @@ export default function BollardNav({ path }) {
   const go = (to, event) => {
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0) return;
     event.preventDefault();
-    if (isNarrow()) setOpen(false);
+    if (isNarrow()) setManual(false);
     if (to === 'preorder' || to === 'magazine') {
       if (isHome) {
         if (to === 'preorder') scrollToPreorder();
@@ -124,19 +139,33 @@ export default function BollardNav({ path }) {
   const current = (p) => (path.startsWith(p) ? 'page' : undefined);
 
   return (
-    <nav className={`bollard${open ? ' is-open' : ''}`} aria-label="Hoofdmenu" inert={!inView || undefined}>
+    <nav className={`bollard${open ? ' is-open' : ''}`} aria-label="Hoofdmenu">
       <div className="bollard__post" ref={postRef}>
         <button
           type="button"
           className="bollard__cap"
           aria-expanded={open}
           aria-controls={menuId}
-          onClick={() => setOpen((o) => !o)}
+          onClick={() => setManual(!open)}
         >
           <span className="visually-hidden">{open ? 'Menu inklappen' : 'Menu openen'}</span>
-          <span className="bollard__cap-hint" aria-hidden="true">
-            {open ? '' : 'menu'}
-          </span>
+          {!open && (
+            <span className="bollard__cap-icon" aria-hidden="true">
+              {/* lijst-icoon: drie regels, met kruisjes in plaats van stipjes */}
+              <svg viewBox="0 0 512 512" focusable="false">
+                <g fill="none" stroke="currentColor" strokeWidth="34" strokeLinecap="round">
+                  <path d="M15 75 75 135M75 75 15 135" />
+                  <path d="M15 225 75 285M75 225 15 285" />
+                  <path d="M15 375 75 435M75 375 15 435" />
+                </g>
+                <g fill="currentColor">
+                  <rect x="120" y="60" width="392" height="90" rx="45" />
+                  <rect x="120" y="210" width="392" height="90" rx="45" />
+                  <rect x="120" y="360" width="392" height="90" rx="45" />
+                </g>
+              </svg>
+            </span>
+          )}
         </button>
         <div className="bollard__body" id={menuId} inert={!open || undefined}>
           <span className="bollard__crosses" aria-hidden="true">

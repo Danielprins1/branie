@@ -66,15 +66,20 @@
   outline-offset: 3px;
 }
 
-.bollard__cap-hint {
+.bollard__cap-icon {
   position: absolute;
   inset: 0 0 13px;
   display: grid;
   place-items: center;
-  font-family: var(--font-script);
-  font-size: 0.8rem;
+  padding-top: 6px;
   color: var(--color-cream);
-  text-shadow: 0 1px 2px rgb(0 0 0 / 0.5);
+  filter: drop-shadow(0 1px 1.5px rgb(0 0 0 / 0.55));
+}
+
+.bollard__cap-icon svg {
+  display: block;
+  width: 34px;
+  height: 34px;
 }
 
 /* De romp: smal onder de kraag, breder naar de voet, met afgeronde
@@ -197,6 +202,11 @@
   .bollard {
     --w: 104px;
     --cap-h: 60px;
+  }
+
+  .bollard__cap-icon svg {
+    width: 28px;
+    height: 28px;
   }
 
   .bollard__body {
