@@ -154,6 +154,10 @@
   gap: clamp(6px, 1vw, 14px);
   padding: clamp(14px, 2.5vw, 30px) clamp(10px, 2vw, 26px) 0;
   background: var(--color-cream);
+  /* De foto's verdwijnen onder het rode, gescheurde papier: wat onder de
+     onderkant van dit vlak uitsteekt (de lager geplaatste foto's) wordt
+     afgeknipt, anders komt het over het rood heen. */
+  overflow: hidden;
 }
 
 .sales-hero__print {
