@@ -109,21 +109,3 @@
   }
 }
 
-/* Kleine links onderaan de footer: voorwaarden en cookie-instellingen */
-.footer__small {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.4rem 1.4rem;
-}
-
-.footer__terms {
-  font-size: 0.85rem;
-  text-decoration: underline;
-  color: inherit;
-  opacity: 0.8;
-}
-
-.footer__terms:hover {
-  opacity: 1;
-}

@@ -30,6 +30,7 @@ import './styles/about.css';
 import './styles/faq.css';
 import './styles/terms.css';
 import './styles/dashboard.css';
+import './styles/footer.css';
 
 // Huisstijl uit de config als CSS-variabelen beschikbaar maken.
 const rootStyle = document.documentElement.style;

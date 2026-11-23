@@ -86,15 +86,3 @@
   outline-offset: 3px;
 }
 
-/* Link in de footer om de keuze te wijzigen */
-.footer__cookies {
-  border: 0;
-  padding: 0;
-  background: none;
-  color: inherit;
-  font: inherit;
-  font-size: 0.85rem;
-  text-decoration: underline;
-  opacity: 0.8;
-  cursor: pointer;
-}

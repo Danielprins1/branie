@@ -291,19 +291,6 @@
   color: var(--color-red);
 }
 
-.footer__about {
-  font-family: var(--font-display);
-  font-size: 1.05rem;
-  color: var(--color-cream);
-  text-decoration: underline;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 5px;
-}
-
-.footer__about:hover {
-  color: var(--color-ochre);
-}
-
 /* ruimte voor het Amsterdammertje linksonder */
 @media (min-width: 700px) {
   .about__stage {
