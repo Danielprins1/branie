@@ -98,6 +98,11 @@ export default function Footer() {
                 </a>
               </li>
               <li>
+                <a href="/cadeau" aria-current={here('/cadeau')} onClick={internal('/cadeau')}>
+                  Cadeaubon
+                </a>
+              </li>
+              <li>
                 <a href="/faq" aria-current={here('/faq')} onClick={internal('/faq', here('/faq') ? null : shutterDown)}>
                   Veelgestelde vragen
                 </a>

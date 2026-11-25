@@ -59,3 +59,10 @@ const teamFiles = import.meta.glob('../assets/team/*.{webp,avif,jpg,jpeg,png}', 
   import: 'default',
 });
 export const teamImage = byName(teamFiles, 'team');
+
+// Afbeeldingen voor de cadeaubon (src/assets/gift/).
+const giftFiles = import.meta.glob('../assets/gift/*.{webp,avif,jpg,jpeg,png}', {
+  eager: true,
+  import: 'default',
+});
+export const giftImage = byName(giftFiles, 'gift');

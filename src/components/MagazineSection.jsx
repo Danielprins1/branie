@@ -47,6 +47,19 @@ const MagazineSection = forwardRef(function MagazineSection({ targetRef }, ref) 
             <PreOrderButton />
           </div>
           <a
+            className="magazine-section__gift"
+            href="/cadeau"
+            data-reveal
+            onClick={(event) => {
+              if (event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0) return;
+              event.preventDefault();
+              navigateTo('/cadeau');
+              window.scrollTo(0, 0);
+            }}
+          >
+            Of geef BRANIE cadeau <span aria-hidden="true">→</span>
+          </a>
+          <a
             className="magazine-section__pillars"
             href="/pijlers"
             data-reveal

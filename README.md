@@ -281,6 +281,25 @@ en hoeveel van de 750 zijn er in totaal weg. De cijfers komen live uit Stripe. T
 Foutmeldingen: "nog niet gekoppeld" = een van de twee variabelen ontbreekt. "Stripe geeft de gegevens niet" = de sleutel
 mist een leesrecht. De cijfers kloppen alleen als kopers de vouchercode invullen; bestellingen zonder code staan apart.
 
+## De cadeaubon (`/cadeau`)
+
+Een pagina om een BRANIE-cadeaubon te kopen (blok A) en te verzilveren (blok B). De betaling loopt via Stripe en het
+versturen en controleren van de bon via Make; de site bouwt zelf geen betaal- of codecontrole.
+
+- **Teksten, prijs, Stripe-link, webhook en banner:** `src/config/gift.js`.
+- **Het adres `/cadeau` niet veranderen:** het staat gedrukt op de bon, en de QR-code wijst naar
+  `braniemagazine.nl/cadeau?code=BRANIE-XXXX-XXXX`. Met `?code=` vult de pagina het codeveld in en scrolt naar blok B.
+- **Verzilveren:** het formulier stuurt `code`, `naam`, `straat`, `postcode`, `plaats` en `email` als formulierdata
+  (`application/x-www-form-urlencoded`) naar de Make-webhook en leest het JSON-antwoord (`ok`, `reden`).
+  Make moet in het antwoord de header `Access-Control-Allow-Origin` meesturen, anders kan de browser het antwoord
+  niet lezen en ziet de bezoeker de algemene foutmelding.
+- **Afbeelding van de bon:** vervang `src/assets/gift/cadeaubon.webp` (de pagina) en `public/og/cadeaubon.jpg`
+  (1200 × 630 px, voor de preview op social media). Beide zijn nu een tijdelijke afbeelding.
+- **Banner op de homepage uitzetten:** zet `banner.enabled` in `src/config/gift.js` op `false`. De pagina zelf blijft.
+- **SEO:** `cadeau.html` is dezelfde app met eigen titel, omschrijving en Open Graph-gegevens (zie `vite.config.js` en
+  `vercel.json`). Pas je titel of omschrijving aan in `gift.js`, pas ze dan ook aan in `cadeau.html`.
+- **Links naar de pagina:** menu (onder Pre-order), regel onder de pre-orderknop op de homepage, de footer en de banner.
+
 ## 'In opbouw'-pagina en lanceren
 
 Zolang BRANIE nog niet af is, toont de **live website** een 'in opbouw'-pagina: een grote, opgeplakte poster op de

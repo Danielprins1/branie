@@ -182,6 +182,12 @@
   box-shadow: 0 2px 0 rgb(0 0 0 / 0.4);
 }
 
+.bollard__links .bollard__gift {
+  margin-top: 2px;
+  font-size: 0.8rem;
+  color: var(--color-ochre);
+}
+
 .bollard__links .bollard__preorder:hover,
 .bollard__links .bollard__preorder:focus-visible {
   background: #ff1a1a;

@@ -206,6 +206,11 @@ export default function BollardNav({ path }) {
                 Pre-order
               </a>
             </li>
+            <li>
+              <a className="bollard__gift" href="/cadeau" aria-current={current('/cadeau')} onClick={(e) => go('/cadeau', e)}>
+                Cadeau
+              </a>
+            </li>
           </ul>
         </div>
       </div>

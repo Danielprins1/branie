@@ -1,0 +1,393 @@
+/* ------------------------------------------------------------------
+   Cadeaubon (/cadeau) en de tijdelijke banner op de homepage
+   ------------------------------------------------------------------ */
+.gift {
+  position: relative;
+  background: var(--color-cream) var(--grain);
+  background-size: 180px;
+  color: var(--color-ink);
+}
+
+.gift__logo {
+  position: absolute;
+  z-index: 5;
+  top: clamp(14px, 3vh, 26px);
+  left: clamp(16px, 4vw, 40px);
+  color: var(--color-red);
+  font-size: 30px;
+}
+
+/* ruimte voor het Amsterdammertje linksonder */
+.gift__hero,
+.gift__buy,
+.gift__redeem-inner {
+  padding-inline: clamp(20px, 5vw, 56px);
+}
+
+@media (min-width: 700px) {
+  .gift__hero,
+  .gift__buy,
+  .gift__redeem-inner {
+    padding-left: max(clamp(20px, 5vw, 56px), 180px);
+  }
+}
+
+.gift__hero,
+.gift__buy,
+.gift__redeem-inner {
+  max-width: 1240px;
+  margin-inline: auto;
+}
+
+/* ---------- Kop ---------- */
+.gift__hero {
+  padding-top: clamp(5.5rem, 12vh, 8rem);
+}
+
+.gift__script {
+  font-family: var(--font-script);
+  font-size: clamp(0.9rem, 1.5vw, 1.15rem);
+  color: var(--color-red);
+  rotate: -2deg;
+  transform-origin: left;
+}
+
+.gift__title {
+  margin-top: 0.6rem;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(2.8rem, 8vw, 6.4rem);
+  line-height: 0.9;
+  text-transform: uppercase;
+  color: var(--color-bordeaux);
+  text-wrap: balance;
+}
+
+.gift__asterisk {
+  width: 0.4em;
+  margin-left: 0.1em;
+  vertical-align: top;
+}
+
+.gift__h2 {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(1.9rem, 4.4vw, 3.2rem);
+  line-height: 0.95;
+  text-transform: uppercase;
+  color: var(--color-bordeaux);
+  text-wrap: balance;
+}
+
+/* ---------- Blok A: de bon kopen ---------- */
+.gift__buy {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(2rem, 5vw, 4.5rem);
+  padding-top: clamp(2rem, 5vw, 3.5rem);
+  padding-bottom: clamp(5rem, 9vw, 7rem);
+}
+
+.gift__bon {
+  position: relative;
+  margin: 0;
+  rotate: -2.5deg;
+  filter: drop-shadow(0 4px 6px rgb(0 0 0 / 0.25)) drop-shadow(0 18px 26px rgb(0 0 0 / 0.18));
+}
+
+.gift__bon img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.gift__tape {
+  top: -14px;
+  left: 50%;
+  width: 90px;
+  height: 26px;
+  translate: -50% 0;
+  rotate: -3deg;
+}
+
+.gift__buy-text {
+  display: grid;
+  justify-items: start;
+  gap: 1rem;
+  font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+  line-height: 1.6;
+}
+
+.gift__buy-text p {
+  max-width: 30em;
+}
+
+.gift__price {
+  display: grid;
+  gap: 0.1rem;
+  margin-top: 0.4rem;
+}
+
+.gift__price strong {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.6rem, 6vw, 3.8rem);
+  line-height: 1;
+  color: var(--color-red);
+}
+
+.gift__price span {
+  font-size: 0.95rem;
+  color: #5b4f49;
+}
+
+.gift__btn {
+  margin-top: 0.6rem;
+  padding: 1rem 1.7rem 0.95rem;
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+}
+
+/* ---------- Blok B: de bon verzilveren ---------- */
+.gift__redeem {
+  background: var(--color-blue) var(--grain);
+  background-size: 180px;
+  padding-block: clamp(3.5rem, 8vw, 6rem) clamp(4rem, 9vw, 7rem);
+}
+
+.gift__redeem-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.1fr);
+  align-items: start;
+  gap: clamp(2rem, 5vw, 4.5rem);
+}
+
+.gift__redeem-text {
+  display: grid;
+  justify-items: start;
+  gap: 1rem;
+  font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+  line-height: 1.6;
+}
+
+.gift__redeem-text p {
+  max-width: 28em;
+}
+
+.gift__card {
+  position: relative;
+  padding: clamp(1.4rem, 3.5vw, 2.4rem);
+  background: #fff;
+  box-shadow: 0 3px 5px rgb(0 0 0 / 0.18), 0 16px 30px rgb(0 0 0 / 0.16);
+  rotate: 0.6deg;
+}
+
+.gift-form {
+  display: grid;
+  gap: 1.1rem;
+}
+
+.gift-form__row {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: 1rem;
+}
+
+.gift-field {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.gift-field label {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--color-bordeaux);
+}
+
+.gift-field input {
+  width: 100%;
+  min-width: 0;
+  padding: 0.8rem 0.9rem;
+  border: 2px solid var(--color-ink);
+  border-radius: 0;
+  background: var(--color-cream);
+  color: var(--color-ink);
+  font: inherit;
+  font-size: 1rem;
+}
+
+.gift-field--code input {
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.gift-field input::placeholder {
+  color: #8c817b;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+}
+
+.gift-field input:focus-visible {
+  outline: 3px solid var(--color-ochre);
+  outline-offset: 1px;
+}
+
+.gift-field input:disabled {
+  opacity: 0.6;
+}
+
+.gift-form__hint {
+  margin-top: -0.4rem;
+  font-size: 0.88rem;
+  color: #5b4f49;
+}
+
+.gift-form__error {
+  padding: 0.7rem 0.9rem;
+  background: var(--color-red);
+  color: #fff;
+  font-size: 0.98rem;
+  line-height: 1.45;
+}
+
+.gift-form__error a {
+  color: #fff;
+  font-weight: 700;
+  text-underline-offset: 3px;
+}
+
+.gift-form__submit {
+  justify-self: start;
+  padding: 1rem 1.6rem 0.95rem;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+}
+
+.gift-form__submit:disabled {
+  opacity: 0.6;
+  cursor: progress;
+  filter: none;
+}
+
+/* Gelukt */
+.gift-done {
+  display: grid;
+  justify-items: start;
+  gap: 1.2rem;
+  padding-block: 0.6rem;
+}
+
+.gift-done__stamp {
+  padding: 0.4rem 0.9rem 0.3rem;
+  border: 4px solid var(--color-red);
+  box-shadow: inset 0 0 0 2px #fff, inset 0 0 0 4px var(--color-red);
+  color: var(--color-red);
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  line-height: 1;
+  text-transform: uppercase;
+  rotate: -6deg;
+}
+
+.gift-done__text {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  line-height: 1.15;
+  color: var(--color-bordeaux);
+}
+
+@media (max-width: 860px) {
+  .gift__buy,
+  .gift__redeem-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .gift__bon {
+    max-width: 34rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .gift-form__row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- Banner op de homepage ---------- */
+.gift-banner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 55;
+  display: flex;
+  background: var(--color-ochre);
+  color: var(--color-bordeaux);
+  box-shadow: 0 2px 10px rgb(0 0 0 / 0.35);
+  animation: gift-banner-in 0.5s 2.8s ease-out both;
+}
+
+.gift-banner__link {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.6rem 3.2rem 0.55rem 1rem;
+  color: inherit;
+  font-family: var(--font-display);
+  font-size: clamp(0.95rem, 1.7vw, 1.2rem);
+  line-height: 1.1;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.gift-banner__link:hover span:not(.gift-banner__arrow),
+.gift-banner__link:focus-visible span:not(.gift-banner__arrow) {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.gift-banner__star {
+  width: 0.9em;
+  flex: none;
+}
+
+.gift-banner__close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 3rem;
+  border: 0;
+  background: none;
+  color: inherit;
+  font-size: 1.7rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.gift-banner__close:hover {
+  background: rgb(0 0 0 / 0.08);
+}
+
+.gift-banner a:focus-visible,
+.gift-banner button:focus-visible {
+  outline: 3px solid var(--color-bordeaux);
+  outline-offset: -3px;
+}
+
+@keyframes gift-banner-in {
+  from {
+    translate: 0 -100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gift-banner {
+    animation: none;
+  }
+}

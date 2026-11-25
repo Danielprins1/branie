@@ -27,6 +27,10 @@
     {
       "source": "/betalingen-piofwodom-2875",
       "destination": "/index.html"
+    },
+    {
+      "source": "/cadeau/:path*",
+      "destination": "/cadeau.html"
     }
   ],
   "redirects": [

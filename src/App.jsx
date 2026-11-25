@@ -5,6 +5,7 @@ import ScrollHint from './components/ScrollHint.jsx';
 import MagazineSection from './components/MagazineSection.jsx';
 import MagazineTransition from './components/MagazineTransition.jsx';
 import Footer from './components/Footer.jsx';
+import GiftBanner from './components/GiftBanner.jsx';
 
 export default function App() {
   const stageRef = useRef(null);
@@ -24,6 +25,7 @@ export default function App() {
 
   return (
     <>
+      <GiftBanner />
       <a className="skip-link" href="#magazine">
         Ga naar het magazine
       </a>

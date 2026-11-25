@@ -321,6 +321,24 @@
   }
 }
 
+/* Kleine regel onder de bestelknop: cadeaubon */
+.magazine-section__gift {
+  display: block;
+  width: fit-content;
+  margin-top: 0.7rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-bordeaux);
+  text-decoration: underline;
+  text-decoration-color: var(--color-ochre);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+.magazine-section__gift:hover {
+  color: var(--color-red);
+}
+
 /* Link naar de pijlerpagina */
 .magazine-section__pillars {
   display: inline-block;
