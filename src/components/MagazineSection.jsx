@@ -46,33 +46,45 @@ const MagazineSection = forwardRef(function MagazineSection({ targetRef }, ref) 
           <div className="magazine-section__cta" data-reveal>
             <PreOrderButton />
           </div>
-          <a
-            className="magazine-section__gift"
-            href="/cadeau"
-            data-reveal
-            onClick={(event) => {
-              if (event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0) return;
-              event.preventDefault();
-              navigateTo('/cadeau');
-              window.scrollTo(0, 0);
-            }}
-          >
-            Of geef BRANIE cadeau <span aria-hidden="true">→</span>
-          </a>
-          <a
-            className="magazine-section__pillars"
-            href="/pijlers"
-            data-reveal
-            onClick={(event) => {
-              if (event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0) return;
-              event.preventDefault();
-              const rect = event.currentTarget.getBoundingClientRect();
-              const y = event.clientY || rect.top + rect.height / 2;
-              tearAway({ y, navigate: () => navigateTo('/pijlers') });
-            }}
-          >
-            Scheur de stad open: ontdek de pijlers <span aria-hidden="true">→</span>
-          </a>
+          <nav className="mag-more" aria-label="Meer van BRANIE">
+            <a
+              className="mag-tile mag-tile--gift"
+              href="/cadeau"
+              data-reveal
+              onClick={(event) => {
+                if (event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0) return;
+                event.preventDefault();
+                navigateTo('/cadeau');
+                window.scrollTo(0, 0);
+              }}
+            >
+              <span className="mag-tile__eyebrow">Cadeaubon</span>
+              <span className="mag-tile__title">Geef BRANIE cadeau</span>
+              <span className="mag-tile__sub">Digitale bon, direct in je mail.</span>
+              <span className="mag-tile__arrow" aria-hidden="true">
+                →
+              </span>
+            </a>
+            <a
+              className="mag-tile mag-tile--pillars"
+              href="/pijlers"
+              data-reveal
+              onClick={(event) => {
+                if (event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0) return;
+                event.preventDefault();
+                const rect = event.currentTarget.getBoundingClientRect();
+                const y = event.clientY || rect.top + rect.height / 2;
+                tearAway({ y, navigate: () => navigateTo('/pijlers') });
+              }}
+            >
+              <span className="mag-tile__eyebrow">De pijlers</span>
+              <span className="mag-tile__title">Scheur de stad open</span>
+              <span className="mag-tile__sub">Ontdek de vijf pijlers van BRANIE.</span>
+              <span className="mag-tile__arrow" aria-hidden="true">
+                →
+              </span>
+            </a>
+          </nav>
         </div>
       </div>
     </section>
