@@ -8,7 +8,7 @@ export const newsletter = {
   heading: 'Blijf op de hoogte',
   text: 'Een paar keer per jaar een mail met nieuws over BRANIE. Geen spam.',
   placeholder: 'Je e-mailadres',
-  consent: 'Ja, ik wil de nieuwsbrief van BRANIE ontvangen. Afmelden kan altijd.',
+  consent: 'Door je aan te melden ontvang je onze nieuwsbrief. Afmelden kan altijd.',
   button: 'Aanmelden',
   sending: 'Even geduld…',
   success: 'Gelukt! Je staat op de lijst.',

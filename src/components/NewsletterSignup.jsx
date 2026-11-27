@@ -15,7 +15,7 @@ export default function NewsletterSignup() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           email: f.email.value.trim(),
-          consent: f.consent.checked,
+          consent: true,
           website: f.website.value,
           page: window.location.pathname,
         }),
@@ -41,9 +41,7 @@ export default function NewsletterSignup() {
             <input type="email" name="email" required placeholder={n.placeholder} aria-label={n.placeholder} autoComplete="email" />
             <button type="submit" disabled={status === 'sending'}>{status === 'sending' ? n.sending : n.button}</button>
           </div>
-          <label className="footer__news-consent">
-            <input type="checkbox" name="consent" required /> <span>{n.consent}</span>
-          </label>
+          <p className="footer__news-consent">{n.consent}</p>
           <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ position: 'absolute', left: '-9999px' }} />
           {status === 'error' && <p className="footer__news-err" role="alert">{n.error}</p>}
         </form>

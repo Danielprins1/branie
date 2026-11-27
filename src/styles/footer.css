@@ -265,7 +265,6 @@
   font: inherit; font-weight: 700; cursor: pointer;
 }
 .footer__news-row button:disabled { opacity: 0.6; cursor: wait; }
-.footer__news-consent { display: flex; gap: 0.5rem; margin-top: 0.7rem; font-size: 0.85rem; opacity: 0.85; align-items: flex-start; }
-.footer__news-consent input { margin-top: 0.2rem; accent-color: #fffdf9; }
+.footer__news-consent { margin: 0.7rem 0 0; font-size: 0.85rem; opacity: 0.85; }
 .footer__news-ok, .footer__news-err { margin: 0; font-weight: 600; }
 .footer__news-err { margin-top: 0.6rem; }
