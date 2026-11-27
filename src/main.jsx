@@ -9,6 +9,7 @@ import AboutPage from './pages/AboutPage.jsx';
 import FaqPage from './pages/FaqPage.jsx';
 import TermsPage from './pages/TermsPage.jsx';
 import GiftPage from './pages/GiftPage.jsx';
+import GiftThanksPage from './pages/GiftThanksPage.jsx';
 import DashboardPage from './pages/DashboardPage.jsx';
 import { dashboard } from './config/dashboard.js';
 import BollardNav from './components/BollardNav.jsx';
@@ -55,6 +56,7 @@ const isPillarsPath = (path) => /^\/pijlers(\/|$)/.test(path);
 const isSalesPath = (path) => /^\/sales\/?$/.test(path);
 const isAboutPath = (path) => /^\/over-ons\/?$/.test(path);
 const isDashboardPath = (path) => path.replace(/\/$/, '') === `/${dashboard.slug}`;
+const isGiftThanksPath = (path) => /^\/cadeau\/bedankt\/?$/.test(path);
 const isGiftPath = (path) => /^\/cadeau\/?$/.test(path);
 const isTermsPath = (path) => /^\/voorwaarden\/?$/.test(path);
 const isFaqPath = (path) => /^\/faq\/?$/.test(path);
@@ -76,6 +78,9 @@ function Root() {
   if (isThankYouPath(path)) {
     // Altijd bereikbaar: Stripe stuurt hier naartoe na het betalen.
     page = <ThankYouPage />;
+  } else if (isGiftThanksPath(path)) {
+    // Altijd bereikbaar: Stripe stuurt hier naartoe na het kopen van een bon.
+    page = <GiftThanksPage />;
   } else if (isGiftPath(path)) {
     // Altijd bereikbaar: dit adres staat gedrukt op de cadeaubon (QR-code).
     page = <GiftPage />;

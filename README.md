@@ -298,6 +298,9 @@ versturen en controleren van de bon via Make; de site bouwt zelf geen betaal- of
 - **Banner op de homepage uitzetten:** zet `banner.enabled` in `src/config/gift.js` op `false`. De pagina zelf blijft.
 - **SEO:** `cadeau.html` is dezelfde app met eigen titel, omschrijving en Open Graph-gegevens (zie `vite.config.js` en
   `vercel.json`). Pas je titel of omschrijving aan in `gift.js`, pas ze dan ook aan in `cadeau.html`.
+- **Na het kopen:** Stripe stuurt de koper door naar `braniemagazine.nl/cadeau/bedankt` (pagina in
+  `src/pages/GiftThanksPage.jsx`, teksten onder `thanks` in `gift.js`). Dat doorsturen staat in Stripe bij de
+  betaallink, onder 'Na de betaling'. Zet het pas aan als de pagina live staat.
 - **Links naar de pagina:** menu (onder Pre-order), regel onder de pre-orderknop op de homepage, de footer en de banner.
 
 ## 'In opbouw'-pagina en lanceren

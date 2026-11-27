@@ -64,6 +64,21 @@ export const gift = {
     haveOneLink: 'Scroll naar beneden en verzilver hem.',
   },
 
+  /** De pagina na het kopen van een bon (/cadeau/bedankt); Stripe stuurt de koper hierheen. */
+  thanks: {
+    title: 'Bedankt voor je cadeaubon',
+    heading: 'Bedankt, en goed gekozen!',
+    lead: 'Je BRANIE-cadeaubon is onderweg. Je ontvangt hem binnen een paar minuten per e-mail, als pdf met een unieke code.',
+    steps: [
+      ['Check je mail', 'De bon komt van info@braniemagazine.nl en gaat naar het e-mailadres dat je bij het afrekenen hebt ingevuld. Niets gezien? Kijk ook in je spam.'],
+      ['Print hem uit', 'Print de pdf en geef hem cadeau: in een envelop, in de schoen of onder de boom.'],
+      ['De ontvanger verzilvert hem', 'Via de QR-code op de bon, of op braniemagazine.nl/cadeau. Op 14 januari 2027 ligt BRANIE dan op de mat.'],
+    ],
+    contactText: 'Vragen over je bestelling?',
+    button: 'Terug naar BRANIE',
+    more: 'Ook zelf BRANIE in huis? Pre-order het magazine',
+  },
+
   redeem: {
     heading: 'Bon gekregen? Verzilver hem hier',
     text: 'Heb je een BRANIE-cadeaubon gekregen? Zo verzilver je hem:',

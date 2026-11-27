@@ -29,6 +29,10 @@
       "destination": "/index.html"
     },
     {
+      "source": "/cadeau/bedankt",
+      "destination": "/index.html"
+    },
+    {
       "source": "/cadeau/:path*",
       "destination": "/cadeau.html"
     }
@@ -79,6 +83,15 @@
         {
           "key": "Cache-Control",
           "value": "no-store"
+        }
+      ]
+    },
+    {
+      "source": "/cadeau/bedankt",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
         }
       ]
     }

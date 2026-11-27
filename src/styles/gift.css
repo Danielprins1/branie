@@ -516,3 +516,44 @@
 .gift__note strong {
   color: var(--color-bordeaux);
 }
+
+/* ---------- Bedankpagina cadeaubon (/cadeau/bedankt) ---------- */
+.thanks--gift .thanks__visual {
+  width: min(100%, 520px);
+}
+
+.thanks--gift .thanks__cover {
+  rotate: -3deg;
+}
+
+.thanks__bon {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 4px 6px rgb(0 0 0 / 0.25)) drop-shadow(0 18px 26px rgb(0 0 0 / 0.2));
+}
+
+.thanks__more {
+  margin-top: 1.2rem;
+  font-size: 0.98rem;
+}
+
+.thanks__more a {
+  color: var(--color-bordeaux);
+  font-weight: 600;
+  text-decoration-color: var(--color-red);
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 860px) {
+  .thanks--gift .thanks__visual {
+    width: min(86vw, 420px);
+  }
+}
+
+/* ruimte voor het Amsterdammertje linksonder */
+@media (min-width: 700px) {
+  .thanks--gift {
+    padding-left: max(clamp(16px, 5vw, 64px), 180px);
+  }
+}
