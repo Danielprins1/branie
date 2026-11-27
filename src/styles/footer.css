@@ -239,3 +239,33 @@
     width: 100%;
   }
 }
+
+/* ---------- Nieuwsbrief ---------- */
+.footer__news {
+  display: grid;
+  gap: 1.25rem 3rem;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+  padding-bottom: clamp(2rem, 4vw, 3rem);
+  border-bottom: 1px solid rgba(255, 253, 249, 0.2);
+  position: relative;
+}
+@media (min-width: 800px) {
+  .footer__news { grid-template-columns: 1fr 1.2fr; align-items: center; }
+}
+.footer__news-title { margin: 0 0 0.35rem; font-size: 1.5rem; color: #fffdf9; }
+.footer__news-text { margin: 0; opacity: 0.8; }
+.footer__news-row { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.footer__news-row input {
+  flex: 1 1 14rem; padding: 0.8rem 1rem; border: 1px solid rgba(255, 253, 249, 0.5);
+  background: rgba(255, 253, 249, 0.08); color: #fffdf9; font: inherit; border-radius: 0;
+}
+.footer__news-row input::placeholder { color: rgba(255, 253, 249, 0.6); }
+.footer__news-row button {
+  padding: 0.8rem 1.4rem; border: 0; background: #fffdf9; color: #5b0f1e;
+  font: inherit; font-weight: 700; cursor: pointer;
+}
+.footer__news-row button:disabled { opacity: 0.6; cursor: wait; }
+.footer__news-consent { display: flex; gap: 0.5rem; margin-top: 0.7rem; font-size: 0.85rem; opacity: 0.85; align-items: flex-start; }
+.footer__news-consent input { margin-top: 0.2rem; accent-color: #fffdf9; }
+.footer__news-ok, .footer__news-err { margin: 0; font-weight: 600; }
+.footer__news-err { margin-top: 0.6rem; }

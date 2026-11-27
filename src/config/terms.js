@@ -84,6 +84,7 @@ export const terms = {
       title: 'Jouw gegevens',
       text: [
         'We gebruiken je naam, adres en e-mailadres alleen om je bestelling af te handelen en te bezorgen. Daarvoor delen we ze met Stripe (betalen) en PostNL (bezorgen). We verkopen je gegevens niet.',
+        'Meld je je aan voor de nieuwsbrief, dan bewaren we alleen je e-mailadres om die nieuwsbrief te sturen. Afmelden kan altijd via {email}.',
         'Analytische cookies zetten we alleen aan als je daar op onze site toestemming voor geeft. Dat kun je altijd aanpassen via Cookie-instellingen onderaan de pagina.',
       ],
     },

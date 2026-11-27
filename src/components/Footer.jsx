@@ -6,6 +6,7 @@ import { shutterDown } from '../lib/shutter.js';
 import Asterisk from './Asterisk.jsx';
 import BrandLogo from './BrandLogo.jsx';
 import PreOrderButton from './PreOrderButton.jsx';
+import NewsletterSignup from './NewsletterSignup.jsx';
 
 const plainClick = (event) => event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0;
 const reduceMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -67,6 +68,8 @@ export default function Footer() {
         </div>
 
         <div className="footer__crosses" aria-hidden="true" />
+
+        <NewsletterSignup />
 
         <div className="footer__grid">
           <div className="footer__about">
