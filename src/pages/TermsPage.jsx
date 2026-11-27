@@ -26,15 +26,15 @@ function Text({ text }) {
  * Algemene voorwaarden (/voorwaarden). Alleen bereikbaar via de footer.
  * Inhoud: src/config/terms.js.
  */
-export default function TermsPage() {
+export default function TermsPage({ doc = terms }) {
   useEffect(() => {
     const prev = document.title;
-    document.title = `${terms.title} · ${brand.name}`;
+    document.title = `${doc.title} · ${brand.name}`;
     window.scrollTo(0, 0);
     return () => {
       document.title = prev;
     };
-  }, []);
+  }, [doc]);
 
   const home = (event) => {
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0) return;
@@ -43,7 +43,7 @@ export default function TermsPage() {
     window.scrollTo(0, 0);
   };
 
-  const s = terms.seller;
+  const s = doc.seller;
   const rows = [
     ['Naam', s.name],
     ['Adres', s.address],
@@ -61,11 +61,11 @@ export default function TermsPage() {
         </a>
 
         <article className="terms__inner">
-          <h1 className="terms__title">{terms.title}</h1>
-          <p className="terms__intro">{terms.intro}</p>
-          <p className="terms__updated">Laatst bijgewerkt: {terms.updated}</p>
+          <h1 className="terms__title">{doc.title}</h1>
+          <p className="terms__intro">{doc.intro}</p>
+          <p className="terms__updated">Laatst bijgewerkt: {doc.updated}</p>
 
-          {terms.sections.map((section, i) => (
+          {doc.sections.map((section, i) => (
             <section className="terms__section" key={section.title}>
               <h2>
                 <span className="terms__num" aria-hidden="true">

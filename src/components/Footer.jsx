@@ -162,6 +162,11 @@ export default function Footer() {
               </a>
             </li>
             <li>
+              <a href="/privacy" aria-current={here('/privacy')} onClick={internal('/privacy')}>
+                Privacy
+              </a>
+            </li>
+            <li>
               <button type="button" onClick={() => window.dispatchEvent(new Event('branie:cookies'))}>
                 Cookie-instellingen
               </button>

@@ -25,6 +25,10 @@
       "destination": "/index.html"
     },
     {
+      "source": "/privacy",
+      "destination": "/index.html"
+    },
+    {
       "source": "/betalingen-piofwodom-2875",
       "destination": "/index.html"
     },

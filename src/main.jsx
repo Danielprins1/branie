@@ -8,6 +8,7 @@ import ThankYouPage from './pages/ThankYouPage.jsx';
 import AboutPage from './pages/AboutPage.jsx';
 import FaqPage from './pages/FaqPage.jsx';
 import TermsPage from './pages/TermsPage.jsx';
+import { privacy } from './config/privacy.js';
 import GiftPage from './pages/GiftPage.jsx';
 import GiftThanksPage from './pages/GiftThanksPage.jsx';
 import DashboardPage from './pages/DashboardPage.jsx';
@@ -59,6 +60,7 @@ const isDashboardPath = (path) => path.replace(/\/$/, '') === `/${dashboard.slug
 const isGiftThanksPath = (path) => /^\/cadeau\/bedankt\/?$/.test(path);
 const isGiftPath = (path) => /^\/cadeau\/?$/.test(path);
 const isTermsPath = (path) => /^\/voorwaarden\/?$/.test(path);
+const isPrivacyPath = (path) => /^\/privacy\/?$/.test(path);
 const isFaqPath = (path) => /^\/faq\/?$/.test(path);
 const isThankYouPath = (path) => /^\/bedankt\/?$/.test(path);
 
@@ -98,7 +100,7 @@ function Root() {
       </>
     );
   } else {
-    page = isPillarsPath(path) ? <PillarsPage /> : isAboutPath(path) ? <AboutPage /> : isFaqPath(path) ? <FaqPage /> : isTermsPath(path) ? <TermsPage /> : <App />;
+    page = isPillarsPath(path) ? <PillarsPage /> : isAboutPath(path) ? <AboutPage /> : isFaqPath(path) ? <FaqPage /> : isTermsPath(path) ? <TermsPage /> : isPrivacyPath(path) ? <TermsPage doc={privacy} /> : <App />;
   }
   return (
     <>
