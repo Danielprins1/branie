@@ -220,6 +220,9 @@ export default function GiftPage() {
               <strong>{gift.price}</strong>
               <span>{gift.priceNote}</span>
             </p>
+            <p className="gift__note">
+              <strong>{gift.buy.emailNoteLabel}</strong> {gift.buy.emailNote}
+            </p>
             <a
               className="paper-btn gift__btn"
               href={gift.stripeUrl}

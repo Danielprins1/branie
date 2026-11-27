@@ -56,6 +56,9 @@ export const gift = {
       'Koop de bon en je krijgt hem binnen een paar minuten per mail, als pdf met een unieke code. Print hem uit en geef hem cadeau.',
       'De ontvanger verzilvert de bon hieronder. Op 14 januari 2027 ligt BRANIE dan op de mat.',
     ],
+    /** Waarschuwing bij de koopknop (en op de betaalpagina van Stripe, in custom_text). */
+    emailNoteLabel: 'Let op:',
+    emailNote: 'de cadeaubon wordt per e-mail gestuurd naar het e-mailadres dat je bij het afrekenen invult. Controleer dit goed.',
     button: 'Koop de cadeaubon',
     haveOne: 'Heb je al een bon gekregen?',
     haveOneLink: 'Scroll naar beneden en verzilver hem.',
