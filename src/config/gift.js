@@ -45,6 +45,9 @@ export const gift = {
   hero: {
     script: 'de BRANIE cadeaubon',
     title: 'Geef Amsterdam cadeau',
+    /** Voor wie een bon heeft gekregen en bovenaan terechtkomt. */
+    receivedLabel: 'Bon gekregen?',
+    receivedText: 'Scroll naar beneden om hem te verzilveren',
   },
 
   buy: {
@@ -54,11 +57,19 @@ export const gift = {
       'De ontvanger verzilvert de bon hieronder. Op 14 januari 2027 ligt BRANIE dan op de mat.',
     ],
     button: 'Koop de cadeaubon',
+    haveOne: 'Heb je al een bon gekregen?',
+    haveOneLink: 'Scroll naar beneden en verzilver hem.',
   },
 
   redeem: {
     heading: 'Bon gekregen? Verzilver hem hier',
-    text: 'Vul de code van je bon in en waar BRANIE naartoe mag. Op 14 januari 2027 ligt het magazine bij je op de mat.',
+    text: 'Heb je een BRANIE-cadeaubon gekregen? Zo verzilver je hem:',
+    steps: [
+      'Vul de code van je bon in.',
+      'Vul je naam, adres en e-mailadres in.',
+      'Klaar. Op 14 januari 2027 ligt BRANIE bij je op de mat.',
+    ],
+    codeHint: 'Je vindt de code op je bon. Hij begint met BRANIE.',
     button: 'Verzilver mijn bon',
     sending: 'Even geduld',
     success: 'Gelukt! Op 14 januari 2027 ligt BRANIE bij je op de mat.',

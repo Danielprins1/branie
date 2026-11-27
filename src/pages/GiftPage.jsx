@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { gift } from '../config/gift.js';
 import { brand } from '../config/site.js';
 import { giftImage } from '../lib/assets.js';
@@ -12,6 +12,13 @@ import TornEdge from '../components/sales/TornEdge.jsx';
 const FIELDS = ['code', 'naam', 'straat', 'postcode', 'plaats', 'email'];
 const EMPTY = Object.fromEntries(FIELDS.map((f) => [f, '']));
 const reduceMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/** Naar het formulier om een bon te verzilveren, en daar meteen in het codeveld. */
+function toRedeem(event) {
+  event.preventDefault();
+  document.getElementById('verzilveren')?.scrollIntoView({ behavior: reduceMotion() ? 'auto' : 'smooth', block: 'start' });
+  setTimeout(() => document.getElementById('gift-code')?.focus({ preventScroll: true }), reduceMotion() ? 0 : 700);
+}
 
 /** De paginatitel en omschrijving voor wie via de site navigeert (de statische versie staat in cadeau.html). */
 function useSeo() {
@@ -43,6 +50,12 @@ function RedeemForm() {
   });
   const [status, setStatus] = useState('idle'); // idle | sending | done
   const [error, setError] = useState(null); // 'al_verzilverd' | 'ongeldig' | 'anders'
+  const doneRef = useRef(null);
+
+  // Na het verzilveren de bevestiging in beeld brengen, ook op een kleine telefoon.
+  useEffect(() => {
+    if (status === 'done') doneRef.current?.scrollIntoView({ behavior: reduceMotion() ? 'auto' : 'smooth', block: 'center' });
+  }, [status]);
 
   const onChange = (event) => setValues((v) => ({ ...v, [event.target.name]: event.target.value }));
 
@@ -74,7 +87,7 @@ function RedeemForm() {
 
   if (status === 'done') {
     return (
-      <div className="gift-done" role="status">
+      <div className="gift-done" role="status" ref={doneRef}>
         <p className="gift-done__stamp" aria-hidden="true">
           Verzilverd
         </p>
@@ -84,7 +97,7 @@ function RedeemForm() {
   }
 
   const sending = status === 'sending';
-  const field = (name, label, props = {}) => (
+  const field = (name, label, { hint, ...props } = {}) => (
     <div className={`gift-field gift-field--${name}`}>
       <label htmlFor={`gift-${name}`}>{label}</label>
       <input
@@ -94,8 +107,14 @@ function RedeemForm() {
         onChange={onChange}
         required
         disabled={sending}
+        aria-describedby={hint ? `gift-${name}-hint` : undefined}
         {...props}
       />
+      {hint && (
+        <p className="gift-field__hint" id={`gift-${name}-hint`}>
+          {hint}
+        </p>
+      )}
     </div>
   );
 
@@ -103,6 +122,7 @@ function RedeemForm() {
     <form className="gift-form" onSubmit={submit}>
       {field('code', 'Code op je bon', {
         placeholder: 'BRANIE-XXXX-XXXX',
+        hint: gift.redeem.codeHint,
         autoComplete: 'off',
         autoCapitalize: 'characters',
         spellCheck: false,
@@ -174,31 +194,46 @@ export default function GiftPage() {
           {gift.hero.title}
           <Asterisk className="gift__asterisk" />
         </h1>
+        <a className="gift__received" href="#verzilveren" onClick={toRedeem}>
+          <strong>{gift.hero.receivedLabel}</strong>
+          <span>{gift.hero.receivedText}</span>
+          <span className="gift__received-arrow" aria-hidden="true">
+            ↓
+          </span>
+        </a>
       </header>
 
       <section className="gift__buy" aria-labelledby="gift-buy-title">
-        <figure className="gift__bon">
-          <img src={giftImage(gift.image)} alt={gift.imageAlt} width="1800" height="945" decoding="async" />
-          <span className="tape gift__tape" aria-hidden="true" />
-        </figure>
-        <div className="gift__buy-text">
-          <h2 className="gift__h2" id="gift-buy-title">
-            {gift.buy.heading}
-          </h2>
-          {gift.buy.text.map((paragraph) => (
-            <p key={paragraph}>{paragraph}</p>
-          ))}
-          <p className="gift__price">
-            <strong>{gift.price}</strong>
-            <span>{gift.priceNote}</span>
-          </p>
-          <a
-            className="paper-btn gift__btn"
-            href={gift.stripeUrl}
-            onClick={() => track('begin_checkout', { currency: 'EUR', value: 24.95, item_name: 'BRANIE cadeaubon' })}
-          >
-            {gift.buy.button} <span aria-hidden="true">→</span>
-          </a>
+        <div className="gift__buy-inner">
+          <figure className="gift__bon">
+            <img src={giftImage(gift.image)} alt={gift.imageAlt} width="1800" height="945" decoding="async" />
+            <span className="tape gift__tape" aria-hidden="true" />
+          </figure>
+          <div className="gift__buy-text">
+            <h2 className="gift__h2" id="gift-buy-title">
+              {gift.buy.heading}
+            </h2>
+            {gift.buy.text.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+            <p className="gift__price">
+              <strong>{gift.price}</strong>
+              <span>{gift.priceNote}</span>
+            </p>
+            <a
+              className="paper-btn gift__btn"
+              href={gift.stripeUrl}
+              onClick={() => track('begin_checkout', { currency: 'EUR', value: 24.95, item_name: 'BRANIE cadeaubon' })}
+            >
+              {gift.buy.button} <span aria-hidden="true">→</span>
+            </a>
+            <p className="gift__have">
+              {gift.buy.haveOne}{' '}
+              <a href="#verzilveren" onClick={toRedeem}>
+                {gift.buy.haveOneLink}
+              </a>
+            </p>
+          </div>
         </div>
         <TornEdge to="var(--color-blue)" seed={7} />
       </section>
@@ -210,6 +245,16 @@ export default function GiftPage() {
               {gift.redeem.heading}
             </h2>
             <p>{gift.redeem.text}</p>
+            <ol className="gift__steps">
+              {gift.redeem.steps.map((step, i) => (
+                <li key={step}>
+                  <span className="gift__step-num" aria-hidden="true">
+                    {i + 1}
+                  </span>
+                  <span>{step}</span>
+                </li>
+              ))}
+            </ol>
           </div>
           <div className="gift__card">
             <RedeemForm />
