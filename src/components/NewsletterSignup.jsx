@@ -3,24 +3,24 @@ import { newsletter as n } from '../config/newsletter.js';
 
 export default function NewsletterSignup() {
   const [status, setStatus] = useState('idle');
-  if (!n.url) return null;
+  if (!n.enabled) return null;
 
   const submit = async (e) => {
     e.preventDefault();
     const f = e.currentTarget;
-    if (f.website.value) return; // honeypot
     setStatus('sending');
     try {
-      await fetch(n.url, {
+      const response = await fetch(n.url, {
         method: 'POST',
-        mode: 'no-cors',
-        body: new URLSearchParams({
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
           email: f.email.value.trim(),
-          bron: window.location.pathname,
-          toestemming: 'ja',
-          datum: new Date().toISOString(),
+          consent: f.consent.checked,
+          website: f.website.value,
+          page: window.location.pathname,
         }),
       });
+      if (!response.ok) throw new Error('mislukt');
       setStatus('done');
     } catch {
       setStatus('error');

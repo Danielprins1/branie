@@ -1,8 +1,10 @@
 // Nieuwsbrief-aanmelding in de footer.
-// url = Make-webhook die het e-mailadres in een Google Sheet zet.
-// Leeg laten = het formulier blijft verborgen.
+// Aanmeldingen gaan via /api/nieuwsbrief naar een Google Sheet.
+// enabled: false = het formulier blijft verborgen. Zet op true zodra de
+// drie Google-instellingen in Vercel staan (zie api/nieuwsbrief.js).
 export const newsletter = {
-  url: '',
+  enabled: false,
+  url: '/api/nieuwsbrief',
   heading: 'Blijf op de hoogte',
   text: 'Een paar keer per jaar een mail met nieuws over BRANIE. Geen spam.',
   placeholder: 'Je e-mailadres',
