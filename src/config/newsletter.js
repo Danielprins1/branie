@@ -1,9 +1,9 @@
 // Nieuwsbrief-aanmelding in de footer.
 // Aanmeldingen gaan via /api/nieuwsbrief naar een Google Sheet.
-// enabled: false = het formulier blijft verborgen. Zet op true zodra de
+// enabled: true = het formulier blijft verborgen. Zet op true zodra de
 // drie Google-instellingen in Vercel staan (zie api/nieuwsbrief.js).
 export const newsletter = {
-  enabled: false,
+  enabled: true,
   url: '/api/nieuwsbrief',
   heading: 'Blijf op de hoogte',
   text: 'Een paar keer per jaar een mail met nieuws over BRANIE. Geen spam.',
